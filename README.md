@@ -7,7 +7,7 @@
 ## 当前架构
 
 - 10 种语言：en / zh / es / fr / de / pt / ru / ja / ar / id
-- 44 个工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
+- 54 个工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
 - 每种语言使用独立 URL，并生成 hreflang、canonical、sitemap、Open Graph 和结构化数据
 - src/seo-overrides.json：可编辑的 SEO 覆盖层
 - admin.html：SEO 管理后台
@@ -100,3 +100,20 @@ Google 当前仍强调 people-first content，并明确反对为了搜索排名�
 第三阶段加入商业化能力：去广告、高级批量处理、历史记录、团队空间、API，以及自有域名与后台数据分析。
 
 重型能力必须先实现真实功能和错误处理，再开放可索引页面。
+
+
+## 2026-10-01 全方位产品复核
+
+本轮按照 iLovePDF、Smallpdf、TinyWow、Convertio 等成熟工具站的公开功能结构重新检查产品缺口。当前竞品普遍把“文件处理 + PDF + 图片 + OCR + 批量操作 + 开发者工具”作为完整工作流，而不是几十个孤立的计算器。iLovePDF 当前公开工具包含合并、拆分、压缩、Office 转换、PDF→Word/OCR、PDF→JPG、旋转、删页、重排、加页码、水印、OCR、PDF→Markdown 等；Smallpdf 当前公开分类也覆盖 PDF→Word/Excel/PPT、OCR、PDF→JPG/PNG、Office→PDF、组织页面、编辑、签名和保护；TinyWow 的公开工具目录进一步覆盖图片 OCR、HEIC、PDF 页码/旋转、背景处理以及视频/音频工具；Convertio 则以大量格式转换和 API 为核心。citeturn386806search3turn386806search4turn386806search1turn386806search0
+
+因此 GQB Tools 不应复制它们数百个工具的数量，而应优先覆盖用户最容易反复遇到的任务，并保持浏览器本地处理优先。当前新增 PDF→JPG、删除 PDF 页面、旋转 PDF、页码、水印和图片 OCR，正好补齐了一部分高频文件工作流。
+
+性能策略也明确：主站 HTML 采用构建时预渲染，工具运行 JavaScript；重型第三方库只在用户打开对应工具并实际点击后加载，避免首页把 PDF/OCR 库全部加载进来。Google 对 JavaScript SEO 明确指出预渲染/服务器端渲染通常更利于速度与抓取，因此当前“静态 HTML + 客户端工具”架构比全站只输出 JS 应用壳更适合 SEO。citeturn149334search4
+
+核心 Web 指标继续作为性能目标：LCP 尽量控制在 2.5 秒以内、INP 200 毫秒以内、CLS 低于 0.1。citeturn149334search11
+
+SEO 页面继续采用独立语言 URL + hreflang，并避免基于 IP 自动跳转。Google 当前建议不同语言使用不同 URL，并明确建议让用户自己切换语言；同时语言判断应结合页面可见内容，而不是只依赖 HTML lang 或 URL。citeturn149334search0turn149334search1
+
+Meta description 继续按页面意图逐步完善。Google 说明页面正文经常会直接参与 snippet 生成，因此不能只改 meta description，还要保证 H1、首段和工具实际内容相互一致。citeturn149334search2
+
+最后，工具功能本身必须是真实功能。Google 当前垃圾内容政策把“声称提供某种功能、实际却用广告或误导方式替代功能”列为 misleading functionality，并明确指出大规模生成低价值页面可能属于 scaled content abuse。citeturn748773search9
