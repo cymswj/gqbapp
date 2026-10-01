@@ -41,7 +41,7 @@ export default {
     const filePath = "src/seo-overrides.json";
 
     async function githubFile() {
-      if (!env.GITHUB_TOKEN) return {data:{site:{},pages:{}},sha:null};
+      if (!env.GITHUB_TOKEN) return {data:{site:{},pages:{}},sha:null,error:null};
       const api = "https://api.github.com/repos/" + repo + "/contents/" + filePath + "?ref=" + encodeURIComponent(branch);
       const r = await fetch(api, {
         headers: {
@@ -50,12 +50,12 @@ export default {
           "User-Agent": "GQB-SEO-Admin"
         }
       });
-      if (!r.ok) return {data:{site:{},pages:{}},sha:null};
+      if (!r.ok) return {data:{site:{},pages:{}},sha:null,error:"GitHub read failed: "+r.status};
       const j = await r.json();
       const bytes = Uint8Array.from(atob((j.content || "").replace(/\n/g,"")), c => c.charCodeAt(0));
       const decoded = new TextDecoder().decode(bytes);
-      try { return {data:JSON.parse(decoded),sha:j.sha}; }
-      catch { return {data:{site:{},pages:{}},sha:j.sha}; }
+      try { return {data:JSON.parse(decoded),sha:j.sha,error:null}; }
+      catch { return {data:{site:{},pages:{}},sha:j.sha,error:"Stored SEO JSON is invalid"}; }
     }
 
     function base64Utf8(text) {
@@ -72,7 +72,9 @@ export default {
     }
 
     if (request.method === "GET") {
-      const {data} = await githubFile();
+      const result = await githubFile();
+      if (result.error && env.GITHUB_TOKEN) return jsonResponse(request,env,{error:result.error},503);
+      const {data} = result;
       const lang = url.searchParams.get("lang");
       const slug = url.searchParams.get("slug");
       if (!validLang(lang)) return jsonResponse(request,env,{error:"Invalid language"},400);
@@ -99,6 +101,7 @@ export default {
     catch { return jsonResponse(request,env,{error:"Invalid JSON"},400); }
 
     const current = await githubFile();
+    if (current.error && env.GITHUB_TOKEN) return jsonResponse(request,env,{error:current.error},503);
     const data = current.data && typeof current.data === "object" ? current.data : {site:{},pages:{}};
     data.site = data.site && typeof data.site === "object" ? data.site : {};
     data.pages = data.pages && typeof data.pages === "object" ? data.pages : {};
