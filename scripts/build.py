@@ -225,6 +225,7 @@ def analytics_tags():
 
 def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema=None):
     direction = "rtl" if loc == "ar" else "ltr"
+    sw_path = (("../"*depth) + "sw.js")
     alts = []
     for l in locales:
         alt_url = canonical.replace(f"/{loc}/", f"/{l}/")
@@ -269,7 +270,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 {extra}
 </head>
 <body data-locale="{loc}">
-<script>if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("{("../"*depth)}sw.js").catch(()=>{}));</script>
+<script>if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("{sw_path}").catch(()=>{}));</script>
 {body}
 </body>
 </html>'''
