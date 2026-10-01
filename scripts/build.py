@@ -117,7 +117,7 @@ for loc in locales:
 <section class="grid">{"".join(cards)}</section>
 </main>
 <footer class="footer"><div class="wrap">{esc(i18n[loc]["privacy"])}</div></footer>
-function filterTools(q){{q=q.toLowerCase();document.querySelectorAll(".toolcard").forEach(function(x){{x.style.display=!q||x.innerText.toLowerCase().indexOf(q)>-1?"flex":"none"}})}}
+<script>function filterTools(q){{q=q.toLowerCase();document.querySelectorAll(".toolcard").forEach(function(x){{x.style.display=!q||x.innerText.toLowerCase().indexOf(q)>-1?"flex":"none"}})}}</script>'''
     html_text = shell(loc, f'GQB Tools – {site["siteTagline"]}', site["siteTagline"], url(loc), home_body, 1)
     out = DIST / loc / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
