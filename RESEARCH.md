@@ -243,3 +243,12 @@ https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-
 
 然后再进入：
 PDF→Word / OCR / HEIC / PDF 压缩 / 图片转文字 / 批量处理 / API / 会员功能。
+
+
+## 2026-10-01 新一轮需求验证
+
+本轮继续检查文件转换类搜索需求。一个 2026 年 8 月公开发布、引用 Ahrefs 数据的样本估计 “heic to jpg” 约 218,000 次/月（美国）；另一个基于 Google Keyword Planner / DataForSEO 的 2026 年 9 月公开研究也把 HEIC/JPG 等格式转换作为持续可见的搜索需求。搜索量不是实际工具使用量，因此这里仅作为产品方向信号。
+
+参考：
+https://semiconductors.einnews.com/pr_news/935658333/an-estimated-half-a-million-plus-u-s-searches-a-month-look-for-a-way-to-convert-image-files-back-to-jpeg
+https://gizmobench.com/research/file-formats
