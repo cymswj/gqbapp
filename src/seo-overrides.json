@@ -269,6 +269,78 @@
         "count business days"
       ],
       "index": true
+    },
+    "en:percentage-change-calculator": {
+      "title": "Percentage Change Calculator – Calculate Increase or Decrease",
+      "description": "Calculate percentage increase or decrease between an old value and a new value with this free online calculator.",
+      "h1": "Percentage Change Calculator",
+      "intro": "Enter the old and new values to calculate the percentage increase or decrease.",
+      "targetKeywords": [
+        "percentage change calculator",
+        "percentage increase calculator",
+        "percentage decrease calculator"
+      ],
+      "index": true
+    },
+    "en:roi-calculator": {
+      "title": "ROI Calculator – Return on Investment",
+      "description": "Calculate return on investment from cost and return values with a free online ROI calculator.",
+      "h1": "ROI Calculator",
+      "intro": "Enter the investment cost and value received to calculate ROI.",
+      "targetKeywords": [
+        "roi calculator",
+        "return on investment calculator",
+        "investment return calculator"
+      ],
+      "index": true
+    },
+    "en:markup-calculator": {
+      "title": "Markup Calculator – Calculate Markup Percentage",
+      "description": "Calculate markup percentage and profit from cost and selling price with this free online markup calculator.",
+      "h1": "Markup Calculator",
+      "intro": "Enter cost and selling price to calculate markup percentage and profit.",
+      "targetKeywords": [
+        "markup calculator",
+        "markup percentage calculator",
+        "calculate markup"
+      ],
+      "index": true
+    },
+    "en:break-even-calculator": {
+      "title": "Break-Even Calculator – Calculate Break-Even Point",
+      "description": "Calculate the units and revenue needed to cover fixed and variable costs with a free break-even calculator.",
+      "h1": "Break-Even Calculator",
+      "intro": "Enter fixed costs, selling price per unit and variable cost per unit to calculate break-even units.",
+      "targetKeywords": [
+        "break even calculator",
+        "break-even point calculator",
+        "break even analysis"
+      ],
+      "index": true
+    },
+    "en:extract-pdf-pages": {
+      "title": "Extract PDF Pages – Create a New PDF from Selected Pages",
+      "description": "Extract selected pages from a PDF and create a new PDF directly in your browser.",
+      "h1": "Extract PDF Pages",
+      "intro": "Enter the page numbers or ranges to extract them into a new PDF.",
+      "targetKeywords": [
+        "extract pdf pages",
+        "pdf page extractor",
+        "extract pages from pdf"
+      ],
+      "index": true
+    },
+    "en:reorder-pdf-pages": {
+      "title": "Reorder PDF Pages – Rearrange PDF Pages Online",
+      "description": "Rearrange PDF pages by entering a new page order and create a reordered PDF in your browser.",
+      "h1": "Reorder PDF Pages",
+      "intro": "Enter the new page order, such as 3,1,2,4-5, to create a reordered PDF.",
+      "targetKeywords": [
+        "reorder pdf pages",
+        "rearrange pdf pages",
+        "organize pdf pages"
+      ],
+      "index": true
     }
   }
 }
