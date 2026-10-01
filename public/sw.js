@@ -1,16 +1,26 @@
-const CACHE="gqb-tools-v1";
+const CACHE="gqb-tools-v2";
 const CORE=["./","./public/style.css","./public/app.js"];
-self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
-self.addEventListener("activate",e=>e.waitUntil(self.clients.claim()));
-self.addEventListener("fetch",e=>{
-  if(e.request.method!=="GET") return;
-  const u=new URL(e.request.url);
-  if(u.origin!==self.location.origin) return;
-  e.respondWith(caches.match(e.request).then(cached=>{
-    const fresh=fetch(e.request).then(res=>{
-      if(res.ok){const copy=res.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));}
+self.addEventListener("install",event=>{
+  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
+});
+self.addEventListener("activate",event=>{
+  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
+});
+self.addEventListener("fetch",event=>{
+  const req=event.request;
+  if(req.method!=="GET") return;
+  const url=new URL(req.url);
+  if(url.origin!==self.location.origin) return;
+  if(url.pathname.endsWith("/admin.html") || url.pathname.endsWith("/sitemap.xml") || url.pathname.endsWith("/robots.txt")) return;
+  if(req.mode==="navigate"){
+    event.respondWith(fetch(req).then(res=>{
+      if(res.ok) caches.open(CACHE).then(c=>c.put(req,res.clone()));
       return res;
-    }).catch(()=>cached);
-    return cached||fresh;
-  }));
+    }).catch(()=>caches.match(req).then(c=>c||caches.match("./"))));
+    return;
+  }
+  event.respondWith(caches.match(req).then(cached=>cached||fetch(req).then(res=>{
+    if(res.ok) caches.open(CACHE).then(c=>c.put(req,res.clone()));
+    return res;
+  })));
 });
