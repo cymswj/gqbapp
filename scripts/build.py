@@ -1,5 +1,6 @@
 import json, html, shutil
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -15,6 +16,7 @@ seo = json.loads((SRC / "seo-overrides.json").read_text(encoding="utf-8")) if (S
 locales = site["supportedLocales"]
 base = site["baseUrl"].rstrip("/")
 default_locale = site["defaultLocale"]
+site_path = urlparse(base).path.rstrip("/")
 
 GENERIC = {
  "en": "Free online tool, fast and simple. No signup required.",
@@ -443,7 +445,7 @@ for loc in locales:
         intro = CATEGORY_INTROS.get(cslug, {}).get(loc, f"{cname}. {GENERIC[loc]}")
         canonical = category_url(loc, cslug)
         cat_schema = page_schema(loc, cname, intro, canonical)
-        cat_schema["mainEntity"] = {"@type":"ItemList","numberOfItems":len(items)}
+        cat_schema["mainEntity"] = {"@type":"ItemList","numberOfItems":len(items),"itemListElement":[{"@type":"ListItem","position":i+1,"name":t(item["names"],loc),"url":url(loc,item["slug"])} for i,item in enumerate(items)]}
         body = topnav(loc,2)
         body += f'''<main class="wrap static-page">
 <nav class="breadcrumbs"><a href="{url(loc)}">{esc(i18n[loc].get("home","Home"))}</a><span>›</span><span>{esc(cname)}</span></nav>
