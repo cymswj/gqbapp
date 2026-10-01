@@ -271,7 +271,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 {extra}
 </head>
 <body data-locale="{loc}">
-<script>if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("{sw_path}").catch(()=>{}));</script>
+<script>if("serviceWorker" in navigator) window.addEventListener("load",function(){{navigator.serviceWorker.register("{sw_path}");}});</script>
 {body}
 </body>
 </html>'''
