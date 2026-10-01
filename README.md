@@ -1,70 +1,66 @@
 # gqbapp / GQB Tools
 
-一个面向全球用户的免费在线工具站。
+面向全球用户的免费在线工具站。
 
-目标不是做一个“堆很多网页的 SEO 站”，而是做一个真正有用的工具入口：用户搜索一个问题，打开页面，马上完成任务。
+核心思路：用户带着一个明确任务进入网页，马上完成任务。工具本身真实可用，SEO 只是帮助用户找到工具，而不是用大量空页面制造流量。
 
-## 第一阶段
+## 当前架构
 
-目前已经建立：
+- 10 种语言：en / zh / es / fr / de / pt / ru / ja / ar / id
+- 40 个左右的工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
+- 每种语言使用独立 URL，并生成 hreflang、canonical、sitemap、Open Graph 和结构化数据
+- src/seo-overrides.json：可编辑的 SEO 覆盖层
+- admin.html：SEO 管理后台
+- worker.js：在线 SEO API，可接 GitHub 或 Cloudflare KV
+- wrangler.toml：Cloudflare Worker 部署配置
+- scripts/build.py：批量生成多语言静态页面
+- .github/workflows/pages.yml：自动构建和发布
 
-- 10 种语言目录：en / zh / es / fr / de / pt / ru / ja / ar / id
-- 20+ 个工具目录
-- 百分比、年龄、日期差、时区、汇率、单位换算
-- 密码、随机数、字数、字符数、二维码
-- 图片压缩、图片调整尺寸、JPG 转 PDF、PDF 合并
-- JSON、URL、Unix 时间戳、BMI、贷款、小费、图片取色、科学计算
-- 每个语言与工具都有独立 URL
-- title、description、canonical、hreflang、OG、结构化数据、sitemap
-- GitHub Actions 自动生成多语言页面
-- admin.html SEO 管理后台
-- worker.js 在线 SEO API 预留
+## 工具策略
 
-## 架构
+第一批优先做真实高频的“计算/转换/文件/开发者”工具。
 
-src/site-config.json
-站点级 SEO 与语言配置。
+后续重点：
+PDF to Word、HEIC to JPG、PDF 压缩、图片格式转换、图片压缩、OCR、背景移除、图片转文字、视频/音频转换、开发者调试工具、SEO 工具等。
 
-src/i18n.json
-界面词库。
-
-src/tools.json
-工具目录、实现类型和多语言名称。
-
-public/app.js
-浏览器端工具运行引擎。尽可能让文件、文字和密码类功能在本地处理。
-
-scripts/build.py
-静态页面生成器。一次构建全部语言主页、工具页、robots.txt 和 sitemap.xml。
+重型工具只有在功能真正完成后才创建可收录页面，不发布“假的功能页”。
 
 ## SEO 后台
 
-当前 GitHub Pages 是静态托管，所以 admin.html 先作为配置管理入口和草稿工具。
+后台可以管理：
+- SEO Title
+- Meta Description
+- H1
+- 页面首段
+- Target Keywords
+- index / noindex
 
-真正的在线后台已经预留 worker.js：
+在线模式：
+admin.html → Cloudflare Worker /api/seo → GitHub src/seo-overrides.json → GitHub Actions → 自动重新构建多语言页面。
 
-GET /api/seo
-读取 SEO 配置。
+这样以后改一个工具的 SEO，不需要手工修改几十个 HTML 页面。
 
-PUT /api/seo
-使用 X-Admin-Password 保存 SEO 配置。
+当前在线模式需要在 Cloudflare Worker 中设置：
+GITHUB_TOKEN
+GITHUB_REPO=cymswj/gqbapp
+GITHUB_BRANCH=main
+ADMIN_PASSWORD
 
-Cloudflare 部署后可接 KV。下一步可以继续把页面标题、描述、robots、站点验证、工具页 SEO、语言版本、发布状态等全部做成后台 CMS。
+GitHub Token 必须作为 Worker Secret 保存，不能放在前端或 GitHub 文件中。
 
-## 部署
+## GitHub Pages
 
-仓库已包含 GitHub Actions。
+当前 GitHub Actions 的构建步骤已经可以成功生成网站；部署步骤会要求仓库先启用 GitHub Pages。
 
-第一次使用 GitHub Pages 时，在仓库 Settings → Pages 中将发布方式设为 GitHub Actions。
+一次性设置：
+仓库 Settings → Pages → Build and deployment → Source 选择 GitHub Actions。
 
-以后 push 到 main，会自动运行 scripts/build.py 并发布 dist。
+启用后，push main 会自动构建并发布。
 
 ## SEO 原则
 
-GQB Tools 会优先做“有实际使用价值的工具”，再根据真实搜索数据扩展。
+Google 推荐多语言页面使用不同 URL，并配合 hreflang；标题应当描述清楚页面内容；页面级 meta description 应该有实际作用。
 
-不盲目生成大量同质化语言页。Google Search Central 明确提醒，大量没有给用户增加价值的自动生成页面可能触及 scaled content abuse。
-
-多语言页面使用独立 URL，并用 hreflang 相互标注。
+同时不要用 AI 或自动翻译批量制造大量没有实际价值的页面。Google 的 scaled content abuse 政策明确把这种行为作为垃圾内容风险。
 
 详细研究见 RESEARCH.md。
