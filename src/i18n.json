@@ -89,7 +89,12 @@
       "decode": "Decode",
       "test": "Test",
       "runOcr": "Run OCR",
-      "recognize": "Recognize"
+      "recognize": "Recognize",
+      "mass": "Mass",
+      "time": "Time",
+      "add": "Add",
+      "subtract": "Subtract",
+      "scienceHelp": "Supports + − × ÷, ^, parentheses, numbers, pi/e, and common functions."
     },
     "recent": "Recently used",
     "relatedTools": "Related tools",
@@ -206,7 +211,12 @@
       "decode": "解码",
       "test": "测试",
       "runOcr": "开始 OCR",
-      "recognize": "识别"
+      "recognize": "识别",
+      "mass": "质量",
+      "time": "时间",
+      "add": "增加",
+      "subtract": "减少",
+      "scienceHelp": "支持 + − × ÷、^、括号、数字、π/e 以及常见数学函数。"
     },
     "recent": "最近使用",
     "relatedTools": "相关工具",
@@ -323,7 +333,12 @@
       "decode": "Decodificar",
       "test": "Probar",
       "runOcr": "Ejecutar OCR",
-      "recognize": "Reconocer"
+      "recognize": "Reconocer",
+      "mass": "Masa",
+      "time": "Tiempo",
+      "add": "Sumar",
+      "subtract": "Restar",
+      "scienceHelp": "Admite + − × ÷、^、paréntesis, números, pi/e y funciones comunes."
     },
     "recent": "Usadas recientemente",
     "relatedTools": "Herramientas relacionadas",
@@ -440,7 +455,12 @@
       "decode": "Décoder",
       "test": "Tester",
       "runOcr": "Lancer l’OCR",
-      "recognize": "Reconnaître"
+      "recognize": "Reconnaître",
+      "mass": "Masse",
+      "time": "Temps",
+      "add": "Ajouter",
+      "subtract": "Soustraire",
+      "scienceHelp": "Prend en charge + − × ÷, ^, les parenthèses, les nombres, pi/e et les fonctions courantes."
     },
     "recent": "Récemment utilisés",
     "relatedTools": "Outils associés",
@@ -557,7 +577,12 @@
       "decode": "Dekodieren",
       "test": "Testen",
       "runOcr": "OCR starten",
-      "recognize": "Erkennen"
+      "recognize": "Erkennen",
+      "mass": "Masse",
+      "time": "Zeit",
+      "add": "Addieren",
+      "subtract": "Subtrahieren",
+      "scienceHelp": "Unterstützt + − × ÷, ^, Klammern, Zahlen, pi/e und gängige Funktionen."
     },
     "recent": "Zuletzt verwendet",
     "relatedTools": "Verwandte Tools",
@@ -674,7 +699,12 @@
       "decode": "Decodificar",
       "test": "Testar",
       "runOcr": "Executar OCR",
-      "recognize": "Reconhecer"
+      "recognize": "Reconhecer",
+      "mass": "Massa",
+      "time": "Tempo",
+      "add": "Adicionar",
+      "subtract": "Subtrair",
+      "scienceHelp": "Aceita + − × ÷, ^, parênteses, números, pi/e e funções comuns."
     },
     "recent": "Usados recentemente",
     "relatedTools": "Ferramentas relacionadas",
@@ -791,7 +821,12 @@
       "decode": "Декодировать",
       "test": "Проверить",
       "runOcr": "Запустить OCR",
-      "recognize": "Распознать"
+      "recognize": "Распознать",
+      "mass": "Масса",
+      "time": "Время",
+      "add": "Прибавить",
+      "subtract": "Вычесть",
+      "scienceHelp": "Поддерживаются + − × ÷, ^, скобки, числа, pi/e и распространённые функции."
     },
     "recent": "Недавно использованные",
     "relatedTools": "Связанные инструменты",
@@ -908,7 +943,12 @@
       "decode": "デコード",
       "test": "テスト",
       "runOcr": "OCRを実行",
-      "recognize": "認識"
+      "recognize": "認識",
+      "mass": "質量",
+      "time": "時間",
+      "add": "加算",
+      "subtract": "減算",
+      "scienceHelp": "+ − × ÷、^、括弧、数値、pi/e、一般的な関数に対応しています。"
     },
     "recent": "最近使ったツール",
     "relatedTools": "関連ツール",
@@ -1025,7 +1065,12 @@
       "decode": "فك الترميز",
       "test": "اختبار",
       "runOcr": "تشغيل OCR",
-      "recognize": "تعرّف"
+      "recognize": "تعرّف",
+      "mass": "الكتلة",
+      "time": "الوقت",
+      "add": "إضافة",
+      "subtract": "طرح",
+      "scienceHelp": "يدعم + − × ÷ و^ والأقواس والأرقام وpi/e والدوال الشائعة."
     },
     "recent": "المستخدمة مؤخرًا",
     "relatedTools": "أدوات ذات صلة",
@@ -1142,7 +1187,12 @@
       "decode": "Dekode",
       "test": "Uji",
       "runOcr": "Jalankan OCR",
-      "recognize": "Kenali"
+      "recognize": "Kenali",
+      "mass": "Massa",
+      "time": "Waktu",
+      "add": "Tambah",
+      "subtract": "Kurangi",
+      "scienceHelp": "Mendukung + − × ÷, ^, tanda kurung, angka, pi/e, dan fungsi umum."
     },
     "recent": "Baru digunakan",
     "relatedTools": "Alat terkait",

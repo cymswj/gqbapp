@@ -83,3 +83,7 @@ header{padding:24px 0 8px}
 
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toolcard{transition:none}}
+
+.tool-runtime{display:flex;align-items:baseline;gap:8px;margin:14px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--soft);font-size:13px}.tool-runtime strong{white-space:nowrap}.tool-runtime span{color:var(--muted)}.tool-runtime-network{background:var(--soft)}
+.download{display:inline-flex;align-items:center;gap:6px;margin-top:10px}.pdfDownloads{display:grid;gap:8px;margin-top:12px}.pdfDownloads .download{margin-top:0}.bmi-result-main{flex-wrap:wrap}
+@media(max-width:720px){.tool-runtime{align-items:flex-start;flex-direction:column;gap:3px}.tool-runtime strong{white-space:normal}}
