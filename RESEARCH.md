@@ -202,7 +202,7 @@ https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
 
 ### 2026 产品结构
 
-当前站点：54 个真实工具，10 个语言目录。
+当前站点：56 个真实工具，10 个语言目录。
 
 已覆盖的高频基础方向：
 计算、单位/数据转换、时区、汇率、文本统计、二维码、密码/随机/UUID、图片压缩/调整尺寸/格式转换、JPG→PDF、PDF 合并/分割、JSON、URL、时间戳、Regex、Base64、Hash、利润率、温度、重量等。
@@ -288,3 +288,29 @@ Tesseract.js 当前 npm 最新版为 7.0.0，可在浏览器通过 Web Worker �
 Google 目前强调 people-first content、独立语言 URL 和 hreflang，并警告大规模生成低价值页面可能属于 scaled content abuse。页面应该因为用户真正需要这项工具而存在，而不是因为关键词列表要求它存在。citeturn149334search0turn149334search1turn748773search9
 
 此外，Google 当前说明 snippet 主要来自页面可见内容，meta description 只是可能被采用的摘要来源。因此后期 SEO 后台不能只改 title/description，还要允许编辑工具介绍、使用步骤和常见问题，并保证这些正文内容与工具实际功能同步。citeturn149334search2
+
+
+## 2026-10-01 OCR 与 PDF 工作流扩展
+
+本轮需求验证进一步支持两条扩展线：
+
+一是 PDF 工作流。iLovePDF 和 Smallpdf 的当前公开产品都把 PDF→JPG/PNG、删除页面、旋转、页码、OCR、PDF→Office 等作为核心任务；TinyWow 同样公开提供 PDF→JPG/PNG、PDF 页面删除、旋转、加页码、OCR、HEIC 和图片文字识别。citeturn386806search3turn386806search4turn386806search1
+
+二是 OCR。当前公开的 Ahrefs/第三方流量数据表明 Image to Text 类网站可以获得数百万级月访问，且美国关键词 “image to text” 有明确搜索流量，说明“图片→文字”不是边缘需求。公开关键词数据库对 “pdf to png” 也给出了约 74,000/月的美国搜索量样本。citeturn420869search1turn420869search4turn420869search0
+
+技术上，Tesseract.js 7.0.0 当前为 npm latest，可在浏览器中使用 Worker 运行 OCR；官方说明支持从图片识别文字和多语言模型。由于 Tesseract.js 本身不直接支持 PDF，因此 PDF OCR 使用 PDF.js 先把页面渲染成图片，再交给 Tesseract。citeturn137735search1turn137735search2
+
+当前 GQB Tools 的 PDF OCR 限制为一次最多 5 页，这是产品层面的性能保护，而不是能力缺陷。等未来接入服务端 Worker/队列后，再把大文件和批量 OCR 放到服务器处理。
+
+### 产品差异化
+
+目前不建议和 Convertio 竞争“支持多少格式”，也不建议直接复制 TinyWow 的数百个 AI/视频工具。Convertio 的公开优势是 300+ 格式和 API，TinyWow 则通过数量覆盖大量 PDF、图片、视频和 AI 任务。citeturn386806search0turn386806search1
+
+GQB Tools 更适合形成“轻量、无需注册、浏览器优先”的定位：
+- 计算和文本任务：立即完成。
+- 图片和小 PDF：尽可能在本地完成。
+- OCR：浏览器直接处理，并明确限制范围。
+- 大文件、PDF→Word、Office 转换、批量处理：未来接服务端。
+
+这样可以同时兼顾用户体验、隐私和服务器成本。
+
