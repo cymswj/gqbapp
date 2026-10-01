@@ -252,3 +252,39 @@ PDF→Word / OCR / HEIC / PDF 压缩 / 图片转文字 / 批量处理 / API / �
 参考：
 https://semiconductors.einnews.com/pr_news/935658333/an-estimated-half-a-million-plus-u-s-searches-a-month-look-for-a-way-to-convert-image-files-back-to-jpeg
 https://gizmobench.com/research/file-formats
+
+
+## 2026-10-01 竞品结构复核
+
+成熟工具站的共同点是“任务工作流”，而不是单纯工具数量。iLovePDF 当前公开页面把 PDF 工作分为组织、优化、转换、编辑、安全和智能处理，并覆盖 PDF→Word/OCR、PDF→JPG、页码、水印、旋转、删页、重排等；Smallpdf 当前公开工具覆盖 PDF 转 Office、PDF OCR、PDF→JPG/PNG、Office→PDF、合并/拆分/旋转/删页、编辑、签名和保护；TinyWow 当前目录进一步覆盖 Image to Text、HEIC、PDF Page Deleter、Rotate PDF、Add Numbers to PDF、Add Watermark、背景处理及视频/音频转换；Convertio 则突出大规模格式转换和 Conversion API。citeturn386806search3turn386806search4turn386806search1turn386806search0
+
+对 GQB Tools 的启示不是去复制数百个工具，而是建立四层产品：
+
+1. 高频轻工具：计算、换算、文本、开发者工具。
+2. 文件工作流：PDF 合并、拆分、删页、旋转、页码、水印、PDF→JPG、PDF→Text、图片→PDF。
+3. 智能文件：图片 OCR、扫描 PDF OCR、PDF→Word/Excel/PPT、表格提取。
+4. 开发者与自动化：API、批量处理、URL/HTTP/DNS 检查、文件批处理。
+
+### 浏览器优先的技术路线
+
+PDF.js 是 Mozilla 的 PDF 解析/渲染库，当前 npm 版本 6.3.289；它适合在浏览器中做 PDF 页面渲染和文本提取。citeturn763200search0
+
+pdf-lib 适合浏览器端直接创建和修改 PDF，因此适合合并、删除页面、旋转、加页码、水印等无需服务器上传的功能。
+
+Tesseract.js 当前 npm 最新版为 7.0.0，可在浏览器通过 Web Worker 运行 OCR；官方文档说明它支持从图片识别文字，并可用多个语言模型。它本身不直接支持 PDF，因此扫描 PDF OCR 应采用“PDF.js 渲染页面 → Tesseract OCR”的两阶段方案。citeturn137735search1turn137735search2
+
+### 隐私与商业模式
+
+当前工具站可以把“本地处理”作为产品差异点，但不能对所有工具笼统声称完全本地。汇率工具会访问外部汇率服务，PDF/OCR 工具会在浏览器加载第三方库和语言模型。页面应该明确说明处理方式。
+
+当进入重型文件能力后，可以考虑两条路线：
+- 小文件继续浏览器本地处理，降低服务器成本和隐私风险。
+- 大文件、Office 转换、PDF→Word、OCR 批量处理等再接 Cloudflare Worker/独立处理服务。
+
+这种“本地优先 + 重型任务服务端”的混合架构比一开始就把全部文件上传服务器更适合 GQB Tools。
+
+### SEO 的长期方向
+
+Google 目前强调 people-first content、独立语言 URL 和 hreflang，并警告大规模生成低价值页面可能属于 scaled content abuse。页面应该因为用户真正需要这项工具而存在，而不是因为关键词列表要求它存在。citeturn149334search0turn149334search1turn748773search9
+
+此外，Google 当前说明 snippet 主要来自页面可见内容，meta description 只是可能被采用的摘要来源。因此后期 SEO 后台不能只改 title/description，还要允许编辑工具介绍、使用步骤和常见问题，并保证这些正文内容与工具实际功能同步。citeturn149334search2
