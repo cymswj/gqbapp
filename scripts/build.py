@@ -400,7 +400,7 @@ for loc in locales:
         sch = page_schema(loc, copy[title_key], copy[p_key], canonical)
         out = DIST / loc / slug / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(shell(loc, copy[title_key], copy[p_key], canonical, body, 2, index=True, schema=sch), encoding="utf-8")
+        out.write_text(shell(loc, copy[title_key], copy[p_key], canonical, body, 1, index=True, schema=sch), encoding="utf-8")
 
     # Tool pages.
     for tool in tools:
