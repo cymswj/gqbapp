@@ -217,50 +217,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "fr": {
       "labels": {
@@ -303,50 +260,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "de": {
       "labels": {
@@ -389,50 +303,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "pt": {
       "labels": {
@@ -475,50 +346,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "ru": {
       "labels": {
@@ -561,50 +389,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "ja": {
       "labels": {
@@ -647,50 +432,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "ar": {
       "labels": {
@@ -733,50 +475,7 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
-      "guide": [
-        {
-          "title": "What BMI measures",
-          "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
-          ]
-        },
-        {
-          "title": "Why the number needs context",
-          "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
-          ]
-        }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
-      ]
+      "sourcesTitle": "Sources"
     },
     "id": {
       "labels": {
@@ -819,49 +518,346 @@
       "notDiagnosis": "This number alone cannot tell whether you are healthy.",
       "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
       "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
-      "sourcesTitle": "Sources",
+      "sourcesTitle": "Sources"
+    }
+  },
+  "age-calculator": {
+    "en": {
       "guide": [
         {
-          "title": "What BMI measures",
+          "title": "What the result means",
           "paragraphs": [
-            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
-            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+            "This calculator returns completed age in years from the birth date. It does not determine legal age, eligibility or any age-based rule."
           ]
         },
         {
-          "title": "Why the number needs context",
+          "title": "Important note",
           "paragraphs": [
-            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
-            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
-          ]
-        },
-        {
-          "title": "What to check next",
-          "paragraphs": [
-            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
-            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
-          ]
-        },
-        {
-          "title": "Important limitations",
-          "paragraphs": [
-            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+            "The result depends on the current date and the birth date entered."
           ]
         }
-      ],
-      "sources": [
-        [
-          "CDC – Adult BMI Categories",
-          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
-        ],
-        [
-          "WHO – Obesity and overweight",
-          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
-        ],
-        [
-          "NICE – Overweight, obesity and central adiposity",
-          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
-        ]
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "这个工具根据出生日期计算已经满了多少周岁。它不是法律年龄、资格条件或其他年龄规则的判断器。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "结果取决于你输入的出生日期以及今天的日期。"
+          ]
+        }
+      ]
+    }
+  },
+  "currency-converter": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result is an estimate based on the public exchange-rate data returned by the external rate service. It is not a guaranteed bank, card or cash-exchange rate."
+          ]
+        },
+        {
+          "title": "Before using the number",
+          "paragraphs": [
+            "Exchange rates change. Fees, spreads and provider-specific rates can make the amount you actually receive different."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果是根据外部汇率服务返回的公开汇率计算出的估算值，不等于银行、信用卡或现金兑换时的最终成交汇率。"
+          ]
+        },
+        {
+          "title": "实际使用前注意",
+          "paragraphs": [
+            "汇率会变化，银行点差、手续费和不同服务商的报价，都可能让最终到账金额不同。"
+          ]
+        }
+      ]
+    }
+  },
+  "time-zone-converter": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The tool treats the entered date and time as a wall-clock time in the selected source time zone, then converts that instant to the target zone."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Some local times around daylight-saving transitions can be ambiguous or skipped. The result should be checked for important appointments."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "工具会把你输入的日期和时间理解为“来源时区当地时间”，先确定对应的时间点，再换算到目标时区。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "夏令时切换附近可能出现重复或不存在的当地时间。重要会议、航班和预约应再次核对。"
+          ]
+        }
+      ]
+    }
+  },
+  "unit-converter": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result converts a value within one physical dimension. The tool now separates length, mass and time so unrelated units are not mixed."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Unit symbols can vary by industry. Check the unit label before copying the result into a document or calculation."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果是在同一物理维度内换算后的数值。现在工具把长度、质量和时间分开，避免出现“米换公斤”这类没有意义的换算。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "不同领域的单位写法可能不同，把结果用于正式文件或计算前应确认单位名称。"
+          ]
+        }
+      ]
+    }
+  },
+  "percentage-change-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The percentage change compares the new value with the original value. Positive means the new value is higher; negative means it is lower."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "When the original value is zero, percentage change is undefined. Negative starting values can also require additional context."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "百分比变化表示新数值相对于原数值变化了多少。正数表示增加，负数表示减少。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "原数值为 0 时，百分比变化没有定义。原数值为负时，数学结果也需要结合具体业务背景理解。"
+          ]
+        }
+      ]
+    }
+  },
+  "date-add-subtract": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result is the calendar date after adding or subtracting the specified number of days."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "This is a calendar-day calculation. It does not exclude weekends or public holidays."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果是在指定日期基础上增加或减少若干自然日后的日期。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "这是自然日计算，不会自动排除周末或法定节假日。"
+          ]
+        }
+      ]
+    }
+  },
+  "profit-margin-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Profit margin is profit divided by revenue. It shows the portion of revenue left as profit under the costs you entered."
+          ]
+        },
+        {
+          "title": "Do not confuse it with markup",
+          "paragraphs": [
+            "Markup uses cost as the denominator, while margin uses selling price or revenue as the denominator."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "利润率 = 利润 ÷ 收入，表示按你输入的成本口径，收入中有多少最终成为利润。"
+          ]
+        },
+        {
+          "title": "不要和加价率混淆",
+          "paragraphs": [
+            "加价率的分母是成本，利润率的分母是销售价格或收入，两者数值可以差很多。"
+          ]
+        }
+      ]
+    }
+  },
+  "weight-converter": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result expresses the same mass in another unit, such as kilograms, pounds or ounces."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Mass and weight are often used interchangeably in everyday language, but they are not identical physical concepts."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果表示同一质量用另一种单位表达，例如公斤、磅或盎司。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "日常语言常把“质量”和“重量”混用，但在物理概念上并不是完全相同的量。"
+          ]
+        }
+      ]
+    }
+  },
+  "temperature-converter": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result is the equivalent temperature on the selected scale, such as Celsius, Fahrenheit or Kelvin."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Temperature conversion changes the numerical scale; it does not change the physical state or actual heat content of an object."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果是同一个温度在摄氏、华氏或开尔文等不同温标下的对应数值。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "换算只是改变温标的表达方式，并不意味着物体实际状态或热量发生变化。"
+          ]
+        }
+      ]
+    }
+  },
+  "aspect-ratio-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Aspect ratio is the simplified proportion of width to height, such as 16:9. It describes shape rather than resolution."
+          ]
+        },
+        {
+          "title": "Use it for",
+          "paragraphs": [
+            "You can use the ratio to keep the same proportions when resizing an image or video frame."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "宽高比是宽度与高度的最简比例，例如 16:9。它描述的是形状比例，不是分辨率。"
+          ]
+        },
+        {
+          "title": "什么时候有用？",
+          "paragraphs": [
+            "调整图片或视频尺寸时，可以用它保持原来的画面比例，避免拉伸变形。"
+          ]
+        }
       ]
     }
   }

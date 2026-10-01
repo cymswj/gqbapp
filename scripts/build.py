@@ -280,9 +280,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 </html>'''
 
 def guidance_html(tool_slug, loc):
-    data = (tool_content.get(tool_slug, {}).get(loc)
-            or tool_content.get(tool_slug, {}).get(default_locale)
-            or {})
+    data = tool_content.get(tool_slug, {}).get(loc) or {}
     sections = data.get("guide", []) if isinstance(data, dict) else []
     sources = data.get("sources", []) if isinstance(data, dict) else []
     if not sections and not sources:
@@ -510,7 +508,7 @@ for loc in locales:
             app_schema["keywords"] = keywords
         extra = '<script type="application/ld+json">'+json.dumps(app_schema,ensure_ascii=False)+'</script>'
         extra += '<script type="application/ld+json">'+json.dumps(breadcrumbs,ensure_ascii=False)+'</script>'
-        tool_copy = tool_content.get(tool["slug"], {}).get(loc) or tool_content.get(tool["slug"], {}).get(default_locale) or {}
+        tool_copy = tool_content.get(tool["slug"], {}).get(loc) or {}
         extra += '<script>window.GQB_TOOL_COPY='+json.dumps(tool_copy,ensure_ascii=False)+'</script>'
 
         tool_body = topnav(loc,2)
