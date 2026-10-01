@@ -73,3 +73,8 @@ for url in cdn_re.findall(app):
         raise SystemExit("Unpinned CDN dependency: " + url)
 if re.search(r"(?<!\$)\$\('(button|select|input)',r\)\[", app):
     raise SystemExit("Single-element selector indexed as a collection")
+
+build_source = (ROOT / "scripts" / "build.py").read_text(encoding="utf-8")
+inline_public_handlers = re.findall(r"\s+on(?:click|change|input|submit)=['\"]", build_source)
+if inline_public_handlers:
+    raise SystemExit("Public page builder still contains inline event handlers")

@@ -110,7 +110,11 @@
       "birthFuture": "Birth date cannot be in the future.",
       "pageSpecError": "Check the page numbers and page range.",
       "expressionError": "Expression not supported."
-    }
+    },
+    "runtimeLabel": "How it runs",
+    "runtimeLocal": "This calculation or text operation runs in your browser.",
+    "runtimeExternal": "This tool requests public exchange-rate data from an external service. The final rate may differ from your bank or provider rate.",
+    "runtimeLocalLibrary": "File processing runs in your browser; external requests may be used only to load the required processing library."
   },
   "zh": {
     "home": "首页",
@@ -223,7 +227,11 @@
       "birthFuture": "出生日期不能晚于今天。",
       "pageSpecError": "请检查页码和页码范围。",
       "expressionError": "表达式无法识别。"
-    }
+    },
+    "runtimeLabel": "运行方式",
+    "runtimeLocal": "这个计算或文字处理过程在你的浏览器中完成。",
+    "runtimeExternal": "这个工具会向外部公开汇率服务请求数据，最终成交汇率可能与银行或其他服务商的报价不同。",
+    "runtimeLocalLibrary": "文件处理在你的浏览器中完成；外部网络请求主要用于加载所需的第三方处理库。"
   },
   "es": {
     "home": "Inicio",
@@ -336,7 +344,11 @@
       "birthFuture": "La fecha de nacimiento no puede ser futura.",
       "pageSpecError": "Comprueba los números y rangos de páginas.",
       "expressionError": "Expresión no compatible."
-    }
+    },
+    "runtimeLabel": "Cómo funciona",
+    "runtimeLocal": "Este cálculo o procesamiento de texto se ejecuta en tu navegador.",
+    "runtimeExternal": "Esta herramienta solicita datos públicos de tipos de cambio a un servicio externo; la tasa final puede diferir de la de tu banco o proveedor.",
+    "runtimeLocalLibrary": "El procesamiento de archivos se realiza en tu navegador; las solicitudes externas pueden usarse solo para cargar la biblioteca necesaria."
   },
   "fr": {
     "home": "Accueil",
@@ -449,7 +461,11 @@
       "birthFuture": "La date de naissance ne peut pas être future.",
       "pageSpecError": "Vérifiez les numéros et plages de pages.",
       "expressionError": "Expression non prise en charge."
-    }
+    },
+    "runtimeLabel": "Fonctionnement",
+    "runtimeLocal": "Ce calcul ou traitement de texte s’effectue dans votre navigateur.",
+    "runtimeExternal": "Cet outil demande les taux de change publics à un service externe ; le taux final peut différer de celui de votre banque ou fournisseur.",
+    "runtimeLocalLibrary": "Le traitement des fichiers s’effectue dans votre navigateur ; les requêtes externes servent principalement à charger la bibliothèque nécessaire."
   },
   "de": {
     "home": "Startseite",
@@ -562,7 +578,11 @@
       "birthFuture": "Das Geburtsdatum darf nicht in der Zukunft liegen.",
       "pageSpecError": "Prüfen Sie Seitenzahlen und Seitenbereiche.",
       "expressionError": "Ausdruck nicht unterstützt."
-    }
+    },
+    "runtimeLabel": "So funktioniert es",
+    "runtimeLocal": "Diese Berechnung oder Textverarbeitung läuft im Browser.",
+    "runtimeExternal": "Dieses Tool ruft öffentliche Wechselkursdaten von einem externen Dienst ab; der tatsächliche Kurs kann vom Bank- oder Anbieterkurs abweichen.",
+    "runtimeLocalLibrary": "Die Dateiverarbeitung läuft im Browser; externe Anfragen können ausschließlich zum Laden der benötigten Bibliothek erfolgen."
   },
   "pt": {
     "home": "Início",
@@ -675,7 +695,11 @@
       "birthFuture": "A data de nascimento não pode estar no futuro.",
       "pageSpecError": "Verifique os números e intervalos de páginas.",
       "expressionError": "Expressão não suportada."
-    }
+    },
+    "runtimeLabel": "Como funciona",
+    "runtimeLocal": "Este cálculo ou processamento de texto é executado no navegador.",
+    "runtimeExternal": "Esta ferramenta solicita dados públicos de câmbio a um serviço externo; a taxa final pode diferir da taxa do banco ou provedor.",
+    "runtimeLocalLibrary": "O processamento de arquivos ocorre no navegador; solicitações externas podem ser usadas apenas para carregar a biblioteca necessária."
   },
   "ru": {
     "home": "Главная",
@@ -788,7 +812,11 @@
       "birthFuture": "Дата рождения не может быть в будущем.",
       "pageSpecError": "Проверьте номера и диапазоны страниц.",
       "expressionError": "Выражение не поддерживается."
-    }
+    },
+    "runtimeLabel": "Как это работает",
+    "runtimeLocal": "Этот расчёт или обработка текста выполняется в браузере.",
+    "runtimeExternal": "Инструмент запрашивает открытые данные по курсам валют у внешнего сервиса; итоговый курс может отличаться от курса банка или провайдера.",
+    "runtimeLocalLibrary": "Обработка файлов выполняется в браузере; внешние запросы могут использоваться только для загрузки нужной библиотеки."
   },
   "ja": {
     "home": "ホーム",
@@ -901,7 +929,11 @@
       "birthFuture": "生年月日は未来の日付にできません。",
       "pageSpecError": "ページ番号と範囲を確認してください。",
       "expressionError": "対応していない式です。"
-    }
+    },
+    "runtimeLabel": "動作方式",
+    "runtimeLocal": "この計算またはテキスト処理はブラウザ内で行われます。",
+    "runtimeExternal": "このツールは外部サービスから公開為替データを取得します。実際の銀行・サービス提供者のレートとは異なる場合があります。",
+    "runtimeLocalLibrary": "ファイル処理はブラウザ内で行われ、外部通信は主に必要な処理ライブラリの読み込みに使われます。"
   },
   "ar": {
     "home": "الرئيسية",
@@ -1014,7 +1046,11 @@
       "birthFuture": "لا يمكن أن يكون تاريخ الميلاد في المستقبل.",
       "pageSpecError": "تحقق من أرقام الصفحات ونطاقاتها.",
       "expressionError": "التعبير غير مدعوم."
-    }
+    },
+    "runtimeLabel": "طريقة التشغيل",
+    "runtimeLocal": "تتم هذه العملية الحسابية أو معالجة النص داخل المتصفح.",
+    "runtimeExternal": "تطلب هذه الأداة بيانات أسعار الصرف العامة من خدمة خارجية، وقد يختلف السعر النهائي عن سعر البنك أو مزود الخدمة.",
+    "runtimeLocalLibrary": "تتم معالجة الملفات داخل المتصفح؛ وقد تُستخدم الطلبات الخارجية فقط لتحميل مكتبة المعالجة المطلوبة."
   },
   "id": {
     "home": "Beranda",
@@ -1127,6 +1163,10 @@
       "birthFuture": "Tanggal lahir tidak boleh berada di masa depan.",
       "pageSpecError": "Periksa nomor dan rentang halaman.",
       "expressionError": "Ekspresi tidak didukung."
-    }
+    },
+    "runtimeLabel": "Cara kerja",
+    "runtimeLocal": "Perhitungan atau pemrosesan teks ini berjalan di browser.",
+    "runtimeExternal": "Alat ini meminta data nilai tukar publik dari layanan eksternal; kurs akhir dapat berbeda dari kurs bank atau penyedia.",
+    "runtimeLocalLibrary": "Pemrosesan file berlangsung di browser; permintaan eksternal hanya dapat digunakan untuk memuat pustaka pemrosesan yang diperlukan."
   }
 }

@@ -281,6 +281,20 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 </body>
 </html>'''
 
+def runtime_note_html(tool, loc):
+    impl = tool.get("impl", "")
+    labels = i18n[loc]
+    if impl == "currency":
+        return f'<div class="tool-runtime tool-runtime-network"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(labels.get("runtimeExternal","This tool requests public exchange-rate data from an external service."))}</span></div>'
+    file_impls = {
+        "image-compress","image-resize","jpg-pdf","pdf-merge","color-image","heic-jpg",
+        "pdf-text","pdf-jpg","pdf-delete","pdf-rotate","pdf-ocr","ocr-image",
+        "pdf-numbers","pdf-watermark","pdf-png","pdf-extract","pdf-reorder","pdf-split"
+    }
+    if impl in file_impls:
+        return f'<div class="tool-runtime"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(labels.get("runtimeLocalLibrary","File processing runs in your browser; external requests may be used only to load the required processing library."))}</span></div>'
+    return f'<div class="tool-runtime"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(labels.get("runtimeLocal","This calculation or text operation runs in your browser."))}</span></div>'
+
 def guidance_html(tool_slug, loc):
     data = tool_content.get(tool_slug, {}).get(loc) or {}
     sections = data.get("guide", []) if isinstance(data, dict) else []
@@ -361,9 +375,9 @@ for loc in locales:
 <div class="eyebrow">{esc(i18n[loc].get("eyebrow","Online tools"))}</div>
 <h1>{esc(sh1)}</h1>
 <p class="hero-lead">{esc(sintro)}</p>
-<form class="search" onsubmit="return false">
+<form class="search" id="toolSearchForm">
 <label class="sr-only" for="toolSearch">{esc(i18n[loc]["search"])}</label>
-<input id="toolSearch" autocomplete="off" placeholder="{esc(i18n[loc]["searchPlaceholder"])}" oninput="filterTools(this.value)">
+<input id="toolSearch" autocomplete="off" placeholder="{esc(i18n[loc]["searchPlaceholder"])}">
 </form>
 <div class="stats"><span>{len(tools)} {esc(i18n[loc].get("toolsLabel","tools"))}</span><span>{len(locales)} {esc(i18n[loc].get("languagesLabel","languages"))}</span><span>{esc(i18n[loc]["noSignup"])}</span></div>
 </section>
@@ -428,6 +442,7 @@ for loc in locales:
  }
  chips.forEach(c=>c.addEventListener("click",()=>{input.value="";applyCategory(c.dataset.category);filterTools("")}));
  input.addEventListener("input",()=>{chips.forEach(x=>x.classList.toggle("active",x.dataset.category==="all"));filterTools(input.value)});
+ const form=document.getElementById("toolSearchForm"); if(form) form.addEventListener("submit",e=>e.preventDefault());
  applyCategory("all");
 })();
 </script>'''
@@ -521,6 +536,7 @@ for loc in locales:
 <h1>{esc(h1)}</h1>
 <p class="lead">{esc(intro)}</p>
 <div id="toolApp" aria-live="polite"></div>
+{runtime_note_html(tool, loc)}
 {guidance_html(tool["slug"], loc)}
 <section class="content-card"><h2>{esc(i18n[loc]["about"])}</h2><p>{esc(desc)}</p><p>{esc(i18n[loc].get("privacyNote","Many browser-based tools process input on your device; external-service tools may send requests over the network."))}</p></section>
 <section aria-labelledby="related-title" class="related">
