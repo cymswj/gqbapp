@@ -63,7 +63,7 @@ if random_pos >= 0 and text_pos > random_pos and "Math.random" in app[random_pos
 if "Math.random" in app:
     raise SystemExit("Math.random is forbidden in runtime code; use crypto.getRandomValues")
 
-cdn_re = re.compile(r"https://cdn\.jsdelivr\.net/npm/[^'"]+")
+cdn_re = re.compile(r'''https://cdn\.jsdelivr\.net/npm/[^'"]+''')
 for url in cdn_re.findall(app):
     package_part = url.split("/npm/", 1)[1].split("/", 1)[0]
     if "@" not in package_part:
