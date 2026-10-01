@@ -257,6 +257,18 @@
         "extract text from scanned pdf"
       ],
       "index": true
+    },
+    "en:business-days-calculator": {
+      "title": "Business Days Calculator – Count Workdays",
+      "description": "Count weekdays between two dates with this free business days calculator. Weekends are excluded from the result.",
+      "h1": "Business Days Calculator",
+      "intro": "Choose a start and end date to count the weekdays between them.",
+      "targetKeywords": [
+        "business days calculator",
+        "workdays calculator",
+        "count business days"
+      ],
+      "index": true
     }
   }
 }
