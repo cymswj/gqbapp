@@ -98,6 +98,7 @@ const ctx = {
 ctx.window = ctx;
 ctx.window.GQB_I18N = { en: { labels:{} } };
 ctx.window.GQB_TOOL_COPY = {};
+ctx.window.__GQB_TEST__ = true;
 
 const failures = [];
 for (const impl of impls) {
@@ -109,6 +110,29 @@ for (const impl of impls) {
     failures.push({ impl, message: String(err && err.stack || err) });
   }
 }
+const test = ctx.window.GQB_TEST;
+const helperFailures = [];
+try {
+  if (test.safeCalc("2+3*4") !== 14) helperFailures.push("safeCalc arithmetic");
+  if (test.safeCalc("sqrt(9)+2^3") !== 11) helperFailures.push("safeCalc functions");
+  try { test.safeCalc("Function('return 1')()"); helperFailures.push("safeCalc code execution guard"); } catch {}
+  const rows = test.parseCSV('name,notes\nAlice,"hello,world"\nBob,"line1\nline2"');
+  if (rows.length !== 3 || rows[1][1] !== "hello,world" || rows[2][1] !== "line1\nline2") helperFailures.push("parseCSV quoted fields");
+  const pages = test.parsePageSpec("1,3-4", 5, 10, false);
+  if (pages.join(",") !== "0,2,3") helperFailures.push("parsePageSpec");
+  const b64 = test.b64Encode("你好 GQB");
+  if (test.b64Decode(b64) !== "你好 GQB") helperFailures.push("Base64 UTF-8");
+  if (!test.fileOK({size:1024},2048) || test.fileOK({size:4096},2048)) helperFailures.push("fileOK");
+  if (!test.filesOK([{size:1024},{size:2048}],4096) || test.filesOK([{size:3000},{size:2000}],4096)) helperFailures.push("filesOK");
+} catch (err) {
+  helperFailures.push(String(err && err.stack || err));
+}
+if (helperFailures.length) {
+  for (const f of helperFailures) console.error("\n[helper] " + f);
+  process.exit(1);
+}
+console.log("Core helper tests passed: arithmetic, CSV, page ranges, UTF-8 Base64 and file limits.");
+
 if (failures.length) {
   for (const f of failures) {
     console.error("\n[" + f.impl + "]\n" + f.message);
