@@ -16,8 +16,8 @@ seo = json.loads((src / "seo-overrides.json").read_text(encoding="utf-8"))
 if not isinstance(seo.get("pages", {}), dict):
     raise SystemExit("Invalid SEO page overrides")
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
-if re.search(r"(?<!\$)\$\('(?:input|select|textarea)',r\)\.map", app):
-    raise SystemExit("Unsafe selector map usage: use $() when iterating controls")
+if re.search(r"(?<!\$)\$\([^)]*\)\.(?:forEach|map|filter|some|every|reduce|join)\(", app):
+    raise SystemExit("Single-element selector used with collection method; use $()")
 if "Function('return '" in app or "eval(" in app:
     raise SystemExit("Unsafe dynamic expression evaluation found")
 tool_content_path = src / "tool-content.json"
