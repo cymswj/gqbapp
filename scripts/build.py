@@ -1,4 +1,4 @@
-import json, html, shutil
+import json, html, shutil, hashlib
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -18,6 +18,7 @@ locales = site["supportedLocales"]
 base = site["baseUrl"].rstrip("/")
 default_locale = site["defaultLocale"]
 site_path = urlparse(base).path.rstrip("/")
+ASSET_VERSION = hashlib.sha256((PUB / "app.js").read_bytes() + (PUB / "style.css").read_bytes()).hexdigest()[:12]
 
 GENERIC = {
  "en": "Free online tool, fast and simple. No signup required.",
@@ -189,7 +190,8 @@ def esc(s):
     return html.escape(str(s), quote=True)
 
 def asset(depth, name):
-    return ("../" if depth == 1 else "../../../") + "public/" + name
+    path = ("../" if depth == 1 else "../../../") + "public/" + name
+    return path + ("?v=" + ASSET_VERSION if name in ("app.js","style.css") else "")
 
 def topnav(loc, depth, home_override=None):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
