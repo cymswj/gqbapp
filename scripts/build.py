@@ -43,7 +43,7 @@ def asset(depth, name):
 
 def topnav(loc, depth):
     names = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
-    home = "../" if depth == 2 else "./"
+    home = "../../" if depth == 2 else "./"
     links = " ".join(f'<a href="{("../"*depth) + loc if False else "../"*depth}{l}/">{n}</a>' for l,n in names.items())
     return f'<header><div class="wrap top"><a class="brand" href="{home}">GQB Tools</a><nav class="langs">{links}</nav></div></header>'
 
@@ -52,7 +52,8 @@ def shell(loc, title, desc, canonical, body, depth, extra=""):
     alts = []
     for l in locales:
         alts.append(f'<link rel="alternate" hreflang="{l}" href="{esc(canonical.replace("/"+loc+"/", "/"+l+"/"))}">')
-    alts.append(f'<link rel="alternate" hreflang="x-default" href="{esc(url(site["defaultLocale"]))}">')
+    xdefault = canonical.replace("/"+loc+"/", "/"+site["defaultLocale"]+"/")
+    alts.append(f'<link rel="alternate" hreflang="x-default" href="{esc(xdefault)}">')
     schema = {
       "@context":"https://schema.org",
       "@type":"WebPage",
