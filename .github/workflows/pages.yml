@@ -22,6 +22,8 @@ jobs:
         run: python scripts/validate.py
       - name: Validate JavaScript syntax
         run: node --check public/app.js
+      - name: Runtime initialization smoke test
+        run: node scripts/runtime-smoke.js
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
       - name: Check generated links
