@@ -29,7 +29,7 @@ invalid_seo_keys = [k for k in seo.get("pages", {}) if ":" not in k or k.split("
 if invalid_seo_keys:
     raise SystemExit("Invalid SEO override keys: " + ", ".join(invalid_seo_keys[:30]))
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
-unsafe_collection = re.findall(r"(?<!\\$)\\$\\([^)]*\\)\\.(?:forEach|map|filter|some|every|reduce|join)\\(", app)
+unsafe_collection = re.findall(r"(?<!\$)\$\([^)]*\)\.(?:forEach|map|filter|some|every|reduce|join)\(", app)
 if unsafe_collection:
     raise SystemExit("Single-element selector used with collection method: " + unsafe_collection[0])
 if re.search(r"\b(?:Function|eval)\s*\(", app):
