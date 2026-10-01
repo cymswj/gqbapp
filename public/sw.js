@@ -1,4 +1,4 @@
-const CACHE="gqb-tools-v2";
+const CACHE="gqb-tools-v3";
 const CORE=["./","./public/style.css","./public/app.js"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
