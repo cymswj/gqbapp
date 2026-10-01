@@ -138,14 +138,13 @@ for loc in locales:
     out.write_text(html_text, encoding="utf-8")
 
     for tool in tools:
+        title, desc, h1, intro, index = tool_meta(tool, loc)
         name = t(tool["names"], loc)
-        desc = generic[loc]
-        title = name + " – GQB Tools"
         tool_body = topnav(loc, 2)
         tool_body += f'''<main class="wrap tool-page">
 <a class="back" href="{url(loc)}">← {esc(i18n[loc]["back"])}</a>
-<h1>{esc(name)}</h1>
-<p class="lead">{esc(desc)}</p>
+<h1>{esc(h1)}</h1>
+<p class="lead">{esc(intro)}</p>
 <div id="toolApp"></div>
 <section><h2>{esc(i18n[loc]["about"])}</h2><p>{esc(desc)} {esc(i18n[loc]["privacy"])}</p></section>
 <section class="faq"><h2>{esc(i18n[loc]["faq"])}</h2>
