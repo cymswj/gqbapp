@@ -1,0 +1,7 @@
+name = "gqbapp-seo"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+GITHUB_REPO = "cymswj/gqbapp"
+GITHUB_BRANCH = "main"
