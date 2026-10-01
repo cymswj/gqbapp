@@ -12,6 +12,7 @@ i18n = json.loads((SRC / "i18n.json").read_text(encoding="utf-8"))
 tools = json.loads((SRC / "tools.json").read_text(encoding="utf-8")) + json.loads((SRC / "tools-extra.json").read_text(encoding="utf-8"))
 categories = json.loads((SRC / "categories.json").read_text(encoding="utf-8"))
 seo = json.loads((SRC / "seo-overrides.json").read_text(encoding="utf-8")) if (SRC / "seo-overrides.json").exists() else {"site": {}, "pages": {}}
+tool_content = json.loads((SRC / "tool-content.json").read_text(encoding="utf-8")) if (SRC / "tool-content.json").exists() else {}
 
 locales = site["supportedLocales"]
 base = site["baseUrl"].rstrip("/")
@@ -278,6 +279,28 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 </body>
 </html>'''
 
+def guidance_html(tool_slug, loc):
+    data = (tool_content.get(tool_slug, {}).get(loc)
+            or tool_content.get(tool_slug, {}).get(default_locale)
+            or {})
+    sections = data.get("guide", []) if isinstance(data, dict) else []
+    sources = data.get("sources", []) if isinstance(data, dict) else []
+    if not sections and not sources:
+        return ""
+    parts = ['<section class="content-card tool-guidance">']
+    for section in sections:
+        if section.get("title"):
+            parts.append(f'<h2>{esc(section["title"])}</h2>')
+        for paragraph in section.get("paragraphs", []):
+            parts.append(f'<p>{esc(paragraph)}</p>')
+    if sources:
+        parts.append(f'<h2>{esc(data.get("sourcesTitle","Sources"))}</h2><ul class="tool-sources">')
+        for label, link in sources:
+            parts.append(f'<li><a href="{esc(link)}" target="_blank" rel="noopener">{esc(label)}</a></li>')
+        parts.append('</ul>')
+    parts.append('</section>')
+    return "".join(parts)
+
 def card_html(tool, loc):
     name = t(tool["names"], loc)
     desc = f"{name}. {CATEGORY_INTROS.get(tool.get("group",""), {}).get(loc, GENERIC[loc])}"
@@ -496,6 +519,7 @@ for loc in locales:
 <h1>{esc(h1)}</h1>
 <p class="lead">{esc(intro)}</p>
 <div id="toolApp" aria-live="polite"></div>
+{guidance_html(tool["slug"], loc)}
 <section class="content-card"><h2>{esc(i18n[loc]["about"])}</h2><p>{esc(desc)}</p><p>{esc(i18n[loc].get("privacyNote","Many browser-based tools process input on your device; external-service tools may send requests over the network."))}</p></section>
 <section aria-labelledby="related-title" class="related">
 <h2 id="related-title">{esc(i18n[loc].get("relatedTools","Related tools"))}</h2>
