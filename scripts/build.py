@@ -9,7 +9,7 @@ DIST = ROOT / "dist"
 
 site = json.loads((SRC / "site-config.json").read_text(encoding="utf-8"))
 i18n = json.loads((SRC / "i18n.json").read_text(encoding="utf-8"))
-tools = json.loads((SRC / "tools.json").read_text(encoding="utf-8"))
+tools = json.loads((SRC / "tools.json").read_text(encoding="utf-8")) + json.loads((SRC / "tools-extra.json").read_text(encoding="utf-8"))
 locales = site["supportedLocales"]
 
 base = site["baseUrl"].rstrip("/")
