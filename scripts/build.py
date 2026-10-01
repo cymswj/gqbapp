@@ -231,7 +231,7 @@ def analytics_tags():
 
 def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema=None):
     direction = "rtl" if loc == "ar" else "ltr"
-    sw_path = (("../"*depth) + "sw.js")
+    sw_path = (("../"*(depth+1)) + "sw.js")
     alts = []
     for l in locales:
         alt_url = canonical.replace(f"/{loc}/", f"/{l}/")
@@ -269,7 +269,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 <link rel="icon" href="{asset(depth,'favicon.svg')}" type="image/svg+xml">
 <link rel="manifest" href="{asset(depth,'site.webmanifest')}">
 <link rel="stylesheet" href="{asset(depth,'style.css')}">
-<script>window.GQB_I18N={json.dumps(i18n,ensure_ascii=False)};</script>
+<script>window.GQB_I18N={json.dumps({loc:i18n[loc]},ensure_ascii=False)};</script>
 <script defer src="{asset(depth,'app.js')}"></script>
 <script type="application/ld+json">{json.dumps(page_schema,ensure_ascii=False)}</script>
 {analytics_tags()}
