@@ -1,110 +1,113 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GQB Tools SEO 管理后台</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>GQB Tools SEO 管理后台</title>
 <style>
-body{margin:0;background:#f5f6f8;color:#111827;font:14px/1.6 Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:28px 18px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-bottom:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;color:#667085;font-size:12px;margin:12px 0 6px}input,textarea,select{width:100%;box-sizing:border-box;padding:10px;border:1px solid #d8dde5;border-radius:9px;background:#fff;font:inherit}textarea{min-height:120px}button{border:0;background:#111827;color:#fff;padding:10px 14px;border-radius:9px;cursor:pointer;margin:8px 8px 0 0}.muted{color:#667085;font-size:13px}.status{margin-top:12px;background:#f1f3f6;padding:10px;border-radius:9px}.preview{margin-top:14px;border:1px solid #e5e7eb;border-radius:10px;padding:14px}.preview .title{font-size:17px;color:#1a0dab}.preview .url{font-size:12px;color:#16833b}.preview .desc{font-size:13px;color:#4d5156}@media(max-width:720px){.grid{grid-template-columns:1fr}}
-</style></head>
+body{margin:0;background:#f5f6f8;color:#111827;font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:28px 18px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;margin-bottom:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;color:#667085;font-size:12px;margin:12px 0 6px}input,textarea,select{width:100%;box-sizing:border-box;padding:10px;border:1px solid #d8dde5;border-radius:9px;background:#fff;font:inherit}textarea{min-height:105px;resize:vertical}button{border:0;background:#111827;color:#fff;padding:10px 14px;border-radius:9px;cursor:pointer;margin:8px 8px 0 0}.secondary{background:#eef0f3;color:#111827;border:1px solid #dde1e7}.muted{color:#667085;font-size:13px}.status{margin-top:12px;background:#f1f3f6;padding:10px;border-radius:9px}.preview{margin-top:14px;border:1px solid #e5e7eb;border-radius:10px;padding:14px}.preview .title{font-size:17px;color:#1a0dab}.preview .url{font-size:12px;color:#16833b;margin:4px 0}.preview .desc{font-size:13px;color:#4d5156}.hidden{display:none!important}@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
 <body>
 <div class="wrap">
 <div class="card">
 <h1>GQB Tools SEO 管理后台</h1>
-<p class="muted">管理站点和每个工具页面的 title、description、H1、首段、关键词及 index/noindex。当前后台支持本机草稿；接入 Cloudflare Worker 后可以在线保存到 GitHub，并自动触发网站重新构建。</p>
+<p class="muted">这里管理搜索结果标题、描述、H1、首段和收录状态。修改通过 Worker 写入 GitHub 后，会触发 Pages 自动重新构建。这个页面本身不应被搜索引擎收录。</p>
+
 <div class="grid">
 <div><label>作用域</label><select id="scope"><option value="page">工具页面</option><option value="site">语言首页</option></select></div>
 <div><label>语言</label><select id="lang"><option>en</option><option>zh</option><option>es</option><option>fr</option><option>de</option><option>pt</option><option>ru</option><option>ja</option><option>ar</option><option>id</option></select></div>
 </div>
-<label>工具 slug（工具页面填写，例如 percentage-calculator）</label><input id="slug" value="percentage-calculator">
+
+<div id="pageFields">
+<label>工具 slug</label><input id="slug" value="percentage-calculator" placeholder="例如 percentage-calculator">
 <label>SEO Title</label><input id="title" placeholder="Percentage Calculator – Free Online">
-<label>Meta Description</label><textarea id="description" placeholder="Clear description for search results."></textarea>
+<label>Meta Description</label><textarea id="description"></textarea>
 <div class="grid">
 <div><label>H1</label><input id="h1"></div>
-<div><label>是否允许收录</label><select id="index"><option value="true">index,follow</option><option value="false">noindex,follow</option></select></div>
+<div><label>收录</label><select id="index"><option value="true">index,follow</option><option value="false">noindex,follow</option></select></div>
 </div>
 <label>首段内容 / Intro</label><textarea id="intro"></textarea>
-<label>目标关键词（逗号分隔，仅用于后台规划，不输出为 meta keywords）</label><input id="keywords" placeholder="percentage calculator, percent calculator, percentage change">
-<div style="margin-top:12px"><button onclick="preview()">预览</button><button onclick="saveLocal()">保存本机</button><button onclick="exportSEO()">导出 SEO 配置</button></div>
-<div class="preview" id="preview"><div class="title">Search title preview</div><div class="url">https://example.com/en/tools/example/</div><div class="desc">Meta description preview.</div></div>
-<div class="status" id="status">准备就绪</div>
+<label>目标关键词（后台规划，不输出 meta keywords）</label><input id="keywords" placeholder="percentage calculator, percent calculator">
+</div>
+
+<div id="siteFields" class="hidden">
+<label>首页 SEO Title</label><input id="siteTitle">
+<label>首页 Meta Description</label><textarea id="siteDescription"></textarea>
+<label>首页 H1</label><input id="siteH1">
+<label>首页首段 / Intro</label><textarea id="siteIntro"></textarea>
+<label>首页收录</label><select id="siteIndex"><option value="true">index,follow</option><option value="false">noindex,follow</option></select>
+</div>
+
+<div>
+<button onclick="preview()">预览</button>
+<button onclick="saveLocal()">保存本机</button>
+<button class="secondary" onclick="exportSEO()">导出 JSON</button>
+</div>
+<div class="preview" id="preview"><div class="title">Search title preview</div><div class="url">GQB Tools</div><div class="desc">Meta description preview.</div></div>
+<div class="status" id="status">本机草稿：未保存</div>
 </div>
 
 <div class="card">
-<h2>在线后台</h2>
-<p class="muted">Worker API 需要 HTTPS。建议设置 ADMIN_PASSWORD、GITHUB_TOKEN、GITHUB_REPO 和 GITHUB_BRANCH。GitHub Token 只放在 Worker Secret，不要写进前端。</p>
+<h2>在线保存</h2>
+<p class="muted">需要部署 Cloudflare Worker，并配置 ADMIN_PASSWORD、GITHUB_TOKEN、GITHUB_REPO、GITHUB_BRANCH。Cloudflare 官方建议敏感的密码和 Token 使用 Secret，而不是 vars。</p>
 <label>Worker API 地址</label><input id="api" placeholder="https://your-worker.example.com/api/seo">
-<label>后台密码</label><input id="pw" type="password">
-<div><button onclick="apiLoad()">读取当前 SEO</button><button onclick="apiSave()">保存到后台</button></div>
+<label>后台密码</label><input id="pw" type="password" autocomplete="current-password">
+<div><button onclick="apiLoad()">读取当前配置</button><button onclick="apiSave()">保存到 GitHub</button></div>
 <div class="status" id="apiStatus">未连接</div>
 </div>
 </div>
 
 <script>
-function data(){
-  return {
-    title:document.getElementById('title').value,
-    description:document.getElementById('description').value,
-    h1:document.getElementById('h1').value,
-    intro:document.getElementById('intro').value,
-    targetKeywords:document.getElementById('keywords').value.split(',').map(x=>x.trim()).filter(Boolean),
-    index:document.getElementById('index').value==='true'
-  };
-}
+const q=id=>document.getElementById(id);
+function isSite(){return q("scope").value==="site";}
+function pageData(){return{title:q("title").value,description:q("description").value,h1:q("h1").value,intro:q("intro").value,targetKeywords:q("keywords").value.split(",").map(x=>x.trim()).filter(Boolean),index:q("index").value==="true"};}
+function siteData(){return{title:q("siteTitle").value,description:q("siteDescription").value,h1:q("siteH1").value,intro:q("siteIntro").value,index:q("siteIndex").value==="true"};}
 function fill(d){
-  d=d||{};
-  document.getElementById('title').value=d.title||'';
-  document.getElementById('description').value=d.description||'';
-  document.getElementById('h1').value=d.h1||'';
-  document.getElementById('intro').value=d.intro||'';
-  document.getElementById('keywords').value=(d.targetKeywords||[]).join(', ');
-  document.getElementById('index').value=d.index===false?'false':'true';
-  preview();
+ d=d||{};
+ if(isSite()){q("siteTitle").value=d.title||"";q("siteDescription").value=d.description||"";q("siteH1").value=d.h1||"";q("siteIntro").value=d.intro||"";q("siteIndex").value=d.index===false?"false":"true";}
+ else{q("title").value=d.title||"";q("description").value=d.description||"";q("h1").value=d.h1||"";q("intro").value=d.intro||"";q("keywords").value=(d.targetKeywords||[]).join(", ");q("index").value=d.index===false?"false":"true";}
+ preview();
 }
 function preview(){
-  const x=data(), p=document.getElementById('preview');
-  p.querySelector('.title').textContent=x.title||'Search title preview';
-  p.querySelector('.url').textContent='GQB Tools / '+document.getElementById('lang').value+'/tools/'+(document.getElementById('slug').value||'example')+'/';
-  p.querySelector('.desc').textContent=x.description||'Meta description preview.';
+ const d=isSite()?siteData():pageData(), p=q("preview");
+ p.querySelector(".title").textContent=d.title||"Search title preview";
+ p.querySelector(".url").textContent=isSite()?("GQB Tools / "+q("lang").value+"/"):("GQB Tools / "+q("lang").value+"/tools/"+(q("slug").value||"example")+"/");
+ p.querySelector(".desc").textContent=d.description||"Meta description preview.";
 }
+function key(){return isSite()?"gqb-seo-site-"+q("lang").value:"gqb-seo-"+q("lang").value+":"+q("slug").value;}
 function saveLocal(){
-  const key='gqb-seo-'+document.getElementById('lang').value+':'+document.getElementById('slug').value;
-  localStorage.setItem(key,JSON.stringify(data()));
-  document.getElementById('status').textContent='本机草稿已保存。';
+ const d=isSite()?siteData():pageData();localStorage.setItem(key(),JSON.stringify(d));q("status").textContent="本机草稿已保存。";
 }
 function exportSEO(){
-  const obj={site:{},pages:{}};
-  const key=document.getElementById('lang').value+':'+document.getElementById('slug').value;
-  obj.pages[key]=data();
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));
-  a.download='seo-overrides.json';a.click();
+ const obj={site:{},pages:{}},loc=q("lang").value;
+ if(isSite())obj.site[loc]=siteData();else obj.pages[loc+":"+q("slug").value]=pageData();
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}));a.download="seo-overrides.json";a.click();
 }
 async function apiLoad(){
-  const s=document.getElementById('apiStatus');
-  try{
-    const u=new URL(document.getElementById('api').value);
-    u.searchParams.set('lang',document.getElementById('lang').value);
-    u.searchParams.set('slug',document.getElementById('slug').value);
-    const r=await fetch(u); if(!r.ok)throw new Error(r.status);
-    const j=await r.json(); fill(j.data); s.textContent='读取成功。';
-  }catch(e){s.textContent='读取失败：'+e.message;}
+ const s=q("apiStatus"); if(!q("api").value||!q("pw").value)return s.textContent="请先填写 Worker 地址和后台密码。";
+ try{
+   const u=new URL(q("api").value);u.searchParams.set("lang",q("lang").value);if(!isSite())u.searchParams.set("slug",q("slug").value);
+   const r=await fetch(u,{headers:{"X-Admin-Password":q("pw").value}});if(!r.ok)throw new Error(r.status+" "+await r.text());
+   const j=await r.json();fill(j.data);s.textContent="读取成功。";
+ }catch(e){s.textContent="读取失败："+e.message;}
 }
 async function apiSave(){
-  const s=document.getElementById('apiStatus');
-  try{
-    const r=await fetch(document.getElementById('api').value,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Admin-Password':document.getElementById('pw').value},
-      body:JSON.stringify({scope:'page',lang:document.getElementById('lang').value,slug:document.getElementById('slug').value,data:data()})
-    });
-    if(!r.ok)throw new Error(r.status+' '+await r.text());
-    const j=await r.json(); s.textContent='保存成功（存储：'+(j.storage||'server')+'）。';
-  }catch(e){s.textContent='保存失败：'+e.message;}
+ const s=q("apiStatus"); if(!q("api").value||!q("pw").value)return s.textContent="请先填写 Worker 地址和后台密码。";
+ try{
+   const body={scope:isSite()?"site":"page",lang:q("lang").value,data:isSite()?siteData():pageData()};if(!isSite())body.slug=q("slug").value;
+   const r=await fetch(q("api").value,{method:"PUT",headers:{"Content-Type":"application/json","X-Admin-Password":q("pw").value},body:JSON.stringify(body)});
+   if(!r.ok)throw new Error(r.status+" "+await r.text());
+   const j=await r.json();s.textContent="保存成功，存储："+(j.storage||"server")+"。";
+ }catch(e){s.textContent="保存失败："+e.message;}
 }
-document.getElementById('scope').onchange=()=>{
-  const siteMode=document.getElementById('scope').value==='site';
-  document.getElementById('slug').disabled=siteMode;
-  document.getElementById('keywords').disabled=siteMode;
-  document.getElementById('index').disabled=siteMode;
-};
-['title','description','h1','intro','keywords','lang','slug'].forEach(id=>document.getElementById(id).addEventListener('input',preview));
+function updateScope(){
+ const siteMode=isSite();q("pageFields").classList.toggle("hidden",siteMode);q("siteFields").classList.toggle("hidden",!siteMode);preview();
+}
+q("scope").addEventListener("change",updateScope);
+["title","description","h1","intro","keywords","siteTitle","siteDescription","siteH1","siteIntro","lang","slug","index","siteIndex"].forEach(id=>q(id).addEventListener("input",preview));
+updateScope();
 </script>
-</body></html>
+</body>
+</html>
