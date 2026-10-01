@@ -6,10 +6,122 @@
   "pages": {
     "en:percentage-calculator": {
       "title": "Percentage Calculator – Free Online",
-      "description": "Calculate percentages, percentage increase, decrease and percentage change instantly.",
+      "description": "Calculate percentages, percentage change, and percent of a value with this free online calculator.",
       "h1": "Percentage Calculator",
-      "intro": "Calculate common percentage questions instantly in your browser.",
-      "targetKeywords": ["percentage calculator","percentage change calculator","percent calculator"],
+      "intro": "Enter a value and a percentage to calculate the result quickly.",
+      "targetKeywords": [
+        "percentage calculator",
+        "percent calculator",
+        "percentage change"
+      ],
+      "index": true
+    },
+    "en:age-calculator": {
+      "title": "Age Calculator – Calculate Your Age Online",
+      "description": "Calculate your age from a birth date with a fast, free online age calculator.",
+      "h1": "Age Calculator",
+      "intro": "Enter a birth date to calculate age in years.",
+      "targetKeywords": [
+        "age calculator",
+        "calculate age",
+        "how old am i"
+      ],
+      "index": true
+    },
+    "en:currency-converter": {
+      "title": "Currency Converter – Live Exchange Rates",
+      "description": "Convert currencies online using current public exchange-rate data. Compare common currencies quickly.",
+      "h1": "Currency Converter",
+      "intro": "Enter an amount, choose the currencies, and convert using the latest available public rate.",
+      "targetKeywords": [
+        "currency converter",
+        "exchange rate calculator",
+        "currency conversion"
+      ],
+      "index": true
+    },
+    "en:unit-converter": {
+      "title": "Unit Converter – Free Online Conversions",
+      "description": "Convert common length, data, speed, area, volume and weight units online.",
+      "h1": "Unit Converter",
+      "intro": "Choose the source and target units, enter a value, and convert instantly.",
+      "targetKeywords": [
+        "unit converter",
+        "unit conversion",
+        "conversion calculator"
+      ],
+      "index": true
+    },
+    "en:password-generator": {
+      "title": "Password Generator – Secure Random Passwords",
+      "description": "Generate a random password in your browser with adjustable length and symbols.",
+      "h1": "Password Generator",
+      "intro": "Choose a password length and symbol option, then generate a random password.",
+      "targetKeywords": [
+        "password generator",
+        "random password generator",
+        "secure password"
+      ],
+      "index": true
+    },
+    "en:word-counter": {
+      "title": "Word Counter – Count Words & Characters",
+      "description": "Count words, characters, CJK characters and estimated reading time online.",
+      "h1": "Word Counter",
+      "intro": "Paste or type text to see word and character counts instantly.",
+      "targetKeywords": [
+        "word counter",
+        "word count",
+        "character counter"
+      ],
+      "index": true
+    },
+    "en:qr-code-generator": {
+      "title": "QR Code Generator – Free Online QR Codes",
+      "description": "Create a QR code from text or a URL directly in your browser.",
+      "h1": "QR Code Generator",
+      "intro": "Enter a URL or text and generate a QR code for quick sharing.",
+      "targetKeywords": [
+        "qr code generator",
+        "free qr code generator",
+        "create qr code"
+      ],
+      "index": true
+    },
+    "en:image-resizer": {
+      "title": "Image Resizer – Resize Images Online",
+      "description": "Resize images in your browser by setting width, height and output quality.",
+      "h1": "Image Resizer",
+      "intro": "Choose an image, set the target dimensions and download the resized file.",
+      "targetKeywords": [
+        "image resizer",
+        "resize image",
+        "resize photo"
+      ],
+      "index": true
+    },
+    "en:image-compressor": {
+      "title": "Image Compressor – Compress Images Online",
+      "description": "Compress an image in your browser and download a smaller JPG file.",
+      "h1": "Image Compressor",
+      "intro": "Choose an image, adjust quality, and download the compressed result.",
+      "targetKeywords": [
+        "image compressor",
+        "compress image",
+        "photo compressor"
+      ],
+      "index": true
+    },
+    "en:jpg-to-pdf": {
+      "title": "JPG to PDF – Convert Images to PDF",
+      "description": "Turn one or more images into a PDF directly in your browser.",
+      "h1": "JPG to PDF",
+      "intro": "Select images and create a PDF file with one image per page.",
+      "targetKeywords": [
+        "jpg to pdf",
+        "image to pdf",
+        "convert jpg to pdf"
+      ],
       "index": true
     }
   }
