@@ -1,0 +1,314 @@
+{
+  "version": 1,
+  "percentage": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "age": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "timezone": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "currency": {
+    "execution": "external-data",
+    "library": false,
+    "networkReason": "Fetches public exchange-rate data.",
+    "maxAgeHours": 24
+  },
+  "unit": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "password": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "random": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "text": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "characters": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "qr": {
+    "execution": "browser-local",
+    "library": true,
+    "networkReason": "Loads the pinned QR library when needed."
+  },
+  "image-compress": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPixels": 80000000,
+    "maxDimension": 12000
+  },
+  "image-resize": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPixels": 80000000,
+    "maxDimension": 12000
+  },
+  "jpg-pdf": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxCombinedMB": 100
+  },
+  "pdf-merge": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxCombinedMB": 100,
+    "maxPages": 300
+  },
+  "json": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "url": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "timestamp": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "bmi": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "loan": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "tip": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "date-diff": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "color-image": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 20
+  },
+  "scientific": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "discount": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "vat": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "compound": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "data": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "speed": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "area": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "volume": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "uuid": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "base64": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "hash": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "regex": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "dedupe": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "whitespace": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "slug": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "csvjson": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "image-format": {
+    "execution": "browser-local",
+    "library": false,
+    "maxFileMB": 20
+  },
+  "pdf-split": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  },
+  "aspect": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "temperature": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "weight": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "profit-margin": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "heic-jpg": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 20
+  },
+  "pdf-text": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 200
+  },
+  "date-add": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "pdf-jpg": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 100
+  },
+  "pdf-delete": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  },
+  "pdf-rotate": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  },
+  "lines": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "ocr-image": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 20
+  },
+  "pdf-numbers": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  },
+  "pdf-watermark": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  },
+  "pdf-png": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 100
+  },
+  "pdf-ocr": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300,
+    "maxSelectedPages": 5
+  },
+  "business-days": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "percentage-change": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "roi": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "markup": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "break-even": {
+    "execution": "browser-local",
+    "library": false
+  },
+  "pdf-extract": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  },
+  "pdf-reorder": {
+    "execution": "browser-local-file",
+    "library": true,
+    "networkReason": "Only loads the pinned processing library when needed.",
+    "maxFileMB": 50,
+    "maxPages": 300
+  }
+}

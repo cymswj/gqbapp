@@ -13,6 +13,7 @@ tools = json.loads((SRC / "tools.json").read_text(encoding="utf-8")) + json.load
 categories = json.loads((SRC / "categories.json").read_text(encoding="utf-8"))
 seo = json.loads((SRC / "seo-overrides.json").read_text(encoding="utf-8")) if (SRC / "seo-overrides.json").exists() else {"site": {}, "pages": {}}
 tool_content = json.loads((SRC / "tool-content.json").read_text(encoding="utf-8")) if (SRC / "tool-content.json").exists() else {}
+runtime_policy = json.loads((SRC / "runtime-policy.json").read_text(encoding="utf-8")) if (SRC / "runtime-policy.json").exists() else {}
 
 locales = site["supportedLocales"]
 base = site["baseUrl"].rstrip("/")
@@ -284,15 +285,21 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 def runtime_note_html(tool, loc):
     impl = tool.get("impl", "")
     labels = i18n[loc]
-    if impl == "currency":
-        return f'<div class="tool-runtime tool-runtime-network"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(labels.get("runtimeExternal","This tool requests public exchange-rate data from an external service."))}</span></div>'
-    file_impls = {
-        "image-compress","image-resize","jpg-pdf","pdf-merge","color-image","heic-jpg",
-        "pdf-text","pdf-jpg","pdf-delete","pdf-rotate","pdf-ocr","ocr-image",
-        "pdf-numbers","pdf-watermark","pdf-png","pdf-extract","pdf-reorder","pdf-split"
-    }
-    if impl in file_impls:
-        return f'<div class="tool-runtime"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(labels.get("runtimeLocalLibrary","File processing runs in your browser; external requests may be used only to load the required processing library."))}</span></div>'
+    policy = runtime_policy.get(impl, {})
+    execution = policy.get("execution", "browser-local")
+    if execution == "external-data":
+        note = labels.get("runtimeExternal", "This tool requests public data from an external service.")
+        return f'<div class="tool-runtime tool-runtime-network"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(note)}</span></div>'
+    if execution == "browser-local-file":
+        note = labels.get("runtimeLocalLibrary", "File processing runs in your browser; external requests may be used only to load the required processing library.")
+        limits = []
+        if policy.get("maxFileMB"): limits.append(f'{policy["maxFileMB"]} MB/file')
+        if policy.get("maxCombinedMB"): limits.append(f'{policy["maxCombinedMB"]} MB combined')
+        if policy.get("maxPages"): limits.append(f'{policy["maxPages"]} pages')
+        if policy.get("maxSelectedPages"): limits.append(f'{policy["maxSelectedPages"]} OCR pages/run')
+        if policy.get("maxPixels"): limits.append(f'{policy["maxPixels"]:,} pixels')
+        if limits: note += " Limits: " + ", ".join(limits) + "."
+        return f'<div class="tool-runtime"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(note)}</span></div>'
     return f'<div class="tool-runtime"><strong>{esc(labels.get("runtimeLabel","How it runs"))}</strong><span>{esc(labels.get("runtimeLocal","This calculation or text operation runs in your browser."))}</span></div>'
 
 def guidance_html(tool_slug, loc):

@@ -22,9 +22,15 @@ missing = sorted({t["impl"] for t in tools} - impls)
 if missing:
     raise SystemExit("Missing tool implementations: " + ", ".join(missing))
 seo = json.loads((src / "seo-overrides.json").read_text(encoding="utf-8"))
+runtime_policy = json.loads((src / "runtime-policy.json").read_text(encoding="utf-8")) if (src / "runtime-policy.json").exists() else {}
 if not isinstance(seo.get("pages", {}), dict):
     raise SystemExit("Invalid SEO page overrides")
 known_slugs = set(slugs)
+declared_policy = set(runtime_policy) - {"version"}
+missing_policy = sorted({t["impl"] for t in tools} - declared_policy)
+extra_policy = sorted(declared_policy - {t["impl"] for t in tools})
+if missing_policy or extra_policy:
+    raise SystemExit("Runtime policy mismatch; missing=" + ",".join(missing_policy) + " extra=" + ",".join(extra_policy))
 invalid_seo_keys = [k for k in seo.get("pages", {}) if ":" not in k or k.split(":",1)[0] not in supported_locales or k.split(":",1)[1] not in known_slugs]
 if invalid_seo_keys:
     raise SystemExit("Invalid SEO override keys: " + ", ".join(invalid_seo_keys[:30]))
