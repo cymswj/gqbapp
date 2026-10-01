@@ -103,7 +103,10 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True):
 </body>
 </html>'''
 
+# Create a project-root landing page so /gqbapp/ works before language routing.
 DIST.mkdir(exist_ok=True)
+root_redirect = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url={base}/{site["defaultLocale"]}/"><link rel="canonical" href="{base}/{site["defaultLocale"]}/"><title>GQB Tools</title></head><body><p>Redirecting to <a href="{base}/{site["defaultLocale"]}/">GQB Tools</a>…</p></body></html>'''
+(DIST / "index.html").write_text(root_redirect, encoding="utf-8")
 if DIST.exists():
     for p in list(DIST.iterdir()):
         if p.is_dir():
@@ -170,6 +173,8 @@ for loc in locales:
         out.write_text(page, encoding="utf-8")
 
 (DIST / "public").mkdir(exist_ok=True)
+if (ROOT / "admin.html").exists():
+    shutil.copy2(ROOT / "admin.html", DIST / "admin.html")
 for name in ["style.css","app.js","og-default.svg"]:
     shutil.copy2(PUB / name, DIST / "public" / name)
 
