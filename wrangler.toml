@@ -5,7 +5,7 @@ compatibility_date = "2026-10-01"
 [vars]
 GITHUB_REPO = "cymswj/gqbapp"
 GITHUB_BRANCH = "main"
-ADMIN_ORIGIN = "https://cymswj.github.io"
+ADMIN_ORIGIN = "https://gqb.app"
 
 [secrets]
 required = ["ADMIN_PASSWORD", "GITHUB_TOKEN"]
