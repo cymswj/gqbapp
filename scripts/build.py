@@ -510,6 +510,8 @@ for loc in locales:
             app_schema["keywords"] = keywords
         extra = '<script type="application/ld+json">'+json.dumps(app_schema,ensure_ascii=False)+'</script>'
         extra += '<script type="application/ld+json">'+json.dumps(breadcrumbs,ensure_ascii=False)+'</script>'
+        tool_copy = tool_content.get(tool["slug"], {}).get(loc) or tool_content.get(tool["slug"], {}).get(default_locale) or {}
+        extra += '<script>window.GQB_TOOL_COPY='+json.dumps(tool_copy,ensure_ascii=False)+'</script>'
 
         tool_body = topnav(loc,2)
         category_name = t(next(c["names"] for c in categories if c["slug"]==tool["group"]),loc)
