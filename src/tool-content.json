@@ -1,0 +1,868 @@
+{
+  "bmi-calculator": {
+    "en": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "zh": {
+      "labels": {
+        "height": "身高（厘米）",
+        "weight": "体重（公斤）",
+        "age": "年龄",
+        "reference": "参考标准",
+        "sex": "性别",
+        "waist": "腰围（厘米）",
+        "optional": "可选",
+        "male": "男性",
+        "female": "女性"
+      },
+      "referenceGeneral": "通用成人参考",
+      "referenceChina": "中国成人参考",
+      "underweight": "低于参考范围",
+      "healthy": "处于参考正常范围",
+      "overweight": "超重范围",
+      "obesity": "肥胖范围",
+      "meaning": "这个结果是什么意思？",
+      "next": "接下来可以关注什么？",
+      "limits": "需要注意",
+      "screening": "BMI 是筛查指标，不是疾病诊断，也不能直接测出体脂含量。",
+      "generalRanges": "通用成人参考：<18.5 体重过低 · 18.5–24.9 参考正常 · 25.0–29.9 超重 · ≥30 肥胖。",
+      "chinaRanges": "中国成人参考（18岁及以上）：<18.5 体重过低 · 18.5–23.9 正常 · 24.0–27.9 超重 · ≥28 肥胖。",
+      "weightRange": "按 BMI 计算的参考体重范围",
+      "rangeNote": "这是参考范围，不是针对个人设定的目标体重。",
+      "waistTitle": "腰围身高比",
+      "waistLow": "低于 0.40：低于常用参考区间，建议结合其他指标理解。",
+      "waistHealthy": "0.40–0.49：较健康的中心性脂肪参考范围。",
+      "waistIncreased": "0.50–0.59：中心性脂肪堆积增加的参考范围。",
+      "waistHigh": "≥0.60：中心性脂肪堆积较高的参考范围。",
+      "waistLessUseful": "BMI 达到 35 或以上时，腰围身高比对风险区分的参考价值会下降。",
+      "chinaWaist": "中国中心型肥胖筛查：男性腰围 ≥90 厘米、女性 ≥85 厘米。",
+      "riskChecks": "还可以关注腰围、血压、血糖、血脂、日常活动量，以及体重随时间的变化趋势。",
+      "muscle": "肌肉量较高的人可能因为肌肉多而 BMI 偏高，所以 BMI 不能单独判断体脂多少。",
+      "older": "老年人解读 BMI 时，还应结合年龄、基础疾病和功能状态。",
+      "pregnancy": "BMI 不是孕期体重增长评估工具。",
+      "children": "儿童和青少年需要按年龄、性别使用相应的生长曲线，不能直接套用成人分类。",
+      "notDiagnosis": "单独一个 BMI 数值不能判断一个人是否健康。",
+      "ethnic": "一些指南针对部分人群使用更低的 BMI 风险阈值，因为代谢风险可能在更低 BMI 时出现。应按所在地区或所采用指南理解结果。",
+      "ageWarning": "此工具用于成人。如果年龄小于 18 岁，应使用儿童或青少年按年龄和性别划分的 BMI 参考。",
+      "sourcesTitle": "参考来源",
+      "guide": [
+        {
+          "title": "BMI 是什么？",
+          "paragraphs": [
+            "BMI = 体重（公斤）÷ 身高（米）²。它是一个用于筛查体重状态的简单指标，但不能直接测量体脂，也不能单独判断一个人是否健康。",
+            "通用成人参考通常把 18.5–24.9 作为参考正常范围、25.0–29.9 作为超重、30 及以上作为肥胖。"
+          ]
+        },
+        {
+          "title": "为什么不能只看一个 BMI？",
+          "paragraphs": [
+            "肌肉量较高的人可能因为肌肉多而 BMI 偏高；腹部脂肪也很重要，所以腰围可以提供额外信息。",
+            "一些指南针对部分人群使用更低的 BMI 阈值，因为代谢风险可能在更低 BMI 时出现。"
+          ]
+        },
+        {
+          "title": "接下来可以关注什么？",
+          "paragraphs": [
+            "对于 BMI 低于 35 的成人，腰围身高比可以与 BMI 一起作为中心性脂肪堆积的实用参考。一个简单的参考是腰围低于身高的一半。",
+            "血压、血糖、血脂、日常活动量和体重变化趋势，也能帮助理解这个数字。"
+          ]
+        },
+        {
+          "title": "需要注意",
+          "paragraphs": [
+            "儿童和青少年需要按年龄和性别使用生长曲线；孕期有单独的体重增长标准。对于老年人和肌肉量较高的人，也需要结合更多背景信息理解 BMI。"
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "美国 CDC：成人 BMI 分类",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "世界卫生组织：肥胖与超重",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE：超重、肥胖与中心性肥胖评估",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ],
+        [
+          "中国国家卫生健康委：《体重管理指导原则（2024年版）》",
+          "https://www.nhc.gov.cn/wjw/ylyjs/202412/b3d40e0141834897808ce6c9dce76a60/files/1736390749000_59785.pdf"
+        ]
+      ]
+    },
+    "es": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "fr": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "de": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "pt": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "ru": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "ja": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "ar": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    },
+    "id": {
+      "labels": {
+        "height": "Height (cm)",
+        "weight": "Weight (kg)",
+        "age": "Age",
+        "reference": "Reference standard",
+        "sex": "Sex",
+        "waist": "Waist circumference (cm)",
+        "optional": "Optional",
+        "male": "Male",
+        "female": "Female"
+      },
+      "referenceGeneral": "General adult reference",
+      "referenceChina": "China adult reference",
+      "underweight": "Below reference range",
+      "healthy": "Within reference range",
+      "overweight": "Overweight range",
+      "obesity": "Obesity range",
+      "meaning": "What does this result mean?",
+      "next": "What to check next",
+      "limits": "Important limitations",
+      "screening": "BMI is a screening measure, not a diagnosis. It does not directly measure body fat.",
+      "generalRanges": "General adult reference: <18.5 underweight · 18.5–24.9 healthy weight · 25.0–29.9 overweight · ≥30 obesity.",
+      "chinaRanges": "China adult reference (18+): <18.5 underweight · 18.5–23.9 normal · 24.0–27.9 overweight · ≥28 obesity.",
+      "weightRange": "BMI-derived reference weight range for this height",
+      "rangeNote": "This is a reference range, not a personal target weight.",
+      "waistTitle": "Waist-to-height ratio",
+      "waistLow": "Below 0.40: below the common reference band; use other measures too.",
+      "waistHealthy": "0.40–0.49: healthy central-adiposity reference.",
+      "waistIncreased": "0.50–0.59: increased central-adiposity reference.",
+      "waistHigh": "≥0.60: high central-adiposity reference.",
+      "waistLessUseful": "At BMI 35 or above, waist-to-height ratio is less useful for risk discrimination.",
+      "chinaWaist": "China central-obesity screening: waist ≥90 cm for men or ≥85 cm for women.",
+      "riskChecks": "Useful context includes waist size, blood pressure, blood glucose, blood lipids, physical activity and the trend of weight over time.",
+      "muscle": "High muscle mass can raise BMI without the same amount of body fat.",
+      "older": "In older adults, BMI should be interpreted with age, health conditions and functional status.",
+      "pregnancy": "BMI is not a pregnancy weight-gain assessment.",
+      "children": "Children and teens need age- and sex-specific growth references; do not use this adult classification for them.",
+      "notDiagnosis": "This number alone cannot tell whether you are healthy.",
+      "ethnic": "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI. Use the standard relevant to your population or local guidance.",
+      "ageWarning": "This tool is for adults. If the person is under 18, use an age- and sex-specific child or teen BMI reference.",
+      "sourcesTitle": "Sources",
+      "guide": [
+        {
+          "title": "What BMI measures",
+          "paragraphs": [
+            "BMI is weight in kilograms divided by height in metres squared. It is a practical screening measure for weight status, not a direct measurement of body fat.",
+            "For adults, common reference categories place 18.5–24.9 in the healthy-weight range, 25.0–29.9 in the overweight range, and 30 or above in the obesity range."
+          ]
+        },
+        {
+          "title": "Why the number needs context",
+          "paragraphs": [
+            "BMI can be less representative in people with high muscle mass. Abdominal fat also matters, so waist measurement can add useful context.",
+            "Some guidelines use lower BMI thresholds for certain populations because cardiometabolic risk can occur at lower BMI."
+          ]
+        },
+        {
+          "title": "What to check next",
+          "paragraphs": [
+            "For adults with BMI below 35, waist-to-height ratio can be used alongside BMI as a practical estimate of central adiposity. A simple reference is a waist below half of height.",
+            "Blood pressure, blood glucose, blood lipids, physical activity and weight trend can also put the number in context."
+          ]
+        },
+        {
+          "title": "Important limitations",
+          "paragraphs": [
+            "Children and teenagers need age- and sex-specific growth references. Pregnancy has separate weight-gain guidance. Older adults and people with high muscle mass may need additional context when BMI is interpreted."
+          ]
+        }
+      ],
+      "sources": [
+        [
+          "CDC – Adult BMI Categories",
+          "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html"
+        ],
+        [
+          "WHO – Obesity and overweight",
+          "https://www.who.int/en/news-room/fact-sheets/detail/obesity-and-overweight"
+        ],
+        [
+          "NICE – Overweight, obesity and central adiposity",
+          "https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity"
+        ]
+      ]
+    }
+  }
+}
