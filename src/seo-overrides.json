@@ -1,0 +1,16 @@
+{
+  "site": {
+    "en.title": "GQB Tools – Free Online Tools",
+    "en.description": "Free online calculators, converters, PDF, image, text and developer tools."
+  },
+  "pages": {
+    "en:percentage-calculator": {
+      "title": "Percentage Calculator – Free Online",
+      "description": "Calculate percentages, percentage increase, decrease and percentage change instantly.",
+      "h1": "Percentage Calculator",
+      "intro": "Calculate common percentage questions instantly in your browser.",
+      "targetKeywords": ["percentage calculator","percentage change calculator","percent calculator"],
+      "index": true
+    }
+  }
+}
