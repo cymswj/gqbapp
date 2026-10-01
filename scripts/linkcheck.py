@@ -31,6 +31,7 @@ def resolve(ref, current):
     return target
 
 attrs = re.compile(r'(?:href|src)=["\']([^"\']+)["\']', re.I)
+service_worker_re = re.compile(r'serviceWorker\.register\(["\']([^"\']+)["\']')
 broken, checked = [], 0
 for page in html_files:
     rel = page.relative_to(DIST)
@@ -40,6 +41,9 @@ for page in html_files:
         if target is None: continue
         checked += 1
         if not target.exists(): broken.append(f'{rel}: {ref}')
+    for sw_ref in service_worker_re.findall(text):
+        sw_target = resolve(sw_ref, rel)
+        if sw_target is None or not sw_target.exists(): broken.append(f'{rel}: service worker {sw_ref}')
 
 for loc in locales:
     for p in [Path(loc)/'index.html', Path(loc)/'about'/'index.html', Path(loc)/'privacy'/'index.html']:
