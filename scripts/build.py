@@ -382,7 +382,7 @@ for loc in locales:
  const recentKey="gqb-tools-recent-v1";
  const getRecent=()=>{try{return JSON.parse(localStorage.getItem(recentKey)||"[]")}catch{return[]}};
  const setRecent=slug=>{try{const next=[slug,...getRecent().filter(x=>x!==slug)].slice(0,8);localStorage.setItem(recentKey,JSON.stringify(next))}catch{}};
- const renderRecent=()=>{const recent=getRecent();recentBox.innerHTML="";let n=0;recent.forEach(slug=>{const src=cards.find(x=>x.dataset.toolSlug===slug);if(!src)return;const clone=src.cloneNode(true);recentBox.appendChild(clone);n++});recentSection.hidden=n===0};
+ const renderRecent=()=>{const recent=getRecent();recentBox.innerHTML="";let n=0;recent.forEach(slug=>{const src=cards.find(x=>x.dataset.toolSlug===slug);if(!src)return;const clone=src.cloneNode(true);clone.addEventListener("click",()=>setRecent(slug));recentBox.appendChild(clone);n++});recentSection.hidden=n===0;recentSection.dataset.hasRecent=n?"1":"0"};
  cards.forEach(card=>card.addEventListener("click",()=>setRecent(card.dataset.toolSlug)));
  renderRecent();
  const sections=[...document.querySelectorAll("[data-category-section]")];
@@ -395,6 +395,7 @@ for loc in locales:
  function filterTools(q){q=(q||"").trim().toLowerCase();
    let shown=0;
    featured.hidden=!!q;
+   recentSection.hidden=!!q || recentSection.dataset.hasRecent!=="1";
    cards.forEach(c=>{const ok=!q||c.dataset.toolSearch.includes(q);c.hidden=!ok;if(ok)shown++;});
    sections.forEach(s=>{if(input.value.trim()){s.hidden=[...s.querySelectorAll("[data-tool-search]")].every(c=>c.hidden)}});
    none.hidden=shown!==0;
