@@ -341,6 +341,33 @@
         "organize pdf pages"
       ],
       "index": true
+    },
+    "en:bmi-calculator": {
+      "title": "BMI Calculator – Adult BMI, Reference Ranges & Results",
+      "description": "Free BMI calculator for adults. Enter height and weight to see BMI, reference categories, a height-based weight range and optional waist-to-height context.",
+      "h1": "BMI Calculator",
+      "intro": "Enter your height and weight to calculate adult BMI, compare reference ranges, and see what the number does and does not tell you.",
+      "targetKeywords": [
+        "bmi calculator",
+        "adult bmi calculator",
+        "bmi range",
+        "body mass index calculator"
+      ],
+      "index": true
+    },
+    "zh:bmi-calculator": {
+      "title": "BMI 计算器 – 成人 BMI 与参考范围",
+      "description": "免费 BMI 计算器。输入身高和体重，查看成人 BMI、不同参考标准、参考体重范围，以及可选的腰围与腰高比信息。",
+      "h1": "BMI 计算器",
+      "intro": "输入身高和体重，查看成人 BMI、参考分类、体重范围，以及下一步可以关注的指标。",
+      "targetKeywords": [
+        "BMI计算器",
+        "BMI指数",
+        "体质指数",
+        "成人BMI",
+        "BMI正常范围"
+      ],
+      "index": true
     }
   }
 }
