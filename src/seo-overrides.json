@@ -123,6 +123,42 @@
         "convert jpg to pdf"
       ],
       "index": true
+    },
+    "en:heic-to-jpg": {
+      "title": "HEIC to JPG – Free Online Converter",
+      "description": "Convert HEIC images to JPG directly in your browser. Choose a HEIC file and download a JPG copy.",
+      "h1": "HEIC to JPG",
+      "intro": "Choose a HEIC or HEIF image and convert it to JPG in your browser.",
+      "targetKeywords": [
+        "heic to jpg",
+        "heic converter",
+        "convert heic to jpg"
+      ],
+      "index": true
+    },
+    "en:pdf-to-text": {
+      "title": "PDF to Text – Extract Text Online",
+      "description": "Extract selectable text from a PDF in your browser. Download or copy the extracted text.",
+      "h1": "PDF to Text",
+      "intro": "Choose a PDF to extract its text directly in your browser.",
+      "targetKeywords": [
+        "pdf to text",
+        "extract text from pdf",
+        "pdf text extractor"
+      ],
+      "index": true
+    },
+    "en:date-add-subtract": {
+      "title": "Date Add / Subtract Calculator – Free Online",
+      "description": "Add or subtract a number of days from a date with this free online date calculator.",
+      "h1": "Date Add / Subtract",
+      "intro": "Choose a date, enter the number of days, and add or subtract them.",
+      "targetKeywords": [
+        "date calculator",
+        "add days to date",
+        "subtract days from date"
+      ],
+      "index": true
     }
   }
 }
