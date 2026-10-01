@@ -7,7 +7,7 @@ function authOK(request, env) {
 
 function corsHeaders(request, env) {
   const origin = request.headers.get("Origin") || "";
-  const allowed = env.ADMIN_ORIGIN || "https://cymswj.github.io";
+  const allowed = env.ADMIN_ORIGIN || "https://gqb.app";
   const originHeader = origin === allowed ? origin : allowed;
   return {
     "Access-Control-Allow-Origin": originHeader,
