@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: "3.x"
       - name: Build localized pages
-        run: python scripts/build.py
+        run: python -m py_compile scripts/build.py && python scripts/build.py
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
