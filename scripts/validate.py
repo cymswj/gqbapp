@@ -20,7 +20,7 @@ collection_method_re = re.compile(r"\$\([^)]*\)\.(?:forEach|map|filter|some|ever
 for m in collection_method_re.finditer(app):
     if m.start() == 0 or app[m.start()-1] != "$":
         raise SystemExit("Single-element selector used with collection method; use $()")
-if "Function('return '" in app or "eval(" in app:
+if re.search(r"\b(?:Function|eval)\s*\(", app):
     raise SystemExit("Unsafe dynamic expression evaluation found")
 tool_content_path = src / "tool-content.json"
 if tool_content_path.exists():
@@ -35,3 +35,11 @@ if tool_content_path.exists():
     if "en" not in bmi or "zh" not in bmi:
         raise SystemExit("BMI tool content must include en and zh")
 print(f"Validated {len(tools)} tools and {len(impls)} JS branches plus runtime safety and content checks.")
+
+password_pos = app.find("else if(tool==='password')")
+random_pos = app.find("else if(tool==='random')")
+text_pos = app.find("else if(tool==='text'||tool==='characters')")
+if password_pos >= 0 and random_pos > password_pos and "Math.random" in app[password_pos:random_pos]:
+    raise SystemExit("Password generator must use cryptographic randomness")
+if random_pos >= 0 and text_pos > random_pos and "Math.random" in app[random_pos:text_pos]:
+    raise SystemExit("Random number generator must not use Math.random")
