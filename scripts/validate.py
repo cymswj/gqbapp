@@ -43,3 +43,6 @@ if password_pos >= 0 and random_pos > password_pos and "Math.random" in app[pass
     raise SystemExit("Password generator must use cryptographic randomness")
 if random_pos >= 0 and text_pos > random_pos and "Math.random" in app[random_pos:text_pos]:
     raise SystemExit("Random number generator must not use Math.random")
+
+if "Math.random" in app:
+    raise SystemExit("Math.random is forbidden in runtime code; use crypto.getRandomValues")
