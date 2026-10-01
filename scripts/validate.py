@@ -68,6 +68,5 @@ for url in cdn_re.findall(app):
     package_part = url.split("/npm/", 1)[1].split("/", 1)[0]
     if "@" not in package_part:
         raise SystemExit("Unpinned CDN dependency: " + url)
-for forbidden in ["$('button',r)[", "$('select',r)[", "$('input',r)["]:
-    if forbidden in app:
-        raise SystemExit("Single-element selector indexed as a collection: " + forbidden)
+if re.search(r"(?<!\$)\$\('(button|select|input)',r\)\[", app):
+    raise SystemExit("Single-element selector indexed as a collection")
