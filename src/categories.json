@@ -1,0 +1,11 @@
+[
+{"slug":"calculators","names":{"en":"Calculators","zh":"计算器","es":"Calculadoras","fr":"Calculatrices","de":"Rechner","pt":"Calculadoras","ru":"Калькуляторы","ja":"計算機","ar":"حاسبات","id":"Kalkulator"}},
+{"slug":"converters","names":{"en":"Converters","zh":"转换器","es":"Conversores","fr":"Convertisseurs","de":"Umrechner","pt":"Conversores","ru":"Конвертеры","ja":"変換ツール","ar":"محولات","id":"Konverter"}},
+{"slug":"finance","names":{"en":"Finance Tools","zh":"金融工具","es":"Herramientas financieras","fr":"Outils financiers","de":"Finanztools","pt":"Ferramentas financeiras","ru":"Финансовые инструменты","ja":"金融ツール","ar":"أدوات مالية","id":"Alat keuangan"}},
+{"slug":"pdf","names":{"en":"PDF Tools","zh":"PDF 工具","es":"Herramientas PDF","fr":"Outils PDF","de":"PDF-Tools","pt":"Ferramentas PDF","ru":"Инструменты PDF","ja":"PDFツール","ar":"أدوات PDF","id":"Alat PDF"}},
+{"slug":"image","names":{"en":"Image Tools","zh":"图片工具","es":"Herramientas de imagen","fr":"Outils image","de":"Bildtools","pt":"Ferramentas de imagem","ru":"Инструменты изображений","ja":"画像ツール","ar":"أدوات الصور","id":"Alat gambar"}},
+{"slug":"text","names":{"en":"Text Tools","zh":"文字工具","es":"Herramientas de texto","fr":"Outils texte","de":"Texttools","pt":"Ferramentas de texto","ru":"Текстовые инструменты","ja":"テキストツール","ar":"أدوات النصوص","id":"Alat teks"}},
+{"slug":"developer","names":{"en":"Developer Tools","zh":"开发者工具","es":"Herramientas para desarrolladores","fr":"Outils développeur","de":"Entwicklertools","pt":"Ferramentas para desenvolvedores","ru":"Инструменты разработчика","ja":"開発者ツール","ar":"أدوات المطورين","id":"Alat developer"}},
+{"slug":"generators","names":{"en":"Generators","zh":"生成器","es":"Generadores","fr":"Générateurs","de":"Generatoren","pt":"Geradores","ru":"Генераторы","ja":"ジェネレーター","ar":"مولدات","id":"Generator"}},
+{"slug":"health","names":{"en":"Health Calculators","zh":"健康计算器","es":"Calculadoras de salud","fr":"Calculatrices santé","de":"Gesundheitsrechner","pt":"Calculadoras de saúde","ru":"Медицинские калькуляторы","ja":"健康計算機","ar":"حاسبات صحية","id":"Kalkulator kesehatan"}}
+]
