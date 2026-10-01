@@ -231,7 +231,7 @@ def analytics_tags():
 
 def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema=None):
     direction = "rtl" if loc == "ar" else "ltr"
-    sw_path = (("../"*(depth+1)) + "sw.js")
+    sw_path = (("../"*(depth+1)) + "sw.js?v=" + ASSET_VERSION)
     alts = []
     for l in locales:
         alt_url = canonical.replace(f"/{loc}/", f"/{l}/")
