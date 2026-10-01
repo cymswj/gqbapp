@@ -244,6 +244,19 @@
         "pdf to image"
       ],
       "index": true
+    },
+    "en:pdf-ocr": {
+      "title": "PDF OCR – Extract Text from Scanned PDFs",
+      "description": "Run OCR on selected PDF pages in your browser to extract text from scanned documents. Choose a language and page range.",
+      "h1": "PDF OCR",
+      "intro": "Choose a scanned PDF, select the recognition language and up to five pages, then extract text in your browser.",
+      "targetKeywords": [
+        "pdf ocr",
+        "ocr pdf",
+        "scanned pdf to text",
+        "extract text from scanned pdf"
+      ],
+      "index": true
     }
   }
 }
