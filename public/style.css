@@ -80,3 +80,6 @@ header{padding:24px 0 8px}
 
 .bmi-result{display:grid;gap:14px}.bmi-result-main{display:flex;align-items:center;gap:16px}.bmi-number{font-size:44px;font-weight:850;letter-spacing:-1.5px;line-height:1}.bmi-category{font-size:17px;font-weight:800}.result-note{padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--muted)}.result-section{padding-top:12px;border-top:1px solid var(--line)}.result-section h3{font-size:15px;margin:0 0 6px}.result-section p{margin:6px 0}.result-list{margin:6px 0 0;padding-left:20px}.tool-guidance{margin-top:22px}.tool-guidance h2{margin-top:0}.tool-sources{margin:6px 0 0;padding-left:20px}.tool-sources a{text-decoration:underline;text-underline-offset:2px}
 @media(max-width:720px){.bmi-result-main{align-items:flex-start}.bmi-number{font-size:38px}.form-grid{grid-template-columns:1fr 1fr}}
+
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.toolcard{transition:none}}
