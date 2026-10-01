@@ -92,7 +92,25 @@
       "recognize": "Recognize"
     },
     "recent": "Recently used",
-    "relatedTools": "Related tools"
+    "relatedTools": "Related tools",
+    "messages": {
+      "chooseFile": "Choose a file.",
+      "chooseImage": "Choose an image.",
+      "invalidNumbers": "Enter valid numbers.",
+      "invalidDate": "Enter a valid date.",
+      "invalidJSON": "Invalid JSON.",
+      "invalidCSV": "Invalid CSV. Check quoted fields, headers and row structure.",
+      "fileTooLarge": "The selected file is too large for browser processing.",
+      "filesTooLarge": "Files are too large. Keep the total input within the browser limit.",
+      "processing": "Processing…",
+      "libraryError": "The required browser library could not load.",
+      "conversionComplete": "Conversion complete.",
+      "rateUnavailable": "Rate data is unavailable right now.",
+      "usingCachedRate": "Using cached rate",
+      "birthFuture": "Birth date cannot be in the future.",
+      "pageSpecError": "Check the page numbers and page range.",
+      "expressionError": "Expression not supported."
+    }
   },
   "zh": {
     "home": "首页",
@@ -187,7 +205,25 @@
       "recognize": "识别"
     },
     "recent": "最近使用",
-    "relatedTools": "相关工具"
+    "relatedTools": "相关工具",
+    "messages": {
+      "chooseFile": "请选择文件。",
+      "chooseImage": "请选择图片。",
+      "invalidNumbers": "请输入有效数字。",
+      "invalidDate": "请输入有效日期。",
+      "invalidJSON": "JSON 格式无效。",
+      "invalidCSV": "CSV 格式无效，请检查引号、表头和行结构。",
+      "fileTooLarge": "所选文件过大，无法在浏览器中处理。",
+      "filesTooLarge": "文件过大，请把总输入控制在浏览器处理上限以内。",
+      "processing": "处理中…",
+      "libraryError": "所需的浏览器库无法加载。",
+      "conversionComplete": "处理完成。",
+      "rateUnavailable": "当前无法获取汇率数据。",
+      "usingCachedRate": "正在使用缓存汇率",
+      "birthFuture": "出生日期不能晚于今天。",
+      "pageSpecError": "请检查页码和页码范围。",
+      "expressionError": "表达式无法识别。"
+    }
   },
   "es": {
     "home": "Inicio",
@@ -282,7 +318,25 @@
       "recognize": "Reconocer"
     },
     "recent": "Usadas recientemente",
-    "relatedTools": "Herramientas relacionadas"
+    "relatedTools": "Herramientas relacionadas",
+    "messages": {
+      "chooseFile": "Selecciona un archivo.",
+      "chooseImage": "Selecciona una imagen.",
+      "invalidNumbers": "Introduce números válidos.",
+      "invalidDate": "Introduce una fecha válida.",
+      "invalidJSON": "JSON no válido.",
+      "invalidCSV": "CSV no válido. Comprueba comillas, encabezados y filas.",
+      "fileTooLarge": "El archivo es demasiado grande para procesarlo en el navegador.",
+      "filesTooLarge": "Los archivos son demasiado grandes para el límite del navegador.",
+      "processing": "Procesando…",
+      "libraryError": "No se pudo cargar la biblioteca necesaria.",
+      "conversionComplete": "Conversión completada.",
+      "rateUnavailable": "Los datos de cambio no están disponibles ahora.",
+      "usingCachedRate": "Usando el tipo de cambio en caché",
+      "birthFuture": "La fecha de nacimiento no puede ser futura.",
+      "pageSpecError": "Comprueba los números y rangos de páginas.",
+      "expressionError": "Expresión no compatible."
+    }
   },
   "fr": {
     "home": "Accueil",
@@ -377,7 +431,25 @@
       "recognize": "Reconnaître"
     },
     "recent": "Récemment utilisés",
-    "relatedTools": "Outils associés"
+    "relatedTools": "Outils associés",
+    "messages": {
+      "chooseFile": "Choisissez un fichier.",
+      "chooseImage": "Choisissez une image.",
+      "invalidNumbers": "Saisissez des nombres valides.",
+      "invalidDate": "Saisissez une date valide.",
+      "invalidJSON": "JSON invalide.",
+      "invalidCSV": "CSV invalide. Vérifiez les guillemets, les en-têtes et les lignes.",
+      "fileTooLarge": "Le fichier est trop volumineux pour être traité dans le navigateur.",
+      "filesTooLarge": "Les fichiers dépassent la limite de traitement du navigateur.",
+      "processing": "Traitement…",
+      "libraryError": "La bibliothèque nécessaire n’a pas pu être chargée.",
+      "conversionComplete": "Conversion terminée.",
+      "rateUnavailable": "Les données de change sont indisponibles.",
+      "usingCachedRate": "Taux de change en cache utilisé",
+      "birthFuture": "La date de naissance ne peut pas être future.",
+      "pageSpecError": "Vérifiez les numéros et plages de pages.",
+      "expressionError": "Expression non prise en charge."
+    }
   },
   "de": {
     "home": "Startseite",
@@ -472,7 +544,25 @@
       "recognize": "Erkennen"
     },
     "recent": "Zuletzt verwendet",
-    "relatedTools": "Verwandte Tools"
+    "relatedTools": "Verwandte Tools",
+    "messages": {
+      "chooseFile": "Wählen Sie eine Datei aus.",
+      "chooseImage": "Wählen Sie ein Bild aus.",
+      "invalidNumbers": "Geben Sie gültige Zahlen ein.",
+      "invalidDate": "Geben Sie ein gültiges Datum ein.",
+      "invalidJSON": "Ungültiges JSON.",
+      "invalidCSV": "Ungültiges CSV. Prüfen Sie Anführungszeichen, Kopfzeilen und Zeilen.",
+      "fileTooLarge": "Die Datei ist für die Verarbeitung im Browser zu groß.",
+      "filesTooLarge": "Die Dateien überschreiten das Browser-Limit.",
+      "processing": "Wird verarbeitet…",
+      "libraryError": "Die erforderliche Browser-Bibliothek konnte nicht geladen werden.",
+      "conversionComplete": "Konvertierung abgeschlossen.",
+      "rateUnavailable": "Wechselkursdaten sind derzeit nicht verfügbar.",
+      "usingCachedRate": "Zwischengespeicherter Wechselkurs wird verwendet",
+      "birthFuture": "Das Geburtsdatum darf nicht in der Zukunft liegen.",
+      "pageSpecError": "Prüfen Sie Seitenzahlen und Seitenbereiche.",
+      "expressionError": "Ausdruck nicht unterstützt."
+    }
   },
   "pt": {
     "home": "Início",
@@ -567,7 +657,25 @@
       "recognize": "Reconhecer"
     },
     "recent": "Usados recentemente",
-    "relatedTools": "Ferramentas relacionadas"
+    "relatedTools": "Ferramentas relacionadas",
+    "messages": {
+      "chooseFile": "Selecione um arquivo.",
+      "chooseImage": "Selecione uma imagem.",
+      "invalidNumbers": "Digite números válidos.",
+      "invalidDate": "Digite uma data válida.",
+      "invalidJSON": "JSON inválido.",
+      "invalidCSV": "CSV inválido. Verifique aspas, cabeçalhos e linhas.",
+      "fileTooLarge": "O arquivo é grande demais para processamento no navegador.",
+      "filesTooLarge": "Os arquivos excedem o limite do navegador.",
+      "processing": "Processando…",
+      "libraryError": "Não foi possível carregar a biblioteca necessária.",
+      "conversionComplete": "Conversão concluída.",
+      "rateUnavailable": "Os dados de câmbio não estão disponíveis agora.",
+      "usingCachedRate": "Usando taxa de câmbio em cache",
+      "birthFuture": "A data de nascimento não pode estar no futuro.",
+      "pageSpecError": "Verifique os números e intervalos de páginas.",
+      "expressionError": "Expressão não suportada."
+    }
   },
   "ru": {
     "home": "Главная",
@@ -662,7 +770,25 @@
       "recognize": "Распознать"
     },
     "recent": "Недавно использованные",
-    "relatedTools": "Связанные инструменты"
+    "relatedTools": "Связанные инструменты",
+    "messages": {
+      "chooseFile": "Выберите файл.",
+      "chooseImage": "Выберите изображение.",
+      "invalidNumbers": "Введите корректные числа.",
+      "invalidDate": "Введите корректную дату.",
+      "invalidJSON": "Некорректный JSON.",
+      "invalidCSV": "Некорректный CSV. Проверьте кавычки, заголовки и строки.",
+      "fileTooLarge": "Файл слишком большой для обработки в браузере.",
+      "filesTooLarge": "Файлы превышают допустимый размер в браузере.",
+      "processing": "Обработка…",
+      "libraryError": "Не удалось загрузить необходимую библиотеку.",
+      "conversionComplete": "Готово.",
+      "rateUnavailable": "Данные о курсе валют сейчас недоступны.",
+      "usingCachedRate": "Используется кэшированный курс",
+      "birthFuture": "Дата рождения не может быть в будущем.",
+      "pageSpecError": "Проверьте номера и диапазоны страниц.",
+      "expressionError": "Выражение не поддерживается."
+    }
   },
   "ja": {
     "home": "ホーム",
@@ -757,7 +883,25 @@
       "recognize": "認識"
     },
     "recent": "最近使ったツール",
-    "relatedTools": "関連ツール"
+    "relatedTools": "関連ツール",
+    "messages": {
+      "chooseFile": "ファイルを選択してください。",
+      "chooseImage": "画像を選択してください。",
+      "invalidNumbers": "有効な数値を入力してください。",
+      "invalidDate": "有効な日付を入力してください。",
+      "invalidJSON": "JSONが無効です。",
+      "invalidCSV": "CSVが無効です。引用符、ヘッダー、行を確認してください。",
+      "fileTooLarge": "ファイルが大きすぎてブラウザで処理できません。",
+      "filesTooLarge": "ファイルがブラウザの処理上限を超えています。",
+      "processing": "処理中…",
+      "libraryError": "必要なブラウザライブラリを読み込めませんでした。",
+      "conversionComplete": "変換が完了しました。",
+      "rateUnavailable": "現在、為替データを取得できません。",
+      "usingCachedRate": "キャッシュした為替レートを使用しています",
+      "birthFuture": "生年月日は未来の日付にできません。",
+      "pageSpecError": "ページ番号と範囲を確認してください。",
+      "expressionError": "対応していない式です。"
+    }
   },
   "ar": {
     "home": "الرئيسية",
@@ -852,7 +996,25 @@
       "recognize": "تعرّف"
     },
     "recent": "المستخدمة مؤخرًا",
-    "relatedTools": "أدوات ذات صلة"
+    "relatedTools": "أدوات ذات صلة",
+    "messages": {
+      "chooseFile": "اختر ملفًا.",
+      "chooseImage": "اختر صورة.",
+      "invalidNumbers": "أدخل أرقامًا صحيحة.",
+      "invalidDate": "أدخل تاريخًا صالحًا.",
+      "invalidJSON": "JSON غير صالح.",
+      "invalidCSV": "CSV غير صالح. تحقق من علامات الاقتباس والعناوين والصفوف.",
+      "fileTooLarge": "الملف كبير جدًا لمعالجته في المتصفح.",
+      "filesTooLarge": "الملفات تتجاوز حد المعالجة في المتصفح.",
+      "processing": "جارٍ المعالجة…",
+      "libraryError": "تعذر تحميل المكتبة المطلوبة.",
+      "conversionComplete": "اكتملت العملية.",
+      "rateUnavailable": "بيانات سعر الصرف غير متاحة حاليًا.",
+      "usingCachedRate": "يتم استخدام سعر الصرف المخزن مؤقتًا",
+      "birthFuture": "لا يمكن أن يكون تاريخ الميلاد في المستقبل.",
+      "pageSpecError": "تحقق من أرقام الصفحات ونطاقاتها.",
+      "expressionError": "التعبير غير مدعوم."
+    }
   },
   "id": {
     "home": "Beranda",
@@ -947,6 +1109,24 @@
       "recognize": "Kenali"
     },
     "recent": "Baru digunakan",
-    "relatedTools": "Alat terkait"
+    "relatedTools": "Alat terkait",
+    "messages": {
+      "chooseFile": "Pilih file.",
+      "chooseImage": "Pilih gambar.",
+      "invalidNumbers": "Masukkan angka yang valid.",
+      "invalidDate": "Masukkan tanggal yang valid.",
+      "invalidJSON": "JSON tidak valid.",
+      "invalidCSV": "CSV tidak valid. Periksa tanda kutip, header, dan baris.",
+      "fileTooLarge": "File terlalu besar untuk diproses di browser.",
+      "filesTooLarge": "Ukuran file melebihi batas browser.",
+      "processing": "Memproses…",
+      "libraryError": "Pustaka browser yang diperlukan tidak dapat dimuat.",
+      "conversionComplete": "Konversi selesai.",
+      "rateUnavailable": "Data kurs tidak tersedia saat ini.",
+      "usingCachedRate": "Menggunakan kurs dari cache",
+      "birthFuture": "Tanggal lahir tidak boleh berada di masa depan.",
+      "pageSpecError": "Periksa nomor dan rentang halaman.",
+      "expressionError": "Ekspresi tidak didukung."
+    }
   }
 }
