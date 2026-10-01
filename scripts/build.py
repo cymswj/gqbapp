@@ -324,7 +324,7 @@ for loc in locales:
 <div class="stats"><span>{len(tools)} {esc(i18n[loc].get("toolsLabel","tools"))}</span><span>{len(locales)} {esc(i18n[loc].get("languagesLabel","languages"))}</span><span>{esc(i18n[loc]["noSignup"])}</span></div>
 </section>
 
-<section aria-labelledby="featured-title">
+<section id="featuredSection" aria-labelledby="featured-title">
 <h2 id="featured-title" class="section-title">{esc(i18n[loc].get("featured","Featured tools"))}</h2>
 <div class="grid featured-grid">{''.join(card_html(x,loc) for x in featured)}</div>
 </section>
@@ -351,15 +351,18 @@ for loc in locales:
     body += '''<script>
 (function(){
  const input=document.getElementById("toolSearch");
- const cards=[...document.querySelectorAll("[data-tool-search]")];
+ const cards=[...document.querySelectorAll("#catalog [data-tool-search]")];
+ const featured=document.getElementById("featuredSection");
  const sections=[...document.querySelectorAll("[data-category-section]")];
  const chips=[...document.querySelectorAll("[data-category]")];
  const none=document.getElementById("noResults");
  function applyCategory(cat){chips.forEach(x=>x.classList.toggle("active",x.dataset.category===cat));
+   featured.hidden=cat!=="all";
    sections.forEach(s=>s.hidden=cat!=="all"&&s.dataset.categorySection!==cat);
  }
  function filterTools(q){q=(q||"").trim().toLowerCase();
    let shown=0;
+   featured.hidden=!!q;
    cards.forEach(c=>{const ok=!q||c.dataset.toolSearch.includes(q);c.hidden=!ok;if(ok)shown++;});
    sections.forEach(s=>{if(input.value.trim()){s.hidden=[...s.querySelectorAll("[data-tool-search]")].every(c=>c.hidden)}});
    none.hidden=shown!==0;
