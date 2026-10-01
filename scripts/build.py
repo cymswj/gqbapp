@@ -363,7 +363,7 @@ for loc in locales:
  const recentBox=document.getElementById("recentTools");
  const recentKey="gqb-tools-recent-v1";
  const getRecent=()=>{try{return JSON.parse(localStorage.getItem(recentKey)||"[]")}catch{return[]}};
- const setRecent=slug=>{const next=[slug,...getRecent().filter(x=>x!==slug)].slice(0,8);localStorage.setItem(recentKey,JSON.stringify(next))};
+ const setRecent=slug=>{try{const next=[slug,...getRecent().filter(x=>x!==slug)].slice(0,8);localStorage.setItem(recentKey,JSON.stringify(next))}catch{}};
  const renderRecent=()=>{const recent=getRecent();recentBox.innerHTML="";let n=0;recent.forEach(slug=>{const src=cards.find(x=>x.dataset.toolSlug===slug);if(!src)return;const clone=src.cloneNode(true);recentBox.appendChild(clone);n++});recentSection.hidden=n===0};
  cards.forEach(card=>card.addEventListener("click",()=>setRecent(card.dataset.toolSlug)));
  renderRecent();
