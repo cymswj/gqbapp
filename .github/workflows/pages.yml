@@ -20,6 +20,8 @@ jobs:
           python-version: "3.x"
       - name: Validate tool catalog
         run: python scripts/validate.py
+      - name: Structural audit
+        run: python scripts/audit.py
       - name: Validate JavaScript syntax
         run: node --check public/app.js
       - name: Runtime initialization smoke test
