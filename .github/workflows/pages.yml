@@ -24,6 +24,8 @@ jobs:
         run: node --check public/app.js
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
+      - name: Check generated links
+        run: python scripts/linkcheck.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
