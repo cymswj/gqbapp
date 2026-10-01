@@ -253,7 +253,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 {extra}
 </head>
 <body data-locale="{loc}">
-<script>if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("{asset(depth,"sw.js")}").catch(()=>{}));</script>
+<script>if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("{("../"*depth)}sw.js").catch(()=>{}));</script>
 {body}
 </body>
 </html>'''
@@ -453,6 +453,7 @@ for loc in locales:
         out.write_text(page, encoding="utf-8")
 
 # Public assets.
+shutil.copy2(PUB / "sw.js", DIST / "sw.js")
 (DIST / "public").mkdir(exist_ok=True)
 for name in ["style.css","app.js","og-default.svg","favicon.svg","site.webmanifest","sw.js"]:
     src = PUB / name
