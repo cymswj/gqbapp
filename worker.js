@@ -145,6 +145,6 @@ export default {
       return jsonResponse(request,env,{ok:true,storage:"kv",data});
     }
 
-    return jsonResponse(request,env,{ok:true,storage:"memory",data});
+    return jsonResponse(request,env,{error:"No persistent storage configured. Set GITHUB_TOKEN or bind SEO_KV."},503);
   }
 };
