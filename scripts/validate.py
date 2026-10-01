@@ -16,8 +16,10 @@ seo = json.loads((src / "seo-overrides.json").read_text(encoding="utf-8"))
 if not isinstance(seo.get("pages", {}), dict):
     raise SystemExit("Invalid SEO page overrides")
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
-if re.search(r"(?<!\$)\$\([^)]*\)\.(?:forEach|map|filter|some|every|reduce|join)\(", app):
-    raise SystemExit("Single-element selector used with collection method; use $()")
+collection_method_re = re.compile(r"\$\([^)]*\)\.(?:forEach|map|filter|some|every|reduce|join)\(")
+for m in collection_method_re.finditer(app):
+    if m.start() == 0 or app[m.start()-1] != "$":
+        raise SystemExit("Single-element selector used with collection method; use $()")
 if "Function('return '" in app or "eval(" in app:
     raise SystemExit("Unsafe dynamic expression evaluation found")
 tool_content_path = src / "tool-content.json"
