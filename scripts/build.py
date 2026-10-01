@@ -177,7 +177,24 @@ def topnav(loc, depth):
     links = " ".join(f'<a href="{("../"*depth)}{l}/"' + (' aria-current="page"' if l == loc else '') + f'>{n}</a>' for l,n in labels.items())
     return f'<header><div class="wrap top"><a class="brand" href="{home}">{esc(site["siteName"])}</a><nav class="langs" aria-label="Language">{links}</nav></div></header>'
 
-def footer(loc, kind, static_slug=""):\n    if kind == "home":\n        about_href, privacy_href = "about/", "privacy/"\n    elif kind == "static":\n        about_href = "./" if static_slug == "about" else "../about/"\n        privacy_href = "../privacy/" if static_slug == "about" else "./"\n    else:\n        about_href, privacy_href = "../../about/", "../../privacy/"\n    return f"""<footer class="footer"><div class="wrap footer-inner">\n<strong>{esc(site["siteName"])}</strong>\n<nav aria-label="Footer">\n<a href="{about_href}">{esc(i18n[loc].get("aboutPage","About"))}</a>\n<a href="{privacy_href}">{esc(i18n[loc].get("privacyPage","Privacy"))}</a>\n</nav>\n<span>{esc(i18n[loc]["privacy"])}</span>\n</div></footer>"""\n\ndef analytics_tags():
+def footer(loc, kind, static_slug=""):
+    if kind == "home":
+        about_href, privacy_href = "about/", "privacy/"
+    elif kind == "static":
+        about_href = "./" if static_slug == "about" else "../about/"
+        privacy_href = "../privacy/" if static_slug == "about" else "./"
+    else:
+        about_href, privacy_href = "../../about/", "../../privacy/"
+    return f"""<footer class="footer"><div class="wrap footer-inner">
+<strong>{esc(site["siteName"])}</strong>
+<nav aria-label="Footer">
+<a href="{about_href}">{esc(i18n[loc].get("aboutPage","About"))}</a>
+<a href="{privacy_href}">{esc(i18n[loc].get("privacyPage","Privacy"))}</a>
+</nav>
+<span>{esc(i18n[loc]["privacy"])}</span>
+</div></footer>"""
+
+def analytics_tags():
     a = site.get("analytics", {})
     parts = []
     if a.get("googleSiteVerification"):
