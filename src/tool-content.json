@@ -860,5 +860,391 @@
         }
       ]
     }
+  },
+  "percentage-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result is the calculated percentage amount. It is not the same thing as percentage change, which compares an old and new value."
+          ]
+        },
+        {
+          "title": "Example",
+          "paragraphs": [
+            "18% of 500 is 90. The 18% is the rate; 90 is the calculated amount."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果是算出来的百分比金额，不等于“百分比变化”。百分比变化需要比较原数值和新数值。"
+          ]
+        },
+        {
+          "title": "举个例子",
+          "paragraphs": [
+            "500 的 18% 是 90。18% 是比例，90 是计算结果。"
+          ]
+        }
+      ]
+    }
+  },
+  "loan-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Monthly payment is the scheduled payment for the entered principal, annual rate and term. Total interest adds up the interest over the full schedule."
+          ]
+        },
+        {
+          "title": "Assumptions and limitations",
+          "paragraphs": [
+            "This calculator assumes a fixed annual rate and equal monthly payments. It does not include lender fees, insurance, taxes, penalties or rate changes."
+          ]
+        },
+        {
+          "title": "What to compare",
+          "paragraphs": [
+            "A lower monthly payment can come from a longer term. Compare total repayment and total interest as well as the monthly payment."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "月供是根据本金、年利率和期限计算出的每月还款额；总利息是整个还款期累计的利息。"
+          ]
+        },
+        {
+          "title": "计算前提与限制",
+          "paragraphs": [
+            "当前工具按固定年利率、等额月供计算，不包括贷款手续费、保险、税费、罚金和利率变化。"
+          ]
+        },
+        {
+          "title": "实际比较什么？",
+          "paragraphs": [
+            "月供更低有时只是因为期限更长。比较贷款时，要同时看总还款额和总利息，不能只看月供。"
+          ]
+        }
+      ]
+    }
+  },
+  "tip-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result tells you the bill total after the selected tip rate and the amount per person when split."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Tip customs differ by country, venue and service type. The calculator does not decide what percentage you should tip."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果表示按所选小费比例计算后的总额，以及多人平摊时每个人需要支付的金额。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "不同国家、地区、餐厅和服务类型的小费习惯不同。本工具只负责计算，不判断应该给多少小费。"
+          ]
+        }
+      ]
+    }
+  },
+  "discount-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Final price is the price after the entered discount. Saved is the amount removed from the original price."
+          ]
+        },
+        {
+          "title": "Check the real cost",
+          "paragraphs": [
+            "Taxes, shipping, membership requirements and other fees may change the final amount you actually pay."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "最终价格是原价扣除折扣后的金额，“节省”是实际减掉的钱。"
+          ]
+        },
+        {
+          "title": "再看实际付款",
+          "paragraphs": [
+            "税费、运费、会员条件和其他费用可能让最终付款金额与折后价不同。"
+          ]
+        }
+      ]
+    }
+  },
+  "vat-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Add VAT turns a net amount into a gross, tax-inclusive amount. Extract VAT separates the VAT portion from a gross amount."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "VAT rates and rules vary by jurisdiction and product. Enter the rate that actually applies to the transaction."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "“加上增值税”把未税金额换算成含税总额；“从含税价反算”则从含税金额中拆出税额和未税金额。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "不同国家、地区和商品的税率及规则不同，应输入这笔交易实际适用的税率。"
+          ]
+        }
+      ]
+    }
+  },
+  "compound-interest-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Future value is the amount produced by the entered starting principal, annual rate and years under the calculator’s annual-compounding model."
+          ]
+        },
+        {
+          "title": "What is missing",
+          "paragraphs": [
+            "Regular deposits, withdrawals, taxes, fees and changing rates are not modeled here, so the result is a simplified estimate."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "未来价值是在输入本金、年利率和年限下，按本工具的按年复利模型计算得到的终值。"
+          ]
+        },
+        {
+          "title": "当前没有计算什么？",
+          "paragraphs": [
+            "定期追加、提取、税费、手续费和利率变化没有纳入模型，因此这是一个简化估算。"
+          ]
+        }
+      ]
+    }
+  },
+  "roi-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "ROI is net gain divided by investment cost. A positive result means the received value is above the entered cost; a negative result means it is below."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "ROI does not tell you how long the investment took or how much risk was involved. Taxes and cash-flow timing can also matter."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "ROI = 净收益 ÷ 投资成本。正数表示回报高于投入，负数表示回报低于投入。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "ROI 本身没有反映投资用了多久、风险多大、税费多少以及现金流发生的时间。"
+          ]
+        }
+      ]
+    }
+  },
+  "markup-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Markup is profit as a percentage of cost. It is different from profit margin, which uses selling price or revenue as the denominator."
+          ]
+        },
+        {
+          "title": "Example",
+          "paragraphs": [
+            "Cost 60 and selling price 100 gives 66.67% markup but 40% profit margin."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "加价率 = 利润 ÷ 成本，不等于利润率。利润率的分母是销售价格或收入。"
+          ]
+        },
+        {
+          "title": "举个例子",
+          "paragraphs": [
+            "成本 60、售价 100 时，加价率是 66.67%，但利润率是 40%。"
+          ]
+        }
+      ]
+    }
+  },
+  "break-even-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "Break-even units are the number of units needed for contribution from sales to cover fixed costs. The model reaches zero operating profit at that point."
+          ]
+        },
+        {
+          "title": "Assumptions",
+          "paragraphs": [
+            "It assumes a constant selling price and variable cost per unit and does not model taxes, discounts, capacity limits or multiple products."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "盈亏平衡销量是用每件产品的贡献去覆盖固定成本所需要的销量。到达这个点时，模型中的经营利润正好为 0。"
+          ]
+        },
+        {
+          "title": "计算前提",
+          "paragraphs": [
+            "模型假设售价和单位可变成本保持不变，不考虑税费、折扣、产能限制或多产品组合。"
+          ]
+        }
+      ]
+    }
+  },
+  "business-days-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result counts weekdays between the two dates and excludes Saturday and Sunday."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Public holidays are not removed automatically. For payroll, contracts or country-specific work calendars, use the relevant holiday calendar too."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果按周一至周五统计两个日期之间的工作日，不计算周六和周日。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "当前不会自动排除法定节假日。用于工资、合同或特定国家工作日安排时，还要结合当地节假日表。"
+          ]
+        }
+      ]
+    }
+  },
+  "date-difference-calculator": {
+    "en": {
+      "guide": [
+        {
+          "title": "What the result means",
+          "paragraphs": [
+            "The result is the absolute number of calendar days between the two dates. It is not a business-day count."
+          ]
+        },
+        {
+          "title": "Important note",
+          "paragraphs": [
+            "Whether the first and last date should both be counted depends on the task. This tool uses the difference between dates rather than inclusive counting."
+          ]
+        }
+      ]
+    },
+    "zh": {
+      "guide": [
+        {
+          "title": "结果是什么意思？",
+          "paragraphs": [
+            "结果是两个日期之间相差的自然日天数，不是工作日数量。"
+          ]
+        },
+        {
+          "title": "注意",
+          "paragraphs": [
+            "有些场景需要把起始日和结束日都算进去，而当前工具计算的是两个日期之间的日期差。"
+          ]
+        }
+      ]
+    }
   }
 }
