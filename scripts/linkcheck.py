@@ -13,7 +13,7 @@ categories = json.loads((SRC / 'categories.json').read_text(encoding='utf-8'))
 locales = site['supportedLocales']
 host = urlparse(site['baseUrl']).netloc
 html_files = list(DIST.rglob('*.html'))
-expected = 1 + len(locales) * (3 + len(categories) + len(tools))
+expected = 1 + len(locales) * (3 + len(categories) + len(tools)) + (1 if (ROOT / 'admin.html').exists() else 0)
 if len(html_files) != expected: raise SystemExit(f'Unexpected HTML page count: {len(html_files)} != {expected}')
 
 def resolve(ref, current):
