@@ -132,3 +132,114 @@ admin.html provides a browser-based editor. worker.js provides /api/seo with pas
 This is deliberately build-time SEO rather than client-side-only SEO: search engines receive title, description, canonical, hreflang and structured data in the generated HTML. Google recommends descriptive page titles and page-specific meta descriptions, and recommends consistent canonical/hreflang handling for localized pages. citeturn634524search5turn634524search6turn634524search2
 
 One current Google Search detail matters for the roadmap: FAQ rich results were deprecated in May 2026. FAQ content can still be useful for readers, but GQB Tools should not depend on FAQ structured data as a traffic strategy. citeturn634524search7
+
+
+## 2026-10-01 深度复核
+
+这次复核的核心结论没有改变：不要做“什么关键词都做”的页面农场，而要做少量真正能完成任务的工具，再用多语言、性能、内部链接和真实数据不断扩充。
+
+### 需求信号
+
+公开第三方数据只能作为方向判断，不能当作 GQB Tools 的流量预测。当前样本包括：
+
+- “pdf to word” 约 246,000 次/月（美国）；相关 “convert pdf to word” 约 110,000 次/月。
+- “image resizer” 约 145,000–165,000 次/月，不同数据源口径不同。
+- “word counter” 约 792,000 次/月。
+- “qr code generator” 在不同公开数据源中约 673,000–1,800,000 次/月。
+- “heic to jpg” 也显示出较强的图片格式转换需求，公开样本约 246,000 次/月。
+
+参考：
+https://www.seodata.dev/keyword/convert-pdf-to-editable-word
+https://kdroi.io/analysis/image-resizer
+https://ahrefs.com/websites/wordcounter.net
+https://analytics.explodingtopics.com/website/qr-code-generator.com
+https://analytics.explodingtopics.com/website/iloveimg.com
+
+### 多语言策略
+
+W3Techs 2026-10-01 的网站内容语言统计显示，英语约占已知网站内容语言的 49.5%，西班牙语 6.0%，德语 5.9%，日语 4.9%，法语 4.5%。在采用 HTTPS 默认协议的网站中，葡萄牙语约 4.1%、俄语约 3.2%、中文约 1.2%、印尼语约 1.1%、阿拉伯语约 0.6%。
+
+因此现在的 10 语言目录合理，但不要为了“多语言”无限扩张。增加新语言应由 Search Console 的真实展示和点击数据驱动。
+
+参考：
+https://w3techs.com/technologies/overview/content_language
+https://w3techs.com/technologies/segmentation/ce-httpsdefault/content_language
+
+### SEO 技术策略
+
+Google 当前建议多语言内容使用不同 URL，并使用 hreflang 帮助搜索引擎理解语言版本。网站应该让页面语言对用户和搜索引擎都清晰可见。
+
+GQB Tools 当前采用：
+/en/tools/xxx/
+/zh/tools/xxx/
+/es/tools/xxx/
+
+每个页面输出 canonical、hreflang、Open Graph、语言标记、WebPage/WebApplication/面包屑结构化数据。
+
+sitemap 现在只放可索引页面，并提供语言 alternates。移除了“每次构建都用今天日期”的 lastmod，因为 Google 明确建议 lastmod 应准确反映页面重大更新，而不是机械刷新。
+
+参考：
+https://developers.google.com/search/docs/advanced/crawling/managing-multi-regional-sites
+https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+
+### 内容策略
+
+Google 当前的核心方向仍是 people-first content。生成大量几乎相同的自动页面来覆盖关键词属于风险做法。工具站尤其应该避免：
+
+“一个工具 + 十个语言 + 大量同义关键词页面”的无限复制。
+
+正确方式是：
+1. 一个真实工具对应一个真实任务。
+2. 每种语言有独立、自然的标题和说明。
+3. 工具本身必须真的可用。
+4. SEO 页面提供额外解释、使用方法、隐私说明和内部链接。
+5. 通过真实搜索数据决定下一批工具，而不是凭想象批量建页。
+
+参考：
+https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+https://developers.google.com/search/docs/essentials/spam-policies
+https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+
+### 2026 产品结构
+
+当前站点：44 个真实工具，10 个语言目录。
+
+已覆盖的高频基础方向：
+计算、单位/数据转换、时区、汇率、文本统计、二维码、密码/随机/UUID、图片压缩/调整尺寸/格式转换、JPG→PDF、PDF 合并/分割、JSON、URL、时间戳、Regex、Base64、Hash、利润率、温度、重量等。
+
+暂不把 PDF→Word、PDF 压缩、OCR 等重型功能伪装成已完成工具。它们需要真正的文件解析、排版保真、浏览器性能与错误处理，应该在功能完成后再公开收录页。
+
+### 后台架构
+
+SEO 后台已经形成：
+
+admin.html
+→ Cloudflare Worker
+→ GitHub src/seo-overrides.json
+→ GitHub Actions
+→ dist
+→ GitHub Pages
+
+后台现在支持：
+- 工具页面 SEO
+- 语言首页 SEO
+- title / description / H1 / intro
+- index / noindex
+- 目标关键词规划
+- 本机草稿
+- 在线保存
+
+Worker 对 GET 和 PUT 都需要管理员密码，并可限制 CORS 来源。敏感的 ADMIN_PASSWORD 与 GITHUB_TOKEN 必须使用 Cloudflare Secrets，不要写入 wrangler.toml 的 vars 或前端代码。
+
+参考：
+https://developers.cloudflare.com/workers/configuration/secrets/
+https://developers.cloudflare.com/workers/configuration/environment-variables/
+https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+
+### 下一步
+
+下一阶段最值得做的不是继续堆几十个小工具，而是把已有高需求工具做到“用户真的愿意收藏”：
+首页加载速度、移动端操作、批量文件处理、下载体验、错误提示、工具之间互相推荐、最近使用、收藏，以及 Search Console 数据回流。
+
+然后再进入：
+PDF→Word / OCR / HEIC / PDF 压缩 / 图片转文字 / 批量处理 / API / 会员功能。
