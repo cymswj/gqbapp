@@ -7,7 +7,7 @@
 ## 当前架构
 
 - 10 种语言：en / zh / es / fr / de / pt / ru / ja / ar / id
-- 54 个工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
+- 56 个工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
 - 每种语言使用独立 URL，并生成 hreflang、canonical、sitemap、Open Graph 和结构化数据
 - src/seo-overrides.json：可编辑的 SEO 覆盖层
 - admin.html：SEO 管理后台
@@ -117,3 +117,26 @@ SEO 页面继续采用独立语言 URL + hreflang，并避免基于 IP 自动跳
 Meta description 继续按页面意图逐步完善。Google 说明页面正文经常会直接参与 snippet 生成，因此不能只改 meta description，还要保证 H1、首段和工具实际内容相互一致。citeturn149334search2
 
 最后，工具功能本身必须是真实功能。Google 当前垃圾内容政策把“声称提供某种功能、实际却用广告或误导方式替代功能”列为 misleading functionality，并明确指出大规模生成低价值页面可能属于 scaled content abuse。citeturn748773search9
+
+
+## 2026-10-01 深度扩展：从工具列表走向任务流
+
+本轮新增和优化：
+- PDF→JPG
+- PDF→PNG
+- 删除 PDF 页面
+- 旋转 PDF
+- PDF 页码
+- PDF 文字水印
+- 图片 OCR
+- 扫描 PDF OCR（浏览器本地、单次最多处理 5 页）
+- 日期加减
+- 最近使用工具（localStorage）
+- 基础 PWA/service worker 缓存
+
+OCR 使用 Tesseract.js 在浏览器 Web Worker 中运行；官方文档说明其可从图片识别文字，并支持多语言。PDF OCR 则采用 PDF.js 渲染页面后交给 OCR，符合 Tesseract.js 不直接处理 PDF 的能力边界。citeturn137735search1turn137735search2
+
+竞品分析显示 PDF 工具站普遍已经覆盖 PDF→JPG/PNG、删除页面、旋转、页码、水印、OCR 等任务。GQB Tools 的策略不是追求工具数量，而是把高频任务做成可用、快速、尽量本地处理的工具。citeturn386806search3turn386806search4turn386806search1
+
+最近使用功能完全存储在浏览器 localStorage，不需要账号；这样用户第二次访问时可以更快回到上一次的工具。service worker 对同源页面采用网络优先、静态资源缓存优先的策略，避免更新后的页面长期停留在旧版本。
+
