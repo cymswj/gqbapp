@@ -150,7 +150,8 @@ for loc in locales:
           "url":canonical
         }
         extra = '<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
-        page = shell(loc, title, desc, canonical, tool_body.replace('<body data-locale="'+loc+'">','<body data-locale="'+loc+'" data-tool="'+tool["impl"]+'">'), 2, extra)
+        page = shell(loc, title, desc, canonical, tool_body, 2, extra)
+        page = page.replace('<body data-locale="'+loc+'">','<body data-locale="'+loc+'" data-tool="'+tool["impl"]+'">')
         out = DIST / loc / "tools" / tool["slug"] / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(page, encoding="utf-8")
