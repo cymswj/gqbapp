@@ -75,6 +75,8 @@ const ctx = {
   navigator: { clipboard: { writeText(){ return Promise.resolve(); } } },
   crypto: webcrypto,
   Intl,
+  TextEncoder,
+  TextDecoder,
   URL,
   Blob,
   FileReader: class {},
