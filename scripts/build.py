@@ -206,8 +206,7 @@ def analytics_tags():
     if gid:
         parts.append(f'''<script async src="https://www.googletagmanager.com/gtag/js?id={esc(gid)}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{esc(gid)}");</script>''')
-    return "
-".join(parts)
+    return "\n".join(parts)
 
 def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema=None):
     direction = "rtl" if loc == "ar" else "ltr"
