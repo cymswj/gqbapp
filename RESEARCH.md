@@ -86,3 +86,49 @@ https://developers.google.com/search/docs/appearance/title-link
 https://developers.google.com/search/docs/appearance/snippet
 https://w3techs.com/
 https://www.worldbank.org/en/publication/digital-progress-and-trends-report-2025
+
+## 2026-10 Refresh: current demand signals
+
+Current third-party keyword datasets continue to show strong demand around PDF, image, QR, text, calculators and conversion utilities. A current public DataForSEO-derived page reports about 246,000 US monthly searches for “pdf to word” and 110,000 for “convert pdf to word”; image resizer data is around 145,000 monthly US searches in another tool-site analysis; “image compressor” is about 60,500 US searches. These figures come from different sources and should not be treated as a single authoritative total. citeturn310247search2turn310247search5turn797006search1
+
+QR-code intent remains very large: one current public keyword dataset reports about 673,000 US monthly searches for “qr code generator” and about 110,000 for “generate qr code free.” citeturn310247search8
+
+Word counting is another strong use case. Current third-party traffic data for WordCounter sites show “word counter” around 792,000–1,000,000 US monthly searches depending on source and period; the correct conclusion is that this is a major search intent, not that one exact volume is guaranteed. citeturn310247search0turn310247search3turn310247search7
+
+A September 2026 survey of free online tools also highlights PDF conversion, JPG/PNG and HEIC conversion, PDF/image compression, PDF merge, QR generation, image-to-text, word counting, unit conversion and currency conversion as common high-demand categories. citeturn235471search12
+
+## Language strategy refresh
+
+W3Techs current survey on October 1, 2026 lists English at 49.5% of websites by content language, followed by Spanish 6.0%, German 5.9%, Japanese 4.9% and French 4.5%. Indonesian and Persian are among the fastest-growing content languages in the current survey, with Arabic also growing. citeturn235471search5turn235471search11
+
+The strategy is not to translate a thin page 10 times. Google recommends different URLs for different language versions and hreflang annotations, while also warning that translating or automatically generating many near-duplicate pages without additional value can be considered scaled content abuse. citeturn634524search2turn634524search0turn634524search1
+
+## Product roadmap
+
+Priority A — high intent / broad audience:
+PDF to Word, Word to PDF, PDF compress, PDF split, PDF merge, JPG/PNG/WebP conversion, HEIC to JPG, image compression, image resizing, QR generator, word counter, character counter, currency converter, time-zone converter.
+
+Priority B — developer / creator:
+UUID, Base64, Hash, Regex, JSON, CSV/JSON, URL encoder, timestamp, Markdown, HTML entities, slug generator, color tools, Open Graph preview, meta tag generator, robots.txt generator, sitemap generator.
+
+Priority C — business / everyday calculation:
+Discount, VAT/tax, profit margin, compound interest, savings, loan, tip, percentage, date difference, date add/subtract, business days, aspect ratio, data units, speed, area, volume.
+
+Priority D — future server-side or heavy-processing tools:
+PDF OCR, PDF to Word with layout preservation, background removal, image-to-text, video/audio conversion, DNS/HTTP inspection, webpage screenshot and URL metadata inspection. These should only be published after actual functionality is implemented and tested; do not create fake placeholder pages for SEO.
+
+## SEO backend architecture
+
+GQB Tools now has an editable SEO data layer in src/seo-overrides.json. Each tool/language can have:
+- title
+- description
+- H1
+- intro
+- targetKeywords
+- index/noindex
+
+admin.html provides a browser-based editor. worker.js provides /api/seo with password protection. When GITHUB_TOKEN is configured in the Cloudflare Worker, changes are written to src/seo-overrides.json in the GitHub repository, so the GitHub Actions build is automatically triggered by the commit.
+
+This is deliberately build-time SEO rather than client-side-only SEO: search engines receive title, description, canonical, hreflang and structured data in the generated HTML. Google recommends descriptive page titles and page-specific meta descriptions, and recommends consistent canonical/hreflang handling for localized pages. citeturn634524search5turn634524search6turn634524search2
+
+One current Google Search detail matters for the roadmap: FAQ rich results were deprecated in May 2026. FAQ content can still be useful for readers, but GQB Tools should not depend on FAQ structured data as a traffic strategy. citeturn634524search7
