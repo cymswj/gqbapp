@@ -159,6 +159,79 @@
         "subtract days from date"
       ],
       "index": true
+    },
+    "en:image-to-text": {
+      "title": "Image to Text OCR – Extract Text from Images",
+      "description": "Extract text from an image with browser-based OCR. Choose a language, recognize the image, and copy the resulting text.",
+      "h1": "Image to Text OCR",
+      "intro": "Upload an image, choose the recognition language, and extract text in your browser.",
+      "targetKeywords": [
+        "image to text",
+        "ocr online",
+        "extract text from image",
+        "image text extractor"
+      ],
+      "index": true
+    },
+    "en:pdf-to-jpg": {
+      "title": "PDF to JPG – Convert PDF Pages to Images",
+      "description": "Convert PDF pages to JPG images in your browser. Generate a JPG for each page and download the results.",
+      "h1": "PDF to JPG",
+      "intro": "Choose a PDF to render its pages as JPG images directly in your browser.",
+      "targetKeywords": [
+        "pdf to jpg",
+        "convert pdf to jpg",
+        "pdf to image"
+      ],
+      "index": true
+    },
+    "en:delete-pdf-pages": {
+      "title": "Delete PDF Pages – Remove Pages Online",
+      "description": "Remove selected pages from a PDF in your browser and create a new PDF without those pages.",
+      "h1": "Delete PDF Pages",
+      "intro": "Upload a PDF, enter the pages to remove, and create a new PDF.",
+      "targetKeywords": [
+        "delete pdf pages",
+        "remove pages from pdf",
+        "pdf page remover"
+      ],
+      "index": true
+    },
+    "en:rotate-pdf": {
+      "title": "Rotate PDF – Rotate Pages Online",
+      "description": "Rotate every page of a PDF by 90, 180, or 270 degrees and download the result in your browser.",
+      "h1": "Rotate PDF",
+      "intro": "Choose a PDF, select a rotation angle, and create a rotated copy.",
+      "targetKeywords": [
+        "rotate pdf",
+        "pdf rotate",
+        "rotate pdf pages"
+      ],
+      "index": true
+    },
+    "en:pdf-page-numbers": {
+      "title": "Add PDF Page Numbers – Number Pages Online",
+      "description": "Add sequential page numbers to a PDF in your browser and download the numbered document.",
+      "h1": "Add PDF Page Numbers",
+      "intro": "Choose a PDF and a starting number to add page numbers to every page.",
+      "targetKeywords": [
+        "add page numbers to pdf",
+        "pdf page numbers",
+        "number pdf pages"
+      ],
+      "index": true
+    },
+    "en:pdf-watermark": {
+      "title": "Add PDF Watermark – Watermark a PDF Online",
+      "description": "Add a text watermark to every PDF page directly in your browser and download the watermarked file.",
+      "h1": "Add PDF Watermark",
+      "intro": "Choose a PDF, enter watermark text, and create a watermarked copy.",
+      "targetKeywords": [
+        "pdf watermark",
+        "add watermark to pdf",
+        "watermark pdf online"
+      ],
+      "index": true
     }
   }
 }
