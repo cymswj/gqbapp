@@ -140,28 +140,24 @@ if (helperFailures.length) {
 }
 console.log("Core helper tests passed: arithmetic, CSV, page ranges, UTF-8 Base64 and file limits.");
 
-
-const api = ctx.window.GQB_TEST;
-function assert(name, condition) {
-  if (!condition) failures.push({ impl: "helpers", message: "Assertion failed: " + name });
-}
-if (!api) failures.push({impl:"helpers",message:"Test helpers were not exposed"});
+const test = ctx.window.GQB_TEST;
+const helperFailures = [];
+const check = (name, fn) => { try { if (!fn()) helperFailures.push(name + " returned an unexpected value"); } catch (err) { helperFailures.push(name + " threw: " + (err && err.stack || String(err))); } };
+if (!test) helperFailures.push("Test helpers were not exposed");
 else {
-  assert("safeCalc arithmetic", api.safeCalc("2+3*4") === 14);
-  assert("safeCalc functions", Math.abs(api.safeCalc("sqrt(9)+sin(0)") - 3) < 1e-12);
-  try { api.safeCalc("2+(()=>location.href)()"); failures.push({impl:"helpers",message:"safeCalc accepted unsupported syntax"}); } catch {}
-  assert("CSV quoted comma", JSON.stringify(api.parseCSV('name,note\nAlice,"hello, world"')) === JSON.stringify([["name","note"],["Alice","hello, world"]]));
-  assert("page spec range", JSON.stringify(api.parsePageSpec("1,3-4",5,false)) === JSON.stringify([0,2,3]));
-  try { api.parsePageSpec("1-6",5,10,false); failures.push({impl:"helpers",message:"parsePageSpec accepted an out-of-range page"}); } catch {}
-  assert("page reorder reverse", JSON.stringify(api.parsePageSpec("3-1",3,10,true)) === JSON.stringify([2,1,0]));
-  assert("base64 UTF-8", api.b64Decode(api.b64Encode("你好 • GQB")) === "你好 • GQB");
-  assert("file size gate", api.fileOK({size:1024},2048) === true && api.fileOK({size:4096},2048) === false);
+  check("safeCalc arithmetic", () => test.safeCalc("2+3*4") === 14);
+  check("safeCalc functions", () => test.safeCalc("sqrt(9)+2^3") === 11);
+  try { test.safeCalc("Function('return 1')()"); helperFailures.push("safeCalc code execution guard did not reject input"); } catch {}
+  check("CSV quoted fields", () => { const rows=test.parseCSV('name,notes\\nAlice,"hello,world"\\nBob,"line1\\nline2"'); return rows.length===3 && rows[1][1]==="hello,world" && rows[2][1]==="line1\\nline2"; });
+  check("parsePageSpec", () => test.parsePageSpec("1,3-4",5,10,false).join(",")==="0,2,3");
+  try { test.parsePageSpec("1-6",5,10,false); helperFailures.push("parsePageSpec accepted an out-of-range page"); } catch {}
+  check("reverse page range", () => test.parsePageSpec("3-1",3,10,true).join(",")==="2,1,0");
+  check("Base64 UTF-8", () => test.b64Decode(test.b64Encode("你好 • GQB")) === "你好 • GQB");
+  check("fileOK", () => test.fileOK({size:1024},2048) && !test.fileOK({size:4096},2048));
+  check("filesOK", () => test.filesOK([{size:1024},{size:2048}],4096) && !test.filesOK([{size:3000},{size:2000}],4096));
 }
+if (helperFailures.length) { for (const f of helperFailures) console.error("\n[helper] "+f); process.exit(1); }
+console.log("Core helper tests passed: arithmetic, CSV, page ranges, UTF-8 Base64 and file limits.");
 
-if (failures.length) {
-  for (const f of failures) {
-    console.error("\n[" + f.impl + "]\n" + f.message);
-  }
-  process.exit(1);
-}
+if (failures.length) { for (const f of failures) console.error("\n[" + f.impl + "]\n" + f.message); process.exit(1); }
 console.log("Runtime initialization smoke test passed: " + impls.length + " unique implementations / " + tools.length + " catalog tools.");
