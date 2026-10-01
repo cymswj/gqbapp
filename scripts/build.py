@@ -61,7 +61,7 @@ def topnav(loc, depth):
     links = " ".join(f'<a href="{("../"*depth) + loc if False else "../"*depth}{l}/">{n}</a>' for l,n in names.items())
     return f'<header><div class="wrap top"><a class="brand" href="{home}">GQB Tools</a><nav class="langs">{links}</nav></div></header>'
 
-def shell(loc, title, desc, canonical, body, depth, extra=""):
+def shell(loc, title, desc, canonical, body, depth, extra="", index=True):
     direction = "rtl" if loc == "ar" else "ltr"
     alts = []
     for l in locales:
@@ -83,7 +83,7 @@ def shell(loc, title, desc, canonical, body, depth, extra=""):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="robots" content="{esc(site["seo"]["robots"])}">
+<meta name="robots" content="{esc(site["seo"]["robots"] if index else "noindex,follow")}">
 <link rel="canonical" href="{esc(canonical)}">
 {''.join(alts)}
 <meta property="og:type" content="website">
@@ -163,7 +163,7 @@ for loc in locales:
           "url":canonical
         }
         extra = '<script type="application/ld+json">'+json.dumps(schema,ensure_ascii=False)+'</script>'
-        page = shell(loc, title, desc, canonical, tool_body, 2, extra)
+        page = shell(loc, title, desc, canonical, tool_body, 2, extra, index)
         page = page.replace('<body data-locale="'+loc+'">','<body data-locale="'+loc+'" data-tool="'+tool["impl"]+'">')
         out = DIST / loc / "tools" / tool["slug"] / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
