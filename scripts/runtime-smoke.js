@@ -136,6 +136,17 @@ else {
     catch {}
   };
 
+  assert("percentage", api.calcPercentage(500,18) === 90);
+  assert("age parts", JSON.stringify(api.calcAgeParts(new Date("1990-05-10T00:00:00"), new Date("2026-10-02T00:00:00"))) === JSON.stringify({years:36,months:4,days:22}));
+  const bmi = api.calcBmi(72,168,"china"); assert("BMI value", Math.abs(bmi.bmi-25.5102)<0.001); assert("BMI category", bmi.category==="overweight");
+  const loan = api.calcLoan(100000,3.5,20); assert("Loan payment", Math.abs(loan.payment-579.96)<0.1);
+  const vatAdd = api.calcVat(100,20,"add"), vatRemove = api.calcVat(120,20,"remove"); assert("VAT add", vatAdd.gross===120); assert("VAT extract", Math.abs(vatRemove.net-100)<1e-9);
+  const pct = api.calcPercentageChange(100,120); assert("percentage change", pct.change===20);
+  assert("ROI", api.calcRoi(1000,1300)===30);
+  assert("Markup", Math.abs(api.calcMarkup(60,100).markup-66.6666667)<1e-6);
+  assert("Margin", api.calcMargin(60,100).margin===40);
+  assert("Break even", api.calcBreakEven(5000,100,40).units===84);
+
   assert("safeCalc arithmetic", api.safeCalc("2+3*4") === 14);
   assert("safeCalc functions", Math.abs(api.safeCalc("sqrt(9)+sin(0)") - 3) < 1e-12);
   checkThrows("safeCalc rejects code syntax", () => api.safeCalc("2+(()=>location.href)()"));
