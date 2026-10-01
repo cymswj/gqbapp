@@ -77,6 +77,8 @@ const ctx = {
   Intl,
   TextEncoder,
   TextDecoder,
+  btoa,
+  atob,
   URL,
   Blob,
   FileReader: class {},
@@ -114,21 +116,21 @@ for (const impl of impls) {
 }
 const test = ctx.window.GQB_TEST;
 const helperFailures = [];
-try {
-  if (test.safeCalc("2+3*4") !== 14) helperFailures.push("safeCalc arithmetic");
-  if (test.safeCalc("sqrt(9)+2^3") !== 11) helperFailures.push("safeCalc functions");
-  try { test.safeCalc("Function('return 1')()"); helperFailures.push("safeCalc code execution guard"); } catch {}
+const check = (name, fn) => {
+  try { if (!fn()) helperFailures.push(name + " returned an unexpected value"); }
+  catch (err) { helperFailures.push(name + " threw: " + (err && err.stack || String(err))); }
+};
+check("safeCalc arithmetic", () => test.safeCalc("2+3*4") === 14);
+check("safeCalc functions", () => test.safeCalc("sqrt(9)+2^3") === 11);
+try { test.safeCalc("Function('return 1')()"); helperFailures.push("safeCalc code execution guard did not reject input"); } catch (err) {}
+check("parseCSV quoted fields", () => {
   const rows = test.parseCSV('name,notes\nAlice,"hello,world"\nBob,"line1\nline2"');
-  if (rows.length !== 3 || rows[1][1] !== "hello,world" || rows[2][1] !== "line1\nline2") helperFailures.push("parseCSV quoted fields");
-  const pages = test.parsePageSpec("1,3-4", 5, 10, false);
-  if (pages.join(",") !== "0,2,3") helperFailures.push("parsePageSpec");
-  const b64 = test.b64Encode("你好 GQB");
-  if (test.b64Decode(b64) !== "你好 GQB") helperFailures.push("Base64 UTF-8");
-  if (!test.fileOK({size:1024},2048) || test.fileOK({size:4096},2048)) helperFailures.push("fileOK");
-  if (!test.filesOK([{size:1024},{size:2048}],4096) || test.filesOK([{size:3000},{size:2000}],4096)) helperFailures.push("filesOK");
-} catch (err) {
-  helperFailures.push(String(err && err.stack || err));
-}
+  return rows.length === 3 && rows[1][1] === "hello,world" && rows[2][1] === "line1\nline2";
+});
+check("parsePageSpec", () => test.parsePageSpec("1,3-4", 5, 10, false).join(",") === "0,2,3");
+check("Base64 UTF-8", () => { const b64 = test.b64Encode("你好 GQB"); return test.b64Decode(b64) === "你好 GQB"; });
+check("fileOK", () => test.fileOK({size:1024},2048) && !test.fileOK({size:4096},2048));
+check("filesOK", () => test.filesOK([{size:1024},{size:2048}],4096) && !test.filesOK([{size:3000},{size:2000}],4096));
 if (helperFailures.length) {
   for (const f of helperFailures) console.error("\n[helper] " + f);
   process.exit(1);
