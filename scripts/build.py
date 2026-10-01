@@ -328,7 +328,7 @@ if DIST.exists():
     shutil.rmtree(DIST)
 DIST.mkdir(parents=True, exist_ok=True)
 
-# Project-root entry point for https://cymswj.github.io/gqbapp/
+# Project-root entry point for the configured site root.
 root_target = f"{base}/{default_locale}/"
 root_html = f'''<!doctype html><html lang="{default_locale}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">

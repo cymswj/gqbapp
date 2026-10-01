@@ -73,7 +73,10 @@
       "fromZone": "From time zone",
       "toZone": "To time zone",
       "dimension": "Dimension",
-      "swap": "Swap"
+      "swap": "Swap",
+      "vatMode": "Mode",
+      "vatAdd": "Add VAT",
+      "vatRemove": "Extract VAT"
     },
     "recent": "Recently used",
     "relatedTools": "Related tools"
@@ -152,7 +155,10 @@
       "fromZone": "源时区",
       "toZone": "目标时区",
       "dimension": "维度",
-      "swap": "交换"
+      "swap": "交换",
+      "vatMode": "方式",
+      "vatAdd": "加上增值税",
+      "vatRemove": "从含税价反算"
     },
     "recent": "最近使用",
     "relatedTools": "相关工具"
@@ -231,7 +237,10 @@
       "fromZone": "Zona de origen",
       "toZone": "Zona de destino",
       "dimension": "Dimensión",
-      "swap": "Intercambiar"
+      "swap": "Intercambiar",
+      "vatMode": "Modo",
+      "vatAdd": "Añadir IVA",
+      "vatRemove": "Extraer IVA"
     },
     "recent": "Usadas recientemente",
     "relatedTools": "Herramientas relacionadas"
@@ -310,7 +319,10 @@
       "fromZone": "Fuseau source",
       "toZone": "Fuseau cible",
       "dimension": "Dimension",
-      "swap": "Inverser"
+      "swap": "Inverser",
+      "vatMode": "Mode",
+      "vatAdd": "Ajouter TVA",
+      "vatRemove": "Extraire TVA"
     },
     "recent": "Récemment utilisés",
     "relatedTools": "Outils associés"
@@ -389,7 +401,10 @@
       "fromZone": "Quellzeitzone",
       "toZone": "Zielzeitzone",
       "dimension": "Dimension",
-      "swap": "Tauschen"
+      "swap": "Tauschen",
+      "vatMode": "Modus",
+      "vatAdd": "MwSt. hinzufügen",
+      "vatRemove": "MwSt. herausrechnen"
     },
     "recent": "Zuletzt verwendet",
     "relatedTools": "Verwandte Tools"
@@ -468,7 +483,10 @@
       "fromZone": "Fuso horário de origem",
       "toZone": "Fuso horário de destino",
       "dimension": "Dimensão",
-      "swap": "Trocar"
+      "swap": "Trocar",
+      "vatMode": "Modo",
+      "vatAdd": "Adicionar IVA",
+      "vatRemove": "Extrair IVA"
     },
     "recent": "Usados recentemente",
     "relatedTools": "Ferramentas relacionadas"
@@ -547,7 +565,10 @@
       "fromZone": "Исходный часовой пояс",
       "toZone": "Целевой часовой пояс",
       "dimension": "Величина",
-      "swap": "Поменять местами"
+      "swap": "Поменять местами",
+      "vatMode": "Режим",
+      "vatAdd": "Добавить НДС",
+      "vatRemove": "Выделить НДС"
     },
     "recent": "Недавно использованные",
     "relatedTools": "Связанные инструменты"
@@ -626,7 +647,10 @@
       "fromZone": "元のタイムゾーン",
       "toZone": "変換先のタイムゾーン",
       "dimension": "種類",
-      "swap": "入れ替え"
+      "swap": "入れ替え",
+      "vatMode": "方式",
+      "vatAdd": "VATを加算",
+      "vatRemove": "VATを逆算"
     },
     "recent": "最近使ったツール",
     "relatedTools": "関連ツール"
@@ -705,7 +729,10 @@
       "fromZone": "المنطقة الزمنية الأصلية",
       "toZone": "المنطقة الزمنية المستهدفة",
       "dimension": "الفئة",
-      "swap": "تبديل"
+      "swap": "تبديل",
+      "vatMode": "الوضع",
+      "vatAdd": "إضافة الضريبة",
+      "vatRemove": "استخراج الضريبة"
     },
     "recent": "المستخدمة مؤخرًا",
     "relatedTools": "أدوات ذات صلة"
@@ -784,7 +811,10 @@
       "fromZone": "Zona waktu asal",
       "toZone": "Zona waktu tujuan",
       "dimension": "Dimensi",
-      "swap": "Tukar"
+      "swap": "Tukar",
+      "vatMode": "Mode",
+      "vatAdd": "Tambah PPN",
+      "vatRemove": "Pisahkan PPN"
     },
     "recent": "Baru digunakan",
     "relatedTools": "Alat terkait"
