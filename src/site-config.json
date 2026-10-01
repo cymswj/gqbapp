@@ -3,7 +3,18 @@
   "siteTagline": "Free online tools for everyday work",
   "baseUrl": "https://cymswj.github.io/gqbapp",
   "defaultLocale": "en",
-  "supportedLocales": ["en","zh","es","fr","de","pt","ru","ja","ar","id"],
+  "supportedLocales": [
+    "en",
+    "zh",
+    "es",
+    "fr",
+    "de",
+    "pt",
+    "ru",
+    "ja",
+    "ar",
+    "id"
+  ],
   "ogImage": "/public/og-default.svg",
   "themeColor": "#111827",
   "analytics": {
@@ -15,5 +26,17 @@
     "robots": "index,follow",
     "defaultTitleSuffix": " | GQB Tools",
     "twitterCard": "summary_large_image"
+  },
+  "siteTaglines": {
+    "en": "Free online tools, calculators, converters and file utilities",
+    "zh": "免费在线工具、计算器、转换器与文件工具",
+    "es": "Herramientas, calculadoras, conversores y utilidades de archivos gratis",
+    "fr": "Outils, calculateurs, convertisseurs et utilitaires de fichiers gratuits",
+    "de": "Kostenlose Online-Tools, Rechner, Umrechner und Dateiwerkzeuge",
+    "pt": "Ferramentas, calculadoras, conversores e utilitários de arquivos gratuitos",
+    "ru": "Бесплатные онлайн-инструменты, калькуляторы, конвертеры и файловые утилиты",
+    "ja": "無料のオンラインツール、計算機、コンバーター、ファイルユーティリティ",
+    "ar": "أدوات وحاسبات ومحولات وأدوات ملفات مجانية عبر الإنترنت",
+    "id": "Alat online gratis, kalkulator, konverter, dan utilitas file"
   }
 }
