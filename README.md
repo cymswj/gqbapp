@@ -7,7 +7,7 @@
 ## 当前架构
 
 - 10 种语言：en / zh / es / fr / de / pt / ru / ja / ar / id
-- 40 个左右的工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
+- 44 个工具，覆盖计算、转换、PDF、图片、文字、开发者、生成器等方向
 - 每种语言使用独立 URL，并生成 hreflang、canonical、sitemap、Open Graph 和结构化数据
 - src/seo-overrides.json：可编辑的 SEO 覆盖层
 - admin.html：SEO 管理后台
@@ -64,3 +64,39 @@ Google 推荐多语言页面使用不同 URL，并配合 hreflang；标题应当
 同时不要用 AI 或自动翻译批量制造大量没有实际价值的页面。Google 的 scaled content abuse 政策明确把这种行为作为垃圾内容风险。
 
 详细研究见 RESEARCH.md。
+
+
+## 2026-10 深度优化结果
+
+当前站点已经从“工具集合”整理成“工具产品”结构：
+- 首页按分类组织工具，并提供热门工具、分类筛选和搜索。
+- 44 个工具页面统一使用真实功能页，不为 SEO 发布空壳功能。
+- 10 种语言使用独立 URL，并继续保留 canonical + hreflang。
+- sitemap 只收录可索引页面，并加入多语言 alternates；不再用每次构建都更新的虚假 lastmod。
+- 增加 About / Privacy 页面，提高站点信任信息和用户理解。
+- SEO 后台支持“工具页面 / 语言首页”两种作用域。
+- SEO Worker 的 GET 读取也需要管理员密码；CORS 默认限制到 GitHub Pages 域名。
+- admin.html 标记 noindex；robots.txt 明确禁止后台。
+- GitHub Pages 继续通过 Actions 构建 dist 后部署。
+
+### 研究结论
+
+2026 年当前公开数据仍显示，工具站的主要机会集中在“明确任务 + 立即完成”：
+- “pdf to word” 在某个当前 Google Ads 数据样本中约 246,000 次/月（美国），相关 “convert pdf to word” 约 110,000 次/月。
+- “image resizer” 的公开样本约 145,000–165,000 次/月，来源不同所以只能视为需求信号。
+- “word counter” 的公开第三方数据约 792,000 次/月。
+- “qr code generator” 的当前公开数据约 673,000–1,800,000 次/月，具体取决于数据供应商和关键词口径。
+
+这些数字不是 GQB Tools 的流量预测，只用于选择产品方向。后续应以 Google Search Console 的真实查询数据、页面点击率和工具使用率调整目录。
+
+Google 当前仍强调 people-first content，并明确反对为了搜索排名而大规模制造没有新增价值的页面。多语言站点应使用不同 URL 并配合 hreflang。FAQ 富结果在 2026 年已弃用，因此 FAQ 适合作为用户内容，不应作为 SEO 核心依赖。
+
+### 下一阶段产品优先级
+
+第一阶段继续加强已有高频工具的完整性、速度、移动端和下载能力。
+
+第二阶段集中补齐高需求但需要更重处理的能力：PDF to Word、PDF 压缩、OCR、HEIC/JPG、图片转文字。
+
+第三阶段加入商业化能力：去广告、高级批量处理、历史记录、团队空间、API，以及自有域名与后台数据分析。
+
+重型能力必须先实现真实功能和错误处理，再开放可索引页面。
