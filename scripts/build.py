@@ -262,7 +262,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 def card_html(tool, loc):
     name = t(tool["names"], loc)
     desc = f"{name}. {GENERIC[loc]}"
-    return f'''<a class="toolcard" data-tool-search="{esc((name + " " + tool["slug"]).lower())}" href="{url(loc, tool["slug"])}">
+    return f'''<a class="toolcard" data-tool-slug="{esc(tool["slug"])}" data-tool-search="{esc((name + " " + tool["slug"]).lower())}" href="{url(loc, tool["slug"])}">
 <div class="icon" aria-hidden="true">{esc(tool["icon"])}</div>
 <h3>{esc(name)}</h3>
 <p>{esc(desc)}</p>
@@ -325,6 +325,11 @@ for loc in locales:
 <div class="stats"><span>{len(tools)} {esc(i18n[loc].get("toolsLabel","tools"))}</span><span>{len(locales)} {esc(i18n[loc].get("languagesLabel","languages"))}</span><span>{esc(i18n[loc]["noSignup"])}</span></div>
 </section>
 
+<section id="recentSection" aria-labelledby="recent-title" hidden>
+<h2 id="recent-title" class="section-title">{esc(i18n[loc].get("recent","Recently used"))}</h2>
+<div id="recentTools" class="grid"></div>
+</section>
+
 <section id="featuredSection" aria-labelledby="featured-title">
 <h2 id="featured-title" class="section-title">{esc(i18n[loc].get("featured","Featured tools"))}</h2>
 <div class="grid featured-grid">{''.join(card_html(x,loc) for x in featured)}</div>
@@ -354,6 +359,14 @@ for loc in locales:
  const input=document.getElementById("toolSearch");
  const cards=[...document.querySelectorAll("#catalog [data-tool-search]")];
  const featured=document.getElementById("featuredSection");
+ const recentSection=document.getElementById("recentSection");
+ const recentBox=document.getElementById("recentTools");
+ const recentKey="gqb-tools-recent-v1";
+ const getRecent=()=>{try{return JSON.parse(localStorage.getItem(recentKey)||"[]")}catch{return[]}};
+ const setRecent=slug=>{const next=[slug,...getRecent().filter(x=>x!==slug)].slice(0,8);localStorage.setItem(recentKey,JSON.stringify(next))};
+ const renderRecent=()=>{const recent=getRecent();recentBox.innerHTML="";let n=0;recent.forEach(slug=>{const src=cards.find(x=>x.dataset.toolSlug===slug);if(!src)return;const clone=src.cloneNode(true);recentBox.appendChild(clone);n++});recentSection.hidden=n===0};
+ cards.forEach(card=>card.addEventListener("click",()=>setRecent(card.dataset.toolSlug)));
+ renderRecent();
  const sections=[...document.querySelectorAll("[data-category-section]")];
  const chips=[...document.querySelectorAll("[data-category]")];
  const none=document.getElementById("noResults");
