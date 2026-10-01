@@ -10,6 +10,8 @@ DIST = ROOT / "dist"
 site = json.loads((SRC / "site-config.json").read_text(encoding="utf-8"))
 i18n = json.loads((SRC / "i18n.json").read_text(encoding="utf-8"))
 tools = json.loads((SRC / "tools.json").read_text(encoding="utf-8")) + json.loads((SRC / "tools-extra.json").read_text(encoding="utf-8"))
+categories = json.loads((SRC / "categories.json").read_text(encoding="utf-8"))
+seo = json.loads((SRC / "seo-overrides.json").read_text(encoding="utf-8")) if (SRC / "seo-overrides.json").exists() else {"site": {}, "pages": {}}
 locales = site["supportedLocales"]
 
 base = site["baseUrl"].rstrip("/")
