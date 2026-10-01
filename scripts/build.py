@@ -32,6 +32,18 @@ generic = {
 def t(name, loc):
     return name.get(loc) or name.get("en") or ""
 
+def tool_meta(tool, loc):
+    key = f"{loc}:{tool['slug']}"
+    override = seo.get("pages", {}).get(key, {})
+    name = t(tool["names"], loc)
+    return (
+        override.get("title") or f"{name} – GQB Tools",
+        override.get("description") or f"{name}. {generic[loc]}",
+        override.get("h1") or name,
+        override.get("intro") or override.get("description") or f"{name}. {generic[loc]}",
+        override.get("index", True)
+    )
+
 def url(loc, slug=None):
     if slug:
         return f"{base}/{loc}/tools/{slug}/"
