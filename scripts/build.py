@@ -469,7 +469,7 @@ for loc in locales:
         canonical = category_url(loc, cslug)
         cat_schema = page_schema(loc, cname, intro, canonical)
         cat_schema["mainEntity"] = {"@type":"ItemList","numberOfItems":len(items),"itemListElement":[{"@type":"ListItem","position":i+1,"name":t(item["names"],loc),"url":url(loc,item["slug"])} for i,item in enumerate(items)]}
-        body = topnav(loc,2)
+        body = topnav(loc,3)
         body += f'''<main class="wrap static-page">
 <nav class="breadcrumbs"><a href="{url(loc)}">{esc(i18n[loc].get("home","Home"))}</a><span>›</span><span>{esc(cname)}</span></nav>
 <h1>{esc(cname)}</h1>
@@ -513,7 +513,7 @@ for loc in locales:
         tool_copy = tool_content.get(tool["slug"], {}).get(loc) or {}
         extra += '<script>window.GQB_TOOL_COPY='+json.dumps(tool_copy,ensure_ascii=False)+'</script>'
 
-        tool_body = topnav(loc,2)
+        tool_body = topnav(loc,3)
         category_name = t(next(c["names"] for c in categories if c["slug"]==tool["group"]),loc)
         tool_body += f'''<main class="wrap tool-page">
 <nav class="breadcrumbs"><a href="{url(loc)}">{esc(i18n[loc].get("home","Home"))}</a><span>›</span><span>{esc(category_name)}</span></nav>
