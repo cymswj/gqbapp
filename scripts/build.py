@@ -382,16 +382,16 @@ for loc in locales:
         ("privacy","privacy_title","privacy_h1","privacy_p","privacy_p2")
     ]:
         canonical = static_url(loc,slug)
-        body = topnav(loc,1) + f'''<main class="wrap static-page">
+        body = topnav(loc,2) + f'''<main class="wrap static-page">
 <a class="back" href="{url(loc)}">← {esc(i18n[loc]["back"])}</a>
 <h1>{esc(copy[h1_key])}</h1>
 <p class="lead">{esc(copy[p_key])}</p>
 <section class="content-card"><h2>{esc(copy[title_key])}</h2><p>{esc(copy[p_key])}</p><p>{esc(copy[p2_key])}</p></section>
-</main>''' + footer(loc,1)
+</main>''' + footer(loc,2)
         sch = page_schema(loc, copy[title_key], copy[p_key], canonical)
         out = DIST / loc / slug / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(shell(loc, copy[title_key], copy[p_key], canonical, body, 1, index=True, schema=sch), encoding="utf-8")
+        out.write_text(shell(loc, copy[title_key], copy[p_key], canonical, body, 2, index=True, schema=sch), encoding="utf-8")
 
     # Tool pages.
     for tool in tools:
