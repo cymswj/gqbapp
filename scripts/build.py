@@ -174,7 +174,7 @@ def asset(depth, name):
 def topnav(loc, depth):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
     home = "./" if depth == 1 else "../../"
-    links = " ".join(f'<a href="{(".." + "/")*depth}{l}/" {"aria-current=\"page\"" if l == loc else ""}>{n}</a>' for l,n in labels.items())
+    links = " ".join(f'<a href="{("../"*depth)}{l}/"' + (' aria-current="page"' if l == loc else '') + f'>{n}</a>' for l,n in labels.items())
     return f'<header><div class="wrap top"><a class="brand" href="{home}">{esc(site["siteName"])}</a><nav class="langs" aria-label="Language">{links}</nav></div></header>'
 
 def footer(loc, depth):
