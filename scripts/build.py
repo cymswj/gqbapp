@@ -278,7 +278,8 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 def card_html(tool, loc):
     name = t(tool["names"], loc)
     desc = f"{name}. {GENERIC[loc]}"
-    return f'''<a class="toolcard" data-tool-slug="{esc(tool["slug"])}" data-tool-search="{esc((name + " " + tool["slug"]).lower())}" href="{url(loc, tool["slug"])}">
+    search_terms = " ".join([name, tool["slug"], *tool_meta(tool, loc)[5]])
+    return f'''<a class="toolcard" data-tool-slug="{esc(tool["slug"])}" data-tool-search="{esc(search_terms.lower())}" href="{url(loc, tool["slug"])}">
 <div class="icon" aria-hidden="true">{esc(tool["icon"])}</div>
 <h3>{esc(name)}</h3>
 <p>{esc(desc)}</p>
