@@ -172,9 +172,9 @@ def esc(s):
 def asset(depth, name):
     return ("../" if depth == 1 else "../../../") + "public/" + name
 
-def topnav(loc, depth):
+def topnav(loc, depth, home_override=None):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
-    home = "./" if depth == 1 else "../../"
+    home = home_override or ("./" if depth == 1 else "../../")
     links = " ".join(f'<a href="{("../"*depth)}{l}/"' + (' aria-current="page"' if l == loc else '') + f'>{n}</a>' for l,n in labels.items())
     return f'<header><div class="wrap top"><a class="brand" href="{home}">{esc(site["siteName"])}</a><nav class="langs" aria-label="Language">{links}</nav></div></header>'
 
@@ -391,7 +391,7 @@ for loc in locales:
         ("privacy","privacy_title","privacy_h1","privacy_p","privacy_p2")
     ]:
         canonical = static_url(loc,slug)
-        body = topnav(loc,2) + f'''<main class="wrap static-page">
+        body = topnav(loc,2,"../") + f'''<main class="wrap static-page">
 <a class="back" href="{url(loc)}">← {esc(i18n[loc]["back"])}</a>
 <h1>{esc(copy[h1_key])}</h1>
 <p class="lead">{esc(copy[p_key])}</p>
