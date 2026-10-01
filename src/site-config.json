@@ -1,0 +1,19 @@
+{
+  "siteName": "GQB Tools",
+  "siteTagline": "Free online tools for everyday work",
+  "baseUrl": "https://cymswj.github.io/gqbapp",
+  "defaultLocale": "en",
+  "supportedLocales": ["en","zh","es","fr","de","pt","ru","ja","ar","id"],
+  "ogImage": "/assets/og-default.svg",
+  "themeColor": "#111827",
+  "analytics": {
+    "googleAnalyticsId": "",
+    "googleSiteVerification": "",
+    "bingSiteVerification": ""
+  },
+  "seo": {
+    "robots": "index,follow",
+    "defaultTitleSuffix": " | GQB Tools",
+    "twitterCard": "summary_large_image"
+  }
+}
