@@ -245,8 +245,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 <meta property="og:image" content="{esc(base + site["ogImage"])}">
 <meta property="og:image:alt" content="{esc(site["siteName"])}">
 <meta name="twitter:card" content="{esc(site["seo"]["twitterCard"])}">
-<link rel="icon" href="{asset(depth,'favicon.svg')}" type="image/svg+xml">
-<link rel="manifest" href="{asset(depth,'site.webmanifest')}">
+<link rel="icon" href="{asset(depth,'og-default.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{asset(depth,'style.css')}">
 <script>window.GQB_I18N={json.dumps(i18n,ensure_ascii=False)};</script>
 <script defer src="{asset(depth,'app.js')}"></script>
