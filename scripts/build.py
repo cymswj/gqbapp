@@ -161,11 +161,12 @@ def tool_meta(tool, loc):
     key = f"{loc}:{tool['slug']}"
     override = seo.get("pages", {}).get(key, {})
     name = t(tool["names"], loc)
+    group_intro = CATEGORY_INTROS.get(tool.get("group",""), {}).get(loc, GENERIC[loc])
     return (
         override.get("title") or f"{name} – {site['siteName']}",
-        override.get("description") or f"{name}. {GENERIC[loc]}",
+        override.get("description") or f"{name}. {group_intro}",
         override.get("h1") or name,
-        override.get("intro") or override.get("description") or f"{name}. {GENERIC[loc]}",
+        override.get("intro") or override.get("description") or f"{name}. {group_intro}",
         override.get("index", True),
         override.get("targetKeywords", [])
     )
