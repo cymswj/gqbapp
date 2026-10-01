@@ -96,6 +96,8 @@ const ctx = {
   Number,
   Boolean,
   RegExp,
+  TextEncoder,
+  TextDecoder,
   Error,
   TypeError
 };
@@ -136,6 +138,24 @@ if (helperFailures.length) {
   process.exit(1);
 }
 console.log("Core helper tests passed: arithmetic, CSV, page ranges, UTF-8 Base64 and file limits.");
+
+
+const api = ctx.window.GQB_TEST;
+function assert(name, condition) {
+  if (!condition) failures.push({ impl: "helpers", message: "Assertion failed: " + name });
+}
+if (!api) failures.push({impl:"helpers",message:"Test helpers were not exposed"});
+else {
+  assert("safeCalc arithmetic", api.safeCalc("2+3*4") === 14);
+  assert("safeCalc functions", Math.abs(api.safeCalc("sqrt(9)+sin(0)") - 3) < 1e-12);
+  try { api.safeCalc("2+(()=>location.href)()"); failures.push({impl:"helpers",message:"safeCalc accepted unsupported syntax"}); } catch {}
+  assert("CSV quoted comma", JSON.stringify(api.parseCSV('name,note\nAlice,"hello, world"')) === JSON.stringify([["name","note"],["Alice","hello, world"]]));
+  assert("page spec range", JSON.stringify(api.parsePageSpec("1,3-4",5,false)) === JSON.stringify([0,2,3]));
+  try { api.parsePageSpec("1-6",5,10,false); failures.push({impl:"helpers",message:"parsePageSpec accepted an out-of-range page"}); } catch {}
+  assert("page reorder reverse", JSON.stringify(api.parsePageSpec("3-1",3,10,true)) === JSON.stringify([2,1,0]));
+  assert("base64 UTF-8", api.b64Decode(api.b64Encode("你好 • GQB")) === "你好 • GQB");
+  assert("file size gate", api.fileOK({size:1024},2048) === true && api.fileOK({size:4096},2048) === false);
+}
 
 if (failures.length) {
   for (const f of failures) {
