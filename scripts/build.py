@@ -492,6 +492,10 @@ for loc in locales:
 <p class="lead">{esc(intro)}</p>
 <div id="toolApp" aria-live="polite"></div>
 <section class="content-card"><h2>{esc(i18n[loc]["about"])}</h2><p>{esc(desc)}</p><p>{esc(i18n[loc].get("privacyNote","Many browser-based tools process input on your device; external-service tools may send requests over the network."))}</p></section>
+<section aria-labelledby="related-title" class="related">
+<h2 id="related-title">{esc(i18n[loc].get("relatedTools","Related tools"))}</h2>
+<div class="grid related-grid">{''.join(card_html(x,loc) for x in [y for y in tools if y["group"]==tool["group"] and y["slug"]!=tool["slug"]][:4])}</div>
+</section>
 <section class="faq"><h2>{esc(i18n[loc]["howToUse"])}</h2>
 <details open><summary>{esc(i18n[loc].get("step1","Use the fields above"))}</summary><p>{esc(intro)}</p></details>
 <details><summary>{esc(i18n[loc]["noSignup"])}</summary><p>{esc(i18n[loc]["privacy"])}</p></details>
