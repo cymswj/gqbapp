@@ -29,6 +29,9 @@ class FakeElement {
   setAttribute(k,v){ this.attributes[k]=String(v); }
   add(option){ this.options.push(option); }
   appendChild(x){ this.children.push(x); return x; }
+  addEventListener(){}
+  getBoundingClientRect(){return {left:0,top:0,width:100,height:100};}
+  getContext(){return {fillStyle:"",fillRect(){},drawImage(){},getImageData(){return {data:[0,0,0,255]};}};}
   querySelector(selector){ return fakeFor(selector); }
   querySelectorAll(selector){ return fakeMany(selector); }
 }
@@ -36,8 +39,13 @@ class FakeElement {
 function fakeFor(selector){
   if(selector === "#toolApp") return root;
   if(selector.includes("button")) return new FakeElement("button");
+  if(selector.includes("unit-dim")) { const e=new FakeElement("select"); e.value="length"; return e; }
+  if(selector.includes("unit-from")) { const e=new FakeElement("select"); e.value="m"; return e; }
+  if(selector.includes("unit-to")) { const e=new FakeElement("select"); e.value="km"; return e; }
   if(selector.includes("select")) return new FakeElement("select");
+  if(selector.includes("canvas")) return new FakeElement("canvas");
   if(selector.includes("textarea")) return new FakeElement("textarea");
+  if(selector.includes("input[type=file]")) { const e=new FakeElement("input"); e.files=[]; return e; }
   if(selector.includes("input")) return new FakeElement("input");
   return new FakeElement("div");
 }
