@@ -20,8 +20,10 @@ jobs:
           python-version: "3.x"
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
   deploy:
