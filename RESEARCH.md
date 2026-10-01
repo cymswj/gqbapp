@@ -202,7 +202,7 @@ https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
 
 ### 2026 产品结构
 
-当前站点：44 个真实工具，10 个语言目录。
+当前站点：54 个真实工具，10 个语言目录。
 
 已覆盖的高频基础方向：
 计算、单位/数据转换、时区、汇率、文本统计、二维码、密码/随机/UUID、图片压缩/调整尺寸/格式转换、JPG→PDF、PDF 合并/分割、JSON、URL、时间戳、Regex、Base64、Hash、利润率、温度、重量等。
