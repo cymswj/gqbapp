@@ -29,6 +29,18 @@ GENERIC = {
  "id": "Alat online gratis, cepat dan sederhana. Tanpa pendaftaran."
 }
 
+CATEGORY_INTROS = {
+ "calculators":{"en":"Practical calculators for percentages, ages, dates and everyday math.","zh":"提供百分比、年龄、日期等日常计算工具。","es":"Calculadoras prácticas para porcentajes, edades, fechas y tareas cotidianas.","fr":"Des calculateurs pratiques pour les pourcentages, les âges, les dates et les calculs du quotidien.","de":"Praktische Rechner für Prozente, Alter, Daten und alltägliche Berechnungen.","pt":"Calculadoras práticas para porcentagens, idades, datas e cálculos do dia a dia.","ru":"Практические калькуляторы для процентов, возраста, дат и повседневных расчётов.","ja":"パーセント、年齢、日付など、日常の計算に使える実用的な計算機です。","ar":"حاسبات عملية للنسب المئوية والعمر والتواريخ والحسابات اليومية.","id":"Kalkulator praktis untuk persentase, usia, tanggal, dan perhitungan sehari-hari."},
+ "converters":{"en":"Convert common units, currencies, time zones and digital data quickly.","zh":"快速换算常见单位、货币、时区和数字数据。","es":"Convierte unidades, divisas, zonas horarias y datos digitales habituales.","fr":"Convertissez rapidement des unités, devises, fuseaux horaires et données numériques courantes.","de":"Konvertieren Sie gängige Einheiten, Währungen, Zeitzonen und Dateneinheiten.","pt":"Converta unidades, moedas, fusos horários e dados digitais comuns.","ru":"Быстро конвертируйте единицы, валюты, часовые пояса и цифровые данные.","ja":"単位、通貨、タイムゾーン、データなどをすばやく変換できます。","ar":"حوّل الوحدات والعملات والمناطق الزمنية والبيانات الرقمية الشائعة بسرعة.","id":"Konversi satuan, mata uang, zona waktu, dan data digital umum dengan cepat."},
+ "finance":{"en":"Everyday finance calculators for discounts, VAT, loans, interest, tips and margins.","zh":"用于折扣、增值税、贷款、利息、小费和利润率的日常金融计算工具。","es":"Calculadoras financieras para descuentos, IVA, préstamos, intereses, propinas y márgenes.","fr":"Calculateurs financiers pour remises, TVA, prêts, intérêts, pourboires et marges.","de":"Finanzrechner für Rabatte, MwSt., Kredite, Zinsen, Trinkgeld und Margen.","pt":"Calculadoras financeiras para descontos, IVA, empréstimos, juros, gorjetas e margens.","ru":"Финансовые калькуляторы для скидок, НДС, кредитов, процентов, чаевых и маржи.","ja":"割引、税金、ローン、利息、チップ、利益率などの日常向け金融計算機です。","ar":"حاسبات مالية للخصومات والضريبة والقروض والفوائد والإكراميات وهوامش الربح.","id":"Kalkulator keuangan untuk diskon, PPN, pinjaman, bunga, tip, dan margin."},
+ "pdf":{"en":"Browser-based PDF tools for merging, splitting, rotating, converting and extracting text.","zh":"在浏览器中合并、拆分、旋转、转换 PDF，并提取其中的文字。","es":"Herramientas PDF para combinar, dividir, rotar, convertir y extraer texto en el navegador.","fr":"Outils PDF dans le navigateur pour fusionner, diviser, faire pivoter, convertir et extraire du texte.","de":"PDF-Werkzeuge im Browser zum Zusammenführen, Aufteilen, Drehen, Konvertieren und Textextrahieren.","pt":"Ferramentas PDF no navegador para mesclar, dividir, girar, converter e extrair texto.","ru":"PDF-инструменты в браузере: объединение, разделение, поворот, конвертация и извлечение текста.","ja":"PDFの結合、分割、回転、変換、テキスト抽出をブラウザで行えます。","ar":"أدوات PDF في المتصفح للدمج والتقسيم والتدوير والتحويل واستخراج النص.","id":"Alat PDF berbasis browser untuk menggabungkan, memisahkan, memutar, mengonversi, dan mengekstrak teks."},
+ "image":{"en":"Image tools for resizing, compression, format conversion, color picking and OCR.","zh":"图片尺寸调整、压缩、格式转换、取色和 OCR 工具。","es":"Herramientas de imagen para redimensionar, comprimir, convertir formatos, elegir colores y usar OCR.","fr":"Outils d’image pour redimensionner, compresser, convertir les formats, choisir des couleurs et utiliser l’OCR.","de":"Bildwerkzeuge zum Ändern der Größe, Komprimieren, Konvertieren, Farbwählen und OCR.","pt":"Ferramentas de imagem para redimensionar, comprimir, converter formatos, escolher cores e usar OCR.","ru":"Инструменты для изменения размера, сжатия, конвертации изображений, выбора цвета и OCR.","ja":"画像のリサイズ、圧縮、形式変換、カラー抽出、OCRに使えるツールです。","ar":"أدوات للصور لتغيير الحجم والضغط وتحويل التنسيقات واختيار الألوان وOCR.","id":"Alat gambar untuk mengubah ukuran, mengompres, mengonversi format, memilih warna, dan OCR."},
+ "text":{"en":"Text utilities for word counts, character counts, line counts and cleaning text.","zh":"提供字数、字符数、行数统计以及文本清理工具。","es":"Herramientas de texto para contar palabras, caracteres, líneas y limpiar contenido.","fr":"Outils de texte pour compter les mots, caractères, lignes et nettoyer le contenu.","de":"Textwerkzeuge zum Zählen von Wörtern, Zeichen und Zeilen sowie zum Bereinigen.","pt":"Ferramentas de texto para contar palavras, caracteres, linhas e limpar conteúdo.","ru":"Текстовые инструменты для подсчёта слов, символов, строк и очистки текста.","ja":"単語数、文字数、行数のカウントやテキスト整理に使えるツールです。","ar":"أدوات نصية لعد الكلمات والأحرف والأسطر وتنظيف النص.","id":"Alat teks untuk menghitung kata, karakter, baris, dan membersihkan teks."},
+ "developer":{"en":"Developer helpers for JSON, URLs, timestamps, Base64, hashes, regex and slugs.","zh":"JSON、URL、时间戳、Base64、Hash、正则表达式和 Slug 等开发者工具。","es":"Utilidades para desarrolladores: JSON, URL, marcas de tiempo, Base64, hashes, regex y slugs.","fr":"Outils développeur pour JSON, URL, timestamps, Base64, hachages, regex et slugs.","de":"Entwicklerwerkzeuge für JSON, URLs, Zeitstempel, Base64, Hashes, Regex und Slugs.","pt":"Ferramentas para desenvolvedores: JSON, URLs, timestamps, Base64, hashes, regex e slugs.","ru":"Инструменты разработчика для JSON, URL, временных меток, Base64, хешей, regex и slug.","ja":"JSON、URL、タイムスタンプ、Base64、ハッシュ、正規表現、Slug向けの開発者ツールです。","ar":"أدوات للمطورين لـ JSON وURL والطوابع الزمنية وBase64 والتجزئة وRegex وSlug.","id":"Utilitas developer untuk JSON, URL, timestamp, Base64, hash, regex, dan slug."},
+ "generators":{"en":"Quick generators for passwords, random numbers, QR codes and UUIDs.","zh":"快速生成密码、随机数、二维码和 UUID。","es":"Generadores rápidos de contraseñas, números aleatorios, códigos QR y UUID.","fr":"Générateurs rapides de mots de passe, nombres aléatoires, QR codes et UUID.","de":"Schnelle Generatoren für Passwörter, Zufallszahlen, QR-Codes und UUIDs.","pt":"Geradores rápidos de senhas, números aleatórios, QR codes e UUIDs.","ru":"Быстрые генераторы паролей, случайных чисел, QR-кодов и UUID.","ja":"パスワード、乱数、QRコード、UUIDをすばやく生成できます。","ar":"مولدات سريعة لكلمات المرور والأرقام العشوائية ورموز QR وUUID.","id":"Generator cepat untuk kata sandi, angka acak, kode QR, dan UUID."},
+ "health":{"en":"General health calculation tools, including BMI, for informational use.","zh":"提供 BMI 等一般健康计算工具，仅供信息参考。","es":"Calculadoras generales de salud, incluido el IMC, para uso informativo.","fr":"Calculateurs de santé généraux, dont l’IMC, à titre informatif.","de":"Allgemeine Gesundheitsrechner, einschließlich BMI, zu Informationszwecken.","pt":"Calculadoras gerais de saúde, incluindo IMC, para fins informativos.","ru":"Общие калькуляторы здоровья, включая ИМТ, только для информационного использования.","ja":"BMIなどの一般的な健康計算ツールです。情報提供を目的としています。","ar":"حاسبات صحية عامة، بما في ذلك مؤشر كتلة الجسم، لأغراض المعلومات فقط.","id":"Kalkulator kesehatan umum, termasuk BMI, untuk penggunaan informasional."}
+}
+
 STATIC_COPY = {
  "en": {
    "about_title":"About GQB Tools",
@@ -165,6 +177,9 @@ def url(loc, slug=None):
 
 def static_url(loc, slug):
     return f"{base}/{loc}/{slug}/"
+
+def category_url(loc, slug):
+    return f"{base}/{loc}/category/{slug}/"
 
 def esc(s):
     return html.escape(str(s), quote=True)
@@ -347,7 +362,7 @@ for loc in locales:
         if not items:
             continue
         body += f'''<section class="category-section" data-category-section="{esc(c["slug"])}">
-<div class="section-heading"><h2>{esc(t(c["names"],loc))}</h2><span>{len(items)}</span></div>
+<div class="section-heading"><h2><a href="{category_url(loc,c["slug"])}">{esc(t(c["names"],loc))}</a></h2><span>{len(items)}</span></div>
 <div class="grid">{''.join(card_html(x,loc) for x in items)}</div>
 </section>
 '''
@@ -416,6 +431,27 @@ for loc in locales:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(shell(loc, copy[title_key], copy[p_key], canonical, body, 2, index=True, schema=sch), encoding="utf-8")
 
+    # Category landing pages.
+    for cat in categories:
+        cslug = cat["slug"]
+        items = grouped.get(cslug, [])
+        cname = t(cat["names"], loc)
+        intro = CATEGORY_INTROS.get(cslug, {}).get(loc, f"{cname}. {GENERIC[loc]}")
+        canonical = category_url(loc, cslug)
+        cat_schema = page_schema(loc, cname, intro, canonical)
+        cat_schema["mainEntity"] = {"@type":"ItemList","numberOfItems":len(items)}
+        body = topnav(loc,2)
+        body += f'''<main class="wrap static-page">
+<nav class="breadcrumbs"><a href="{url(loc)}">{esc(i18n[loc].get("home","Home"))}</a><span>›</span><span>{esc(cname)}</span></nav>
+<h1>{esc(cname)}</h1>
+<p class="lead">{esc(intro)}</p>
+<section class="grid">{''.join(card_html(x,loc) for x in items)}</section>
+</main>'''
+        body += footer(loc,"tool")
+        out = DIST / loc / "category" / cslug / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(shell(loc, f"{cname} – {site['siteName']}", intro, canonical, body, 2, index=True, schema=cat_schema), encoding="utf-8")
+
     # Tool pages.
     for tool in tools:
         title, desc, h1, intro, indexable, keywords = tool_meta(tool, loc)
@@ -426,7 +462,7 @@ for loc in locales:
           "@type":"BreadcrumbList",
           "itemListElement":[
             {"@type":"ListItem","position":1,"name":site["siteName"],"item":url(loc)},
-            {"@type":"ListItem","position":2,"name":t(next(c["names"] for c in categories if c["slug"]==tool["group"]),loc),"item":url(loc)},
+            {"@type":"ListItem","position":2,"name":t(next(c["names"] for c in categories if c["slug"]==tool["group"]),loc),"item":category_url(loc,tool["group"])},
             {"@type":"ListItem","position":3,"name":name,"item":canonical}
           ]
         }
@@ -493,6 +529,8 @@ for loc in locales:
         indexable_urls.append((url(loc),loc,None))
     indexable_urls.append((static_url(loc,"about"),loc,"about"))
     indexable_urls.append((static_url(loc,"privacy"),loc,"privacy"))
+    for cat in categories:
+        indexable_urls.append((category_url(loc,cat["slug"]),loc,cat["slug"]))
     for tool in tools:
         indexable = tool_meta(tool,loc)[4]
         if indexable:
@@ -509,6 +547,8 @@ for u, loc, slug in indexable_urls:
         rel_urls = {l: url(l) for l in locales}
     elif slug in ("about","privacy"):
         rel_urls = {l: static_url(l,slug) for l in locales}
+    elif slug in [c["slug"] for c in categories]:
+        rel_urls = {l: category_url(l,slug) for l in locales}
     else:
         rel_urls = {l: url(l,slug) for l in locales}
     for l, alt in rel_urls.items():
