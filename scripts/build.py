@@ -330,7 +330,7 @@ for loc in locales:
 '''
     body += f'''<p id="noResults" class="no-results" hidden>{esc(i18n[loc].get("noResults","No matching tools found."))}</p>
 </div></main>'''
-    body += footer(loc,1)
+    body += footer(loc,"home")
     body += '''<script>
 (function(){
  const input=document.getElementById("toolSearch");
@@ -376,7 +376,7 @@ for loc in locales:
 <h1>{esc(copy[h1_key])}</h1>
 <p class="lead">{esc(copy[p_key])}</p>
 <section class="content-card"><h2>{esc(copy[title_key])}</h2><p>{esc(copy[p_key])}</p><p>{esc(copy[p2_key])}</p></section>
-</main>''' + footer(loc,2)
+</main>''' + footer(loc,"static",slug)
         sch = page_schema(loc, copy[title_key], copy[p_key], canonical)
         out = DIST / loc / slug / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
@@ -425,7 +425,7 @@ for loc in locales:
 <details open><summary>{esc(i18n[loc].get("step1","Use the fields above"))}</summary><p>{esc(intro)}</p></details>
 <details><summary>{esc(i18n[loc]["noSignup"])}</summary><p>{esc(i18n[loc]["privacy"])}</p></details>
 </section></main>'''
-        tool_body += footer(loc,2)
+        tool_body += footer(loc,"tool")
         page = shell(loc,title,desc,canonical,tool_body,2,extra,index=indexable,schema=page_schema(loc,title,desc,canonical))
         page = page.replace(f'<body data-locale="{loc}">', f'<body data-locale="{loc}" data-tool="{esc(tool["impl"])}">')
         out = DIST / loc / "tools" / tool["slug"] / "index.html"
