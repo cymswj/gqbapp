@@ -4,7 +4,7 @@
   "baseUrl": "https://cymswj.github.io/gqbapp",
   "defaultLocale": "en",
   "supportedLocales": ["en","zh","es","fr","de","pt","ru","ja","ar","id"],
-  "ogImage": "/assets/og-default.svg",
+  "ogImage": "/public/og-default.svg",
   "themeColor": "#111827",
   "analytics": {
     "googleAnalyticsId": "",
