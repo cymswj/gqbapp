@@ -232,6 +232,18 @@
         "watermark pdf online"
       ],
       "index": true
+    },
+    "en:pdf-to-png": {
+      "title": "PDF to PNG – Convert PDF Pages to PNG",
+      "description": "Convert PDF pages to PNG images directly in your browser. Create a PNG image for each PDF page.",
+      "h1": "PDF to PNG",
+      "intro": "Choose a PDF to render each page as a PNG image in your browser.",
+      "targetKeywords": [
+        "pdf to png",
+        "convert pdf to png",
+        "pdf to image"
+      ],
+      "index": true
     }
   }
 }
