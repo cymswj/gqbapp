@@ -1,5 +1,6 @@
 const LOCALES = new Set(["en","zh","es","fr","de","pt","ru","ja","ar","id"]);
 const CORS_METHODS = "GET, PUT, OPTIONS";
+const MAX_BODY_BYTES = 64 * 1024;
 
 function authOK(request, env) {
   return Boolean(env.ADMIN_PASSWORD) && request.headers.get("X-Admin-Password") === env.ADMIN_PASSWORD;
@@ -57,6 +58,15 @@ export default {
       catch { return {data:{site:{},pages:{}},sha:j.sha}; }
     }
 
+    function base64Utf8(text) {
+  const bytes = new TextEncoder().encode(text);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) {
+    bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  }
+  return btoa(bin);
+}
+
     function validLang(value) {
       return LOCALES.has(String(value || ""));
     }
@@ -76,8 +86,16 @@ export default {
 
     if (request.method !== "PUT") return new Response("Method not allowed", {status:405,headers});
 
+    const length = Number(request.headers.get("Content-Length") || 0);
+    if (length > MAX_BODY_BYTES) return jsonResponse(request,env,{error:"Request too large"},413);
+    let rawBody;
+    try { rawBody = await request.text(); }
+    catch { return jsonResponse(request,env,{error:"Unable to read request"},400); }
+    if (new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
+      return jsonResponse(request,env,{error:"Request too large"},413);
+    }
     let body;
-    try { body = await request.json(); }
+    try { body = JSON.parse(rawBody); }
     catch { return jsonResponse(request,env,{error:"Invalid JSON"},400); }
 
     const current = await githubFile();
@@ -117,7 +135,7 @@ export default {
     }
 
     if (env.GITHUB_TOKEN) {
-      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2) + "\n")));
+      const encoded = base64Utf8(JSON.stringify(data,null,2) + "\n");
       const api = "https://api.github.com/repos/" + repo + "/contents/" + filePath;
       const payload = {
         message: "Update SEO configuration",
