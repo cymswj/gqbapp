@@ -29,6 +29,10 @@ invalid_seo_keys = [k for k in seo.get("pages", {}) if ":" not in k or k.split("
 if invalid_seo_keys:
     raise SystemExit("Invalid SEO override keys: " + ", ".join(invalid_seo_keys[:30]))
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
+function_names = re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", app)
+duplicate_function_names = sorted({name for name in function_names if function_names.count(name) > 1})
+if duplicate_function_names:
+    raise SystemExit("Duplicate function definitions: " + ", ".join(duplicate_function_names))
 unsafe_collection = re.findall(r"(?<!\$)\$\([^)]*\)\.(?:forEach|map|filter|some|every|reduce|join)\(", app)
 if unsafe_collection:
     raise SystemExit("Single-element selector used with collection method: " + unsafe_collection[0])
