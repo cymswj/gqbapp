@@ -113,7 +113,8 @@ for (const impl of impls) {
   try {
     vm.runInNewContext(source, ctx, { filename: "public/app.js" });
   } catch (err) {
-    failures.push({ impl, message: String(err && err.stack || err) });
+    const message = err instanceof Error ? (err.message || err.name || "Runtime error") : String(err);
+    failures.push({ impl, message: message.slice(0, 500) });
   }
 }
 const test = ctx.window.GQB_TEST;
