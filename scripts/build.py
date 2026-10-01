@@ -137,10 +137,11 @@ def t(name, loc):
 
 def site_meta(loc):
     override = seo.get("site", {}).get(loc, {}) if isinstance(seo.get("site", {}), dict) and isinstance(seo.get("site", {}).get(loc, {}), dict) else {}
-    title = override.get("title") or f'{site["siteTagline"]} – {site["siteName"]}'
-    desc = override.get("description") or site["siteTagline"]
+    tagline = site.get("siteTaglines", {}).get(loc, site["siteTagline"])
+    title = override.get("title") or f'{tagline} – {site["siteName"]}'
+    desc = override.get("description") or tagline
     h1 = override.get("h1") or site["siteName"]
-    intro = override.get("intro") or f'{site["siteTagline"]}. {i18n[loc]["noSignup"]}.'
+    intro = override.get("intro") or f'{tagline}. {i18n[loc]["noSignup"]}.'
     index = override.get("index", True)
     return title, desc, h1, intro, index
 
