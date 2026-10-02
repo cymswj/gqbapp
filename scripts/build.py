@@ -13,6 +13,7 @@ tools = json.loads((SRC / "tools.json").read_text(encoding="utf-8")) + json.load
 categories = json.loads((SRC / "categories.json").read_text(encoding="utf-8"))
 seo = json.loads((SRC / "seo-overrides.json").read_text(encoding="utf-8")) if (SRC / "seo-overrides.json").exists() else {"site": {}, "pages": {}}
 tool_content = json.loads((SRC / "tool-content.json").read_text(encoding="utf-8")) if (SRC / "tool-content.json").exists() else {}
+tasks_catalog = json.loads((SRC / "tasks.json").read_text(encoding="utf-8")) if (SRC / "tasks.json").exists() else {"version":"1.0.0","tasks":[]}
 runtime_policy = json.loads((SRC / "runtime-policy.json").read_text(encoding="utf-8")) if (SRC / "runtime-policy.json").exists() else {}
 tool_contracts = json.loads((SRC / "tool-contracts.json").read_text(encoding="utf-8")).get("definitions", {}) if (SRC / "tool-contracts.json").exists() else {}
 
@@ -193,7 +194,7 @@ def esc(s):
 
 def asset(depth, name):
     path = ("../" if depth == 1 else "../../../") + "public/" + name
-    return path + ("?v=" + ASSET_VERSION if name in ("app.js","gqb-core.js","style.css") else "")
+    return path + ("?v=" + ASSET_VERSION if name in ("app.js","gqb-core.js","style.css","task-router.js") else "")
 
 def topnav(loc, depth, home_override=None, page_type="home", page_slug=""):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
@@ -400,6 +401,7 @@ for loc in locales:
 <label class="sr-only" for="toolSearch">{esc(i18n[loc]["search"])}</label>
 <input id="toolSearch" autocomplete="off" placeholder="{esc(i18n[loc]["searchPlaceholder"])}">
 </form>
+<div id="taskSuggestions" class="task-suggestions" hidden aria-live="polite"></div>
 <div class="stats"><span>{len(tools)} {esc(i18n[loc].get("toolsLabel","tools"))}</span><span>{len(locales)} {esc(i18n[loc].get("languagesLabel","languages"))}</span><span>{esc(i18n[loc]["noSignup"])}</span></div>
 </section>
 
@@ -477,6 +479,10 @@ for loc in locales:
  filterTools("");
 })();
 </script>'''
+    task_names = {l:{t["slug"]:t(t["names"],l) for t in tools} for l in locales}
+    task_data = json.dumps(tasks_catalog.get("tasks",[]), ensure_ascii=False)
+    task_names_data = json.dumps(task_names, ensure_ascii=False)
+    body = body.replace('</main>', '<script>window.GQB_TASKS='+task_data+';window.GQB_TASK_TOOL_NAMES='+task_names_data+'</script><script src="../public/task-router.js"></script></main>', 1)
     schema = {
       "@context":"https://schema.org",
       "@type":"WebSite",
@@ -732,7 +738,7 @@ sw_source = (PUB / "sw.js").read_text(encoding="utf-8")
 sw_source = sw_source.replace("__GQB_CACHE_VERSION__", "gqb-tools-" + ASSET_VERSION)
 (DIST / "sw.js").write_text(sw_source, encoding="utf-8")
 (DIST / "public").mkdir(exist_ok=True)
-for name in ["style.css","gqb-core.js","app.js","og-default.svg","favicon.svg","site.webmanifest"]:
+for name in ["style.css","gqb-core.js","app.js","task-router.js","og-default.svg","favicon.svg","site.webmanifest"]:
     src = PUB / name
     if src.exists():
         shutil.copy2(src, DIST / "public" / name)
