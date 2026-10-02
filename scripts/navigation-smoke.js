@@ -45,7 +45,8 @@ const sections = categories.map(cat => {
   const end = html.indexOf("</section>", start);
   const block = start >= 0 && end >= 0 ? html.slice(start, end) : "";
   while ((m = re.exec(block))) slugs.push(m[1]);
-  s.querySelectorAll = selector => selector === "[data-tool-search]" ? slugs.map(slug => sectionCard(s, slug)) : [];
+  const cardsForSection = slugs.map(slug => sectionCard(s, slug));
+  s.querySelectorAll = selector => selector === "[data-tool-search]" ? cardsForSection : [];
   return s;
 });
 
