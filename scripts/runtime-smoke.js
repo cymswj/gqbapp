@@ -19,12 +19,32 @@ class FakeElement {
     this.style = {};
     this.attributes = {};
     this.value = "";
-    this.innerHTML = "";
+    this._innerHTML = "";
     this.textContent = "";
     this.checked = false;
     this.files = [];
     this.options = [];
     this.selectedIndex = 0;
+    this.generatedButtons = [];
+    this.toolbox = null;
+  }
+  get innerHTML() { return this._innerHTML; }
+  set innerHTML(value) {
+    this._innerHTML = String(value ?? "");
+    this.generatedButtons = Array.from({length:(this._innerHTML.match(/<button\b/g)||[]).length}, () => {
+      const b = new FakeElement("button");
+      b.onclick = null;
+      return b;
+    });
+    const marker = '<div class="toolbox">';
+    const start = this._innerHTML.indexOf(marker);
+    if (start >= 0) {
+      const box = new FakeElement("div");
+      box.innerHTML = this._innerHTML.slice(start + marker.length).replace(/<\\/div>\\s*$/,"");
+      this.toolbox = box;
+    } else {
+      this.toolbox = null;
+    }
   }
   setAttribute(k, v) { this.attributes[k] = String(v); }
   add(option) { this.options.push(option); }
@@ -39,8 +59,15 @@ class FakeElement {
       getImageData(){ return {data:[0,0,0,255]}; }
     };
   }
-  querySelector(selector) { return fakeFor(selector); }
-  querySelectorAll(selector) { return fakeMany(selector); }
+  querySelector(selector) {
+    if (selector.includes("button") && this.generatedButtons.length) return this.generatedButtons[0];
+    if (selector === ".toolbox" && this.toolbox) return this.toolbox;
+    return fakeFor(selector);
+  }
+  querySelectorAll(selector) {
+    if (selector.includes("button")) return this.generatedButtons;
+    return fakeMany(selector);
+  }
 }
 
 function fakeFor(selector) {
@@ -117,8 +144,13 @@ for (const impl of impls) {
   body.dataset.tool = impl;
   root.innerHTML = "";
   try {
+    root.toolbox = null;
+    root.innerHTML = "";
     vm.runInNewContext(coreSource, ctx, { filename: "public/gqb-core.js" });
     vm.runInNewContext(source, ctx, { filename: "public/app.js" });
+    const buttons = root.toolbox?.generatedButtons || [];
+    const unbound = buttons.filter(b => typeof b.onclick !== "function").length;
+    if (unbound) failures.push({impl, message:"Generated button(s) without onclick handler: " + unbound + "/" + buttons.length});
   } catch (err) {
     failures.push({
       impl,
