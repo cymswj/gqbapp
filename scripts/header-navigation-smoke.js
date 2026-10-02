@@ -27,7 +27,8 @@ for(const loc of locales){
       if(await brand.count()!==1)throw new Error("Brand missing: "+sample.path+" ("+viewport.name+")");
       const href=await brand.getAttribute("href");
       const expected=BASE+"/"+sample.loc+"/";
-      if(href!==expected)throw new Error("Brand href mismatch: "+sample.path+" => "+href+" expected "+expected);
+      const resolved=new URL(href,BASE).href.replace(/\\/$/,"/");
+      if(resolved!==expected)throw new Error("Brand href mismatch: "+sample.path+" => "+href+" resolved "+resolved+" expected "+expected);
       await brand.click();
       await page.waitForURL(expected,{timeout:10000});
       if(new URL(page.url()).pathname!=="/"+sample.loc+"/")throw new Error("Brand click landed incorrectly: "+sample.path+" => "+page.url());
