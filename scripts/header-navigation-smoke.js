@@ -1,41 +1,38 @@
 const fs=require("fs");
 const path=require("path");
+const {chromium}=require("playwright");
 
-const base="https://gqb.app";
+const BASE=(process.env.GQB_E2E_BASE_URL||"http://127.0.0.1:4173").replace(/\/$/,"");
 const locales=["en","zh","es","fr","de","pt","ru","ja","ar","id"];
-const root="dist";
+const categories=JSON.parse(fs.readFileSync("src/categories.json","utf8")).map(x=>x.slug);
+const tools=[...JSON.parse(fs.readFileSync("src/tools.json","utf8")),...JSON.parse(fs.readFileSync("src/tools-extra.json","utf8"))];
 
-function walk(dir){
-  const out=[];
-  for(const name of fs.readdirSync(dir,{withFileTypes:true})){
-    const p=path.join(dir,name.name);
-    if(name.isDirectory())out.push(...walk(p));
-    else if(name.isFile()&&name.name==="index.html")out.push(p);
+const samples=[];
+for(const loc of locales){
+  samples.push({loc,path:"/"+loc+"/",kind:"home"});
+  samples.push({loc,path:"/"+loc+"/about/",kind:"static"});
+  samples.push({loc,path:"/"+loc+"/privacy/",kind:"static"});
+  samples.push({loc,path:"/"+loc+"/category/"+categories[0]+"/",kind:"category"});
+  samples.push({loc,path:"/"+loc+"/tools/"+tools[0].slug+"/",kind:"tool"});
+}
+
+(async()=>{
+  const browser=await chromium.launch({headless:true});
+  for(const viewport of [{name:"desktop",width:1440,height:1000},{name:"mobile",width:390,height:844}]){
+    const page=await browser.newPage({viewport:{width:viewport.width,height:viewport.height}});
+    for(const sample of samples){
+      await page.goto(BASE+sample.path,{waitUntil:"domcontentloaded",timeout:30000});
+      const brand=page.locator("a.brand");
+      if(await brand.count()!==1)throw new Error("Brand missing: "+sample.path+" ("+viewport.name+")");
+      const href=await brand.getAttribute("href");
+      const expected=BASE+"/"+sample.loc+"/";
+      if(href!==expected)throw new Error("Brand href mismatch: "+sample.path+" => "+href+" expected "+expected);
+      await brand.click();
+      await page.waitForURL(expected,{timeout:10000});
+      if(new URL(page.url()).pathname!=="/"+sample.loc+"/")throw new Error("Brand click landed incorrectly: "+sample.path+" => "+page.url());
+    }
+    await page.close();
   }
-  return out;
-}
-
-function expectedHome(page,loc){
-  return base+"/"+loc+"/";
-}
-
-const pages=walk(root).filter(p=>!p.startsWith(path.join(root,"api"))&&!p.includes(path.sep+".well-known"+path.sep)&&!p.endsWith(path.join("dist","index.html")));
-let checked=0;
-for(const file of pages){
-  const rel=file.slice(root.length+1).replaceAll(path.sep,"/");
-  const loc=locales.find(x=>rel===x+"/index.html"||rel.startsWith(x+"/"));
-  if(!loc)continue;
-  const html=fs.readFileSync(file,"utf8");
-  const m=html.match(/<a class="brand" href="([^"]+)">/);
-  if(!m)throw new Error("Missing brand link: "+rel);
-  const actual=m[1];
-  const expected=expectedHome(file,loc);
-  if(actual!==expected)throw new Error("Wrong brand target on "+rel+": "+actual+" expected "+expected);
-
-  const links=[...html.matchAll(/<nav class="langs"[^>]*>\s*((?:<a[^>]*>.*?<\/a>\s*)+)<\/nav>/gs)][0]?.[1]||"";
-  const langLinks=[...links.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map(x=>x[1]);
-  if(langLinks.length!==locales.length)throw new Error("Language link count mismatch on "+rel);
-  checked++;
-}
-if(checked<locales.length*3)throw new Error("Too few localized pages checked: "+checked);
-console.log("Header navigation smoke test passed:",checked,"localized pages; brand targets and language links are structurally present.");
+  await browser.close();
+  console.log("Header mobile/desktop smoke test passed:",samples.length,"pages across",locales.length,"locales.");
+})();
