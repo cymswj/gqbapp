@@ -159,15 +159,20 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
   if (impl === "timezone") {
     await page.locator("input.tz-date").fill("2026-10-02T12:00");
     await page.locator("button:not(.tz-swap)").click();
-    await page.waitForFunction(() => (document.querySelector(".output")?.textContent || "").trim().length > 0, null, {timeout:10000});
-    return "time-zone conversion output verified";
+    await page.waitForTimeout(250);
+    const timezoneOutput = (await page.locator("#toolApp .output").textContent() || "").trim();
+    if (!timezoneOutput) throw new Error("time-zone conversion output empty; inputs=" + await page.locator("input.tz-date").inputValue() + ", from=" + await page.locator("select.tz-from").inputValue() + ", to=" + await page.locator("select.tz-to").inputValue());
+    return "time-zone conversion output verified: " + timezoneOutput.slice(0,80);
   }
 
   if (impl === "slug") {
     await page.locator('input[placeholder="Your title"]').fill("GQB Tools — Global Utilities");
     await page.locator("button:not(.secondary)").first().click();
-    await page.waitForFunction(() => /gqb-tools-global-utilities/.test(document.querySelector(".output")?.textContent || ""), null, {timeout:5000});
-    return "slug generation output verified";
+    await page.waitForTimeout(250);
+    const slugOutput = (await page.locator("#toolApp .output").textContent() || "").trim();
+    if (!slugOutput) throw new Error("slug generation output empty");
+    if (!/gqb-tools-global-utilities/.test(slugOutput)) throw new Error("unexpected slug output: " + slugOutput);
+    return "slug generation output verified: " + slugOutput;
   }
 
   if (imageTools.has(impl) || pdfTools.has(impl) || impl === "jpg-pdf") {
