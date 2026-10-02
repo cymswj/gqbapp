@@ -75,6 +75,13 @@ if len(task_ids) != len(set(task_ids)):
 invalid_task_tools = [tool for task in tasks_catalog.get("tasks", []) for tool in task.get("tools", []) if tool not in known_slugs]
 if invalid_task_tools:
     raise SystemExit("Task references unknown tools: " + ", ".join(sorted(set(invalid_task_tools))))
+workflow_id_set = set(workflow_ids)
+invalid_task_workflows = sorted({task.get("workflow") for task in tasks_catalog.get("tasks", []) if task.get("workflow") and task.get("workflow") not in workflow_id_set})
+if invalid_task_workflows:
+    raise SystemExit("Task references unknown workflows: " + ", ".join(invalid_task_workflows))
+for required_asset in ["gqb-engine.js","task-router.js"]:
+    if not (ROOT / "public" / required_asset).exists():
+        raise SystemExit("Missing runtime asset: " + required_asset)
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
 function_names = re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", app)
 duplicate_function_names = sorted({name for name in function_names if function_names.count(name) > 1})
