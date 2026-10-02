@@ -12,7 +12,11 @@
     "names",
     "execution",
     "privacy",
-    "interfaces"
+    "inputSchema",
+    "outputSchema",
+    "errorSchema",
+    "interfaces",
+    "agent"
   ],
   "properties": {
     "contractVersion": {
@@ -30,6 +34,9 @@
       "type": "string",
       "minLength": 1
     },
+    "version": {
+      "type": "string"
+    },
     "category": {
       "type": "string",
       "minLength": 1
@@ -39,6 +46,9 @@
       "additionalProperties": {
         "type": "string"
       }
+    },
+    "description": {
+      "type": "string"
     },
     "execution": {
       "type": "string",
@@ -67,6 +77,9 @@
         }
       }
     },
+    "network": {
+      "type": "boolean"
+    },
     "limits": {
       "type": "object",
       "additionalProperties": {
@@ -74,8 +87,24 @@
           "number",
           "integer",
           "string",
+          "boolean",
           "null"
         ]
+      }
+    },
+    "inputSchema": {
+      "type": "object"
+    },
+    "outputSchema": {
+      "type": "object"
+    },
+    "errorSchema": {
+      "type": "object"
+    },
+    "mimeTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
       }
     },
     "interfaces": {
@@ -96,10 +125,25 @@
             "planned",
             "available"
           ]
+        },
+        "taskRouting": {
+          "type": "boolean"
         }
       }
     },
     "deterministic": {
+      "type": "boolean"
+    },
+    "idempotent": {
+      "type": "boolean"
+    },
+    "stateful": {
+      "type": "boolean"
+    },
+    "supportsBatch": {
+      "type": "boolean"
+    },
+    "requiresConfirmation": {
       "type": "boolean"
     },
     "sideEffects": {
@@ -109,6 +153,21 @@
       "type": "array",
       "items": {
         "type": "string"
+      }
+    },
+    "verification": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object"
       }
     }
   },
