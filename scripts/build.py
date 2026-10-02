@@ -508,7 +508,7 @@ for loc in locales:
         ("privacy","privacy_title","privacy_h1","privacy_p","privacy_p2")
     ]:
         canonical = static_url(loc,slug)
-        body = topnav(loc,2,"../","static",slug) + f'''<main class="wrap static-page">
+        body = topnav(loc,2,f"/{loc}/","static",slug) + f'''<main class="wrap static-page">
 <a class="back" href="{url(loc)}">← {esc(i18n[loc]["back"])}</a>
 <h1>{esc(copy[h1_key])}</h1>
 <p class="lead">{esc(copy[p_key])}</p>
