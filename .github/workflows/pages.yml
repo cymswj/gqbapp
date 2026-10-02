@@ -30,14 +30,14 @@ jobs:
         run: node scripts/task-router-smoke.js
       - name: Workflow execution engine smoke test
         run: node scripts/engine-smoke.js
-      - name: Agent discovery smoke test
-        run: node scripts/agent-discovery-smoke.js
       - name: Workflow DAG smoke test
         run: node scripts/workflow-smoke.js
       - name: Audit tool button wiring
         run: node scripts/button-audit.js
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
+      - name: Agent discovery smoke test
+        run: node scripts/agent-discovery-smoke.js
       - name: Browser end-to-end tool smoke test
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
