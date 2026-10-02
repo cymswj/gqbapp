@@ -482,7 +482,7 @@ for loc in locales:
     task_names = {l:{tool["slug"]:t(tool["names"],l) for tool in tools} for l in locales}
     task_data = json.dumps(tasks_catalog.get("tasks",[]), ensure_ascii=False)
     task_names_data = json.dumps(task_names, ensure_ascii=False)
-    body = body.replace('</main>', '<script>window.GQB_TASKS='+task_data+';window.GQB_TASK_TOOL_NAMES='+task_names_data+'</script><script src="../public/task-router.js"></script></main>', 1)
+    body = body.replace('</main>', '<script>window.GQB_TASKS='+task_data+';window.GQB_TASK_TOOL_NAMES='+task_names_data+'</script><script src="../public/task-router.js?v={ASSET_VERSION}"></script></main>', 1)
     schema = {
       "@context":"https://schema.org",
       "@type":"WebSite",
@@ -621,10 +621,22 @@ def schema_for_inputs(definition):
         field_type = value.pop("type", "string")
         if field_type.endswith("[]"):
             field_schema = {"type":"array"}
-            if "mimeTypes" in value:
-                field_schema["items"] = {"type":"object","properties":{"mimeType":{"type":"string","enum":value["mimeTypes"]}}}
+            if field_type == "file[]":
+                item_props = {
+                    "name":{"type":"string"},
+                    "mimeType":{"type":"string"}
+                }
+                if "mimeTypes" in value:
+                    item_props["mimeType"]["enum"] = value["mimeTypes"]
+                item_props["size"] = {"type":"integer","minimum":0}
+                field_schema["items"] = {"type":"object","properties":item_props,"required":["mimeType","size"],"additionalProperties":True}
             else:
                 field_schema["items"] = {"type":"string"}
+        elif field_type == "file":
+            props = {"name":{"type":"string"},"mimeType":{"type":"string"},"size":{"type":"integer","minimum":0}}
+            if "mimeTypes" in value:
+                props["mimeType"]["enum"] = value["mimeTypes"]
+            field_schema = {"type":"object","properties":props,"required":["mimeType","size"],"additionalProperties":True}
         else:
             schema_type = {
                 "object":"object","number":"number","integer":"integer","boolean":"boolean"
