@@ -145,6 +145,10 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
   if (imageTools.has(impl) || pdfTools.has(impl) || impl === "jpg-pdf") {
     await upload(page, impl, imageBuffer, pdfBuffer);
     if (impl === "color-image") {
+      await page.waitForFunction(() => {
+        const c = document.querySelector("#toolApp canvas");
+        return !!c && c.width > 0 && c.height > 0;
+      }, null, {timeout:10000});
       await page.locator("canvas").click({position:{x:30,y:30}});
     } else {
       if (impl === "image-resize") {
