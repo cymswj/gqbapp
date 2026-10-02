@@ -25,25 +25,21 @@ class FakeElement {
     this.files = [];
     this.options = [];
     this.selectedIndex = 0;
-    this.generatedButtons = [];
-    this.toolbox = null;
+    this.generatedButtonCount = 0;
+    this._onclick = null;
+    this._countedClick = false;
   }
   get innerHTML() { return this._innerHTML; }
   set innerHTML(value) {
     this._innerHTML = String(value ?? "");
-    this.generatedButtons = Array.from({length:(this._innerHTML.match(/<button\b/g)||[]).length}, () => {
-      const b = new FakeElement("button");
-      b.onclick = null;
-      return b;
-    });
-    const marker = '<div class="toolbox">';
-    const start = this._innerHTML.indexOf(marker);
-    if (start >= 0) {
-      const box = new FakeElement("div");
-      box.innerHTML = this._innerHTML.slice(start + marker.length);
-      this.toolbox = box;
-    } else {
-      this.toolbox = null;
+    this.generatedButtonCount = (this._innerHTML.match(/<button\\b/g) || []).length;
+  }
+  get onclick() { return this._onclick; }
+  set onclick(fn) {
+    this._onclick = fn;
+    if (this.tagName === "BUTTON" && typeof fn === "function" && !this._countedClick) {
+      this._countedClick = true;
+      FakeElement.buttonBindings++;
     }
   }
   setAttribute(k, v) { this.attributes[k] = String(v); }
@@ -59,17 +55,10 @@ class FakeElement {
       getImageData(){ return {data:[0,0,0,255]}; }
     };
   }
-  querySelector(selector) {
-    if (selector.includes("button") && this.generatedButtons.length) return this.generatedButtons[0];
-    if (selector === ".toolbox" && this.toolbox) return this.toolbox;
-    return fakeFor(selector);
-  }
-  querySelectorAll(selector) {
-    if (selector.includes("button")) return this.generatedButtons;
-    return fakeMany(selector);
-  }
+  querySelector(selector) { return fakeFor(selector); }
+  querySelectorAll(selector) { return fakeMany(selector); }
 }
-
+FakeElement.buttonBindings = 0;
 function fakeFor(selector) {
   if (selector === "#toolApp") return root;
   if (selector.includes("button")) return new FakeElement("button");
@@ -144,13 +133,17 @@ for (const impl of impls) {
   body.dataset.tool = impl;
   root.innerHTML = "";
   try {
-    root.toolbox = null;
+    FakeElement.buttonBindings = 0;
     root.innerHTML = "";
     vm.runInNewContext(coreSource, ctx, { filename: "public/gqb-core.js" });
     vm.runInNewContext(source, ctx, { filename: "public/app.js" });
-    const buttons = root.toolbox?.generatedButtons || [];
-    const unbound = buttons.filter(b => typeof b.onclick !== "function").length;
-    if (unbound) failures.push({impl, message:"Generated button(s) without onclick handler: " + unbound + "/" + buttons.length});
+    const buttonCount = root.generatedButtonCount;
+    if (buttonCount !== FakeElement.buttonBindings) {
+      failures.push({
+        impl,
+        message:"Button handler mismatch: " + FakeElement.buttonBindings + "/" + buttonCount
+      });
+    }
   } catch (err) {
     failures.push({
       impl,
