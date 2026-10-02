@@ -1,5 +1,5 @@
 (()=>{"use strict";
-const STATUS=Object.freeze(["planned","validating","running","verifying","completed","failed"]);
+const STATUS=Object.freeze(["needs-selection","planned","validating","running","verifying","completed","failed"]);
 const ERROR_CODES=Object.freeze({
   INVALID_TASK:"INVALID_TASK",
   WORKFLOW_NOT_FOUND:"WORKFLOW_NOT_FOUND",
@@ -19,6 +19,26 @@ function scoreTask(task,query){
 function rankTasks(tasks,query){
   return [...new Map((tasks||[]).map(task=>[task.id,task])).values()].map(task=>({task,score:scoreTask(task,query)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.task.id.localeCompare(b.task.id)).slice(0,5);
 }
+function selectedWorkflow(workflow,selectedStepIds){
+  const steps=Array.isArray(workflow?.steps)?workflow.steps:[];
+  if(!Array.isArray(selectedStepIds))return {workflow,steps};
+  const selected=new Set(selectedStepIds);
+  if([...selected].some(id=>!steps.some(step=>step.id===id)))throw new GQBEngineError(ERROR_CODES.INVALID_WORKFLOW,"Selected workflow step does not exist.",false);
+  const chosen=steps.filter(step=>!step.optional||selected.has(step.id));
+  const chosenIds=new Set(chosen.map(step=>step.id));
+  if(chosen.some(step=>step.dependsOn.some(dep=>!chosenIds.has(dep))))throw new GQBEngineError(ERROR_CODES.INVALID_WORKFLOW,"Selected workflow steps have unmet dependencies.",false);
+  return {...workflow,steps:chosen};
+}
+function stepInputFor(step,state,input){
+  const previous=state.results.at(-1)?.output;
+  switch(step.inputStrategy||"primary-input"){
+    case "primary-input": return input;
+    case "previous-output": return previous;
+    case "carry-forward": return {input,previous,context:state.context};
+    case "custom": throw new GQBEngineError(ERROR_CODES.INVALID_WORKFLOW,"Custom inputStrategy requires an explicit non-code mapping.",false);
+    default: throw new GQBEngineError(ERROR_CODES.INVALID_WORKFLOW,"Unknown inputStrategy: "+step.inputStrategy,false);
+  }
+}
 function topo(workflow){
   const steps=Array.isArray(workflow?.steps)?workflow.steps:[];const ids=new Set(steps.map(x=>x.id));
   if(steps.some(x=>!x.id||!x.tool||!Array.isArray(x.dependsOn)||x.dependsOn.some(dep=>!ids.has(dep))))throw new Error(ERROR_CODES.INVALID_WORKFLOW);
@@ -29,11 +49,14 @@ function topo(workflow){
   if(out.length!==steps.length)throw new Error(ERROR_CODES.CYCLE_DETECTED);
   return out;
 }
-function plan(query,{tasks=[],workflows=[]}={}){
+function plan(query,{tasks=[],workflows=[],selectedStepIds=null}={}){
   const matches=rankTasks(tasks,query);if(!matches.length)return {status:"failed",error:{code:ERROR_CODES.INVALID_TASK,message:"No matching task found.",recoverable:true},matches:[]};
   const best=matches[0].task;
   let workflow=null,steps=[];
-  if(best.workflow){workflow=(workflows||[]).find(x=>x.id===best.workflow);if(!workflow)return {status:"failed",error:{code:ERROR_CODES.WORKFLOW_NOT_FOUND,message:"The task references a missing workflow.",recoverable:false},matches};steps=topo(workflow);}
+  if(best.workflow){workflow=(workflows||[]).find(x=>x.id===best.workflow);if(!workflow)return {status:"failed",error:{code:ERROR_CODES.WORKFLOW_NOT_FOUND,message:"The task references a missing workflow.",recoverable:false},matches};
+    const optional=(workflow.steps||[]).filter(step=>step.optional).map(step=>({id:step.id,tool:step.tool,purpose:step.purpose,dependsOn:step.dependsOn||[]}));
+    if(optional.length&&!Array.isArray(selectedStepIds))return {status:"needs-selection",query:String(query||"").trim(),task:best,matches,workflow,steps:[],requiresSelection:true,selectableSteps:optional};
+    workflow=selectedWorkflow(workflow,selectedStepIds);steps=topo(workflow);}
   else {steps=(best.tools||[]).slice(0,1).map((tool,i)=>({id:"tool-"+(i+1),tool,purpose:"Execute the selected task tool.",dependsOn:[]}));}
   return {status:"planned",query:String(query||"").trim(),task:best,matches,workflow,steps};
 }
@@ -42,13 +65,17 @@ async function execute(planValue,{input=null,adapters={},hooks={}}={}){
   if(!planValue||planValue.status!=="planned")throw new GQBEngineError(ERROR_CODES.INVALID_TASK,"Execution requires a valid plan.",true);
   const state={status:"planned",task:planValue.task,query:planValue.query,results:[],context:{input}};
   const emit=(name,payload={})=>{state.status=name;if(typeof hooks.onState==="function")hooks.onState(name,payload,state);};
-  emit("validating");let steps;try{steps=topo(planValue.workflow||{steps:planValue.steps});}catch(error){emit("failed",{error});throw error;}
+  emit("validating");let steps;try{
+    if(planValue.workflow&&(!Array.isArray(planValue.selectedStepIds)&&planValue.workflow.steps?.some(step=>step.optional)))throw new GQBEngineError(ERROR_CODES.INVALID_WORKFLOW,"Optional workflow steps require explicit selection before execution.",false);
+    const workflow=planValue.workflow?selectedWorkflow(planValue.workflow,planValue.selectedStepIds):null;
+    steps=topo(workflow||{steps:planValue.steps});
+  }catch(error){emit("failed",{error});throw error;}
   emit("running");
   for(const step of steps){
     const adapter=adapters[step.tool];
     if(typeof adapter!=="function"){const error=new GQBEngineError(ERROR_CODES.TOOL_ADAPTER_MISSING,"No adapter is registered for "+step.tool+".",true);emit("failed",{step,error});throw error;}
     try{
-      const stepInput={input,context:state.context,previous:state.results.at(-1)?.output,step};
+      const stepInput={input:stepInputFor(step,state,input),context:state.context,previous:state.results.at(-1)?.output,step};
       const started=Date.now();
       if(typeof hooks.onStep==="function")hooks.onStep("start",step,stepInput);
       const response=await adapter(stepInput);
