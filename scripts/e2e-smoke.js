@@ -162,6 +162,7 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
     await page.waitForTimeout(250);
     const timezoneOutput = (await page.locator("#toolApp .output").textContent() || "").trim();
     if (!timezoneOutput) throw new Error("time-zone conversion output empty; inputs=" + await page.locator("input.tz-date").inputValue() + ", from=" + await page.locator("select.tz-from").inputValue() + ", to=" + await page.locator("select.tz-to").inputValue());
+    if (!/04:00:00|4:00:00/.test(timezoneOutput)) throw new Error("unexpected time-zone conversion output: " + timezoneOutput);
     return "time-zone conversion output verified: " + timezoneOutput.slice(0,80);
   }
 
