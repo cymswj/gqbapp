@@ -30,6 +30,14 @@ jobs:
         run: node scripts/button-audit.js
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
+      - name: Browser end-to-end tool smoke test
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+          python -m http.server 4173 --directory dist >/tmp/gqb-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID' EXIT
+          GQB_E2E_BASE_URL=http://127.0.0.1:4173 node scripts/e2e-smoke.js
       - name: Check generated navigation interactions
         run: node scripts/navigation-smoke.js
       - name: Check generated links
