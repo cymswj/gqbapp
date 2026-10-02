@@ -775,6 +775,9 @@ for path, payload in [
 (DIST / "api" / "tasks.schema.json").write_text(
     (SRC / "tasks.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
 )
+(DIST / "api" / "agent.schema.json").write_text(
+    (SRC / "agent.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
+)
 
 # Public assets.
 sw_source = (PUB / "sw.js").read_text(encoding="utf-8")
