@@ -194,12 +194,24 @@ def asset(depth, name):
     path = ("../" if depth == 1 else "../../../") + "public/" + name
     return path + ("?v=" + ASSET_VERSION if name in ("app.js","style.css") else "")
 
-def topnav(loc, depth, home_override=None):
+def topnav(loc, depth, home_override=None, page_type="home", page_slug=""):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
     home = home_override or ("./" if depth == 1 else "../../")
-    links = " ".join(f'<a href="{("../"*depth)}{l}/"' + (' aria-current="page"' if l == loc else '') + f'>{n}</a>' for l,n in labels.items())
+    def switch_tail(language):
+        if page_type == "static":
+            return f"{language}/{page_slug}/"
+        if page_type == "category":
+            return f"{language}/category/{page_slug}/"
+        if page_type == "tool":
+            return f"{language}/tools/{page_slug}/"
+        return f"{language}/"
+    links = " ".join(
+        f'<a href="{("../"*depth)}{switch_tail(l)}"'
+        + (' aria-current="page"' if l == loc else '')
+        + f'>{n}</a>'
+        for l,n in labels.items()
+    )
     return f'<header><div class="wrap top"><a class="brand" href="{home}">{esc(site["siteName"])}</a><nav class="langs" aria-label="Language">{links}</nav></div></header>'
-
 def footer(loc, kind, static_slug=""):
     if kind == "home":
         about_href, privacy_href = "about/", "privacy/"
@@ -472,7 +484,7 @@ for loc in locales:
         ("privacy","privacy_title","privacy_h1","privacy_p","privacy_p2")
     ]:
         canonical = static_url(loc,slug)
-        body = topnav(loc,2,"../") + f'''<main class="wrap static-page">
+        body = topnav(loc,2,"../","static",slug) + f'''<main class="wrap static-page">
 <a class="back" href="{url(loc)}">← {esc(i18n[loc]["back"])}</a>
 <h1>{esc(copy[h1_key])}</h1>
 <p class="lead">{esc(copy[p_key])}</p>
@@ -492,7 +504,7 @@ for loc in locales:
         canonical = category_url(loc, cslug)
         cat_schema = page_schema(loc, cname, intro, canonical)
         cat_schema["mainEntity"] = {"@type":"ItemList","numberOfItems":len(items),"itemListElement":[{"@type":"ListItem","position":i+1,"name":t(item["names"],loc),"url":url(loc,item["slug"])} for i,item in enumerate(items)]}
-        body = topnav(loc,3)
+        body = topnav(loc,3,page_type="category",page_slug=cslug)
         body += f'''<main class="wrap static-page">
 <nav class="breadcrumbs"><a href="{url(loc)}">{esc(i18n[loc].get("home","Home"))}</a><span>›</span><span>{esc(cname)}</span></nav>
 <h1>{esc(cname)}</h1>
@@ -536,7 +548,7 @@ for loc in locales:
         tool_copy = tool_content.get(tool["slug"], {}).get(loc) or {}
         extra += '<script>window.GQB_TOOL_COPY='+json.dumps(tool_copy,ensure_ascii=False)+'</script>'
 
-        tool_body = topnav(loc,3)
+        tool_body = topnav(loc,3,page_type="tool",page_slug=tool["slug"])
         category_name = t(next(c["names"] for c in categories if c["slug"]==tool["group"]),loc)
         tool_body += f'''<main class="wrap tool-page">
 <nav class="breadcrumbs"><a href="{url(loc)}">{esc(i18n[loc].get("home","Home"))}</a><span>›</span><span>{esc(category_name)}</span></nav>
