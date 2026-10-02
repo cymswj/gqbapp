@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://gqb.app/src/tool-contract.schema.json",
+  "$id": "https://gqb.app/api/tool-contract.schema.json",
   "title": "GQB Tool Contract",
   "type": "object",
   "required": [
