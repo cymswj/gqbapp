@@ -142,6 +142,34 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
 
   if (impl === "heic-jpg") return "UI path checked; success fixture omitted because a real HEIC asset is required";
 
+  if (impl === "password") {
+    const input = page.locator("input[type=number]").first();
+    await input.fill("20");
+    await page.locator("button:not(.secondary)").first().click();
+    await page.waitForFunction(() => (document.querySelector("input.password")?.value || "").length >= 6, null, {timeout:5000});
+    return "cryptographic password generation verified";
+  }
+
+  if (impl === "uuid") {
+    await page.locator("button:not(.secondary)").first().click();
+    await page.waitForFunction(() => /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(document.querySelector("input.password")?.value || ""), null, {timeout:5000});
+    return "UUID v4 generation verified";
+  }
+
+  if (impl === "timezone") {
+    await page.locator("input.tz-date").fill("2026-10-02T12:00");
+    await page.locator("button:not(.tz-swap)").click();
+    await page.waitForFunction(() => (document.querySelector(".output")?.textContent || "").trim().length > 0, null, {timeout:10000});
+    return "time-zone conversion output verified";
+  }
+
+  if (impl === "slug") {
+    await page.locator('input[placeholder="Your title"]').fill("GQB Tools — Global Utilities");
+    await page.locator("button:not(.secondary)").first().click();
+    await page.waitForFunction(() => /gqb-tools-global-utilities/.test(document.querySelector(".output")?.textContent || ""), null, {timeout:5000});
+    return "slug generation output verified";
+  }
+
   if (imageTools.has(impl) || pdfTools.has(impl) || impl === "jpg-pdf") {
     await upload(page, impl, imageBuffer, pdfBuffer);
     if (impl === "color-image") {
@@ -207,7 +235,7 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
       results.push({slug:tool.slug,impl:tool.impl,status,note});
       console.log("[e2e:" + status.toUpperCase() + "]", tool.slug, "-", note);
     } catch (err) {
-      results.push({slug:tool.slug,impl:tool.impl,status:"fail",note:String(err.message || err)});
+      results.push({slug:tool.slug,impl:tool.impl,status:"fail",note:String(err.message || err),pageErrors:[...pageErrors]});
       console.error("[e2e:FAIL]", tool.slug, "-", String(err.message || err));
     }
   }
