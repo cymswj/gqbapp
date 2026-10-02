@@ -608,6 +608,7 @@ def tool_contract(tool):
     }
 
 tool_registry = {
+    "$schema":base + "/api/tool-contract.schema.json",
     "schemaVersion":"1.0.0",
     "name":site["siteName"],
     "baseUrl":base,
