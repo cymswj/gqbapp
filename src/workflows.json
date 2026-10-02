@@ -1,0 +1,107 @@
+{
+  "$schema": "../src/workflows.schema.json",
+  "version": "1.0.0",
+  "philosophy": "Workflows compose existing GQB tools into user tasks. Definitions are declarative until an execution engine is enabled.",
+  "workflows": [
+    {
+      "id": "pdf-document-workspace",
+      "name": "PDF document workspace",
+      "status": "design",
+      "goal": "Organize, transform, and export a PDF through multiple existing browser-local operations.",
+      "steps": [
+        {
+          "tool": "pdf-to-text",
+          "purpose": "extract selectable text when needed",
+          "optional": true
+        },
+        {
+          "tool": "extract-pdf-pages",
+          "purpose": "keep selected pages",
+          "optional": true
+        },
+        {
+          "tool": "delete-pdf-pages",
+          "purpose": "remove unwanted pages",
+          "optional": true
+        },
+        {
+          "tool": "reorder-pdf-pages",
+          "purpose": "rearrange page order",
+          "optional": true
+        },
+        {
+          "tool": "rotate-pdf",
+          "purpose": "correct page orientation",
+          "optional": true
+        },
+        {
+          "tool": "pdf-page-numbers",
+          "purpose": "add sequential page numbers",
+          "optional": true
+        },
+        {
+          "tool": "pdf-watermark",
+          "purpose": "add a text watermark",
+          "optional": true
+        },
+        {
+          "tool": "pdf-merger",
+          "purpose": "combine documents",
+          "optional": true
+        }
+      ],
+      "execution": "browser-local",
+      "agentReady": false
+    },
+    {
+      "id": "image-preparation-workspace",
+      "name": "Image preparation workspace",
+      "status": "design",
+      "goal": "Prepare images for publishing, sharing, or storage.",
+      "steps": [
+        {
+          "tool": "image-resizer",
+          "purpose": "normalize dimensions",
+          "optional": true
+        },
+        {
+          "tool": "image-compressor",
+          "purpose": "reduce file size",
+          "optional": true
+        },
+        {
+          "tool": "image-format-converter",
+          "purpose": "convert output format",
+          "optional": true
+        },
+        {
+          "tool": "heic-to-jpg",
+          "purpose": "convert HEIC/HEIF images",
+          "optional": true
+        },
+        {
+          "tool": "image-to-text",
+          "purpose": "extract text when requested",
+          "optional": true
+        }
+      ],
+      "execution": "browser-local",
+      "agentReady": false
+    },
+    {
+      "id": "health-measurement-overview",
+      "name": "Health measurement overview",
+      "status": "design",
+      "goal": "Use general informational health calculations while keeping results explainable and clearly bounded.",
+      "steps": [
+        {
+          "tool": "bmi-calculator",
+          "purpose": "calculate adult BMI and show reference context"
+        }
+      ],
+      "execution": "browser-local",
+      "agentReady": false,
+      "safety": "Informational health calculation only; not a diagnosis or treatment recommendation."
+    }
+  ]
+}
