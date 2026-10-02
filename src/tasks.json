@@ -307,6 +307,74 @@
       "tools": [
         "bmi-calculator"
       ]
+    },
+    {
+      "id": "convert-images-to-pdf",
+      "name": "Turn images into a PDF",
+      "keywords": [
+        "jpg to pdf",
+        "images to pdf",
+        "图片转PDF",
+        "照片转PDF"
+      ],
+      "tools": [
+        "jpg-to-pdf"
+      ]
+    },
+    {
+      "id": "convert-unix-time",
+      "name": "Convert Unix timestamps",
+      "keywords": [
+        "unix timestamp",
+        "timestamp",
+        "时间戳",
+        "Unix时间戳"
+      ],
+      "tools": [
+        "unix-timestamp"
+      ]
+    },
+    {
+      "id": "calculate-scientific-expression",
+      "name": "Evaluate a scientific expression",
+      "keywords": [
+        "scientific calculator",
+        "expression",
+        "sin",
+        "sqrt",
+        "科学计算",
+        "表达式"
+      ],
+      "tools": [
+        "scientific-calculator"
+      ]
+    },
+    {
+      "id": "calculate-aspect-ratio",
+      "name": "Calculate an aspect ratio",
+      "keywords": [
+        "aspect ratio",
+        "ratio",
+        "宽高比",
+        "比例"
+      ],
+      "tools": [
+        "aspect-ratio-calculator"
+      ]
+    },
+    {
+      "id": "calculate-percentage-change",
+      "name": "Calculate percentage change",
+      "keywords": [
+        "percentage change",
+        "increase decrease percent",
+        "百分比变化",
+        "涨幅",
+        "跌幅"
+      ],
+      "tools": [
+        "percentage-change-calculator"
+      ]
     }
   ]
 }
