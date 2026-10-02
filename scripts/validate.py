@@ -108,7 +108,7 @@ for url in cdn_re.findall(app):
         raise SystemExit("Unpinned CDN dependency: " + url)
 if re.search(r"(?<!\$)\$\('(button|select|input)',r\)\[", app):
     raise SystemExit("Single-element selector indexed as a collection")
-if "$$(" in app:
+if "$" * 3 + "(" in app:
     raise SystemExit("Invalid triple-dollar selector syntax")
 
 build_source = (ROOT / "scripts" / "build.py").read_text(encoding="utf-8")
