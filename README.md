@@ -144,6 +144,20 @@ OCR 使用 Tesseract.js 在浏览器 Web Worker 中运行；官方文档说明�
 
 本轮新增商业高频工具：百分比变化、ROI、加价率、盈亏平衡；新增 PDF 页面提取与重新排序，并继续完善 PDF 工作流。
 
+## 2026-10-02 架构演进：Tool Contract / Workflow / Agent Discovery
+
+本轮在保持现有 Web 工具运行方式不变的前提下，新增了面向未来 API / MCP / AI Agent 的机器可读基础设施：
+
+- `public/gqb-core.js`：承载确定性计算核心，与 DOM/UI 解耦；`public/app.js` 负责页面和工具编排。
+- `src/tool-contract.schema.json`：统一工具契约的基础 Schema。
+- `src/workflows.json`：声明式 Workflow 目录，目前为 design 状态，不宣称已经提供自动执行。
+- `src/workflows.schema.json`：Workflow Schema。
+- 构建时自动生成 `/api/tools.json`、`/api/workflows.json` 和 `/.well-known/gqb.json`，让搜索系统、自动化程序和未来 Agent 可以读取稳定的工具目录。
+- 服务 Worker 缓存版本现在由核心资源内容哈希生成，并将 GQB Core 纳入缓存资产。
+- CI 的 runtime smoke test 会同时加载 GQB Core 和应用层；结构审计也开始检查 Workflow 引用。
+
+当前 Agent 接口仍处于“发现与契约准备”阶段。API 和 MCP 执行层将在工具输入/输出 Schema、权限、隐私策略和结果校验进一步完善后再开放。
+
 ## 2026-10-02 第二轮深度产品复核
 
 本轮开始把产品标准从“能算”提升到“算完以后用户看得懂”。BMI 增加参考分类、腰围身高比和结果限制；单位和时区转换继续修正逻辑；科学计算器改为安全表达式解析。后续所有计算工具将逐步增加“结果是什么意思、下一步关注什么、计算前提和限制”。详细审计见 `PRODUCT_AUDIT.md`。
