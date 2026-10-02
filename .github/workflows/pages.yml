@@ -26,6 +26,8 @@ jobs:
         run: node --check public/app.js
       - name: Runtime initialization smoke test
         run: node scripts/runtime-smoke.js
+      - name: Task router smoke test
+        run: node scripts/task-router-smoke.js
       - name: Audit tool button wiring
         run: node scripts/button-audit.js
       - name: Build localized pages
