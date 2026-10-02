@@ -1,0 +1,312 @@
+{
+  "version": "1.0.0",
+  "philosophy": "Describe the task first; route to deterministic GQB tools without requiring tool selection.",
+  "tasks": [
+    {
+      "id": "calculate-percentage",
+      "name": "Calculate a percentage",
+      "keywords": [
+        "percentage",
+        "percent",
+        "百分比",
+        "百分之"
+      ],
+      "tools": [
+        "percentage-calculator"
+      ]
+    },
+    {
+      "id": "calculate-age",
+      "name": "Calculate age",
+      "keywords": [
+        "age",
+        "birthday",
+        "年龄",
+        "生日"
+      ],
+      "tools": [
+        "age-calculator"
+      ]
+    },
+    {
+      "id": "convert-time-zone",
+      "name": "Convert a time between time zones",
+      "keywords": [
+        "time zone",
+        "timezone",
+        "时区",
+        "时间换算"
+      ],
+      "tools": [
+        "time-zone-converter"
+      ]
+    },
+    {
+      "id": "convert-currency",
+      "name": "Convert currencies",
+      "keywords": [
+        "currency",
+        "exchange rate",
+        "money",
+        "货币",
+        "汇率",
+        "换钱"
+      ],
+      "tools": [
+        "currency-converter"
+      ]
+    },
+    {
+      "id": "convert-units",
+      "name": "Convert units",
+      "keywords": [
+        "convert units",
+        "length",
+        "mass",
+        "time",
+        "单位",
+        "换算",
+        "长度",
+        "重量"
+      ],
+      "tools": [
+        "unit-converter",
+        "data-unit-converter",
+        "speed-converter",
+        "area-converter",
+        "volume-converter",
+        "temperature-converter",
+        "weight-converter"
+      ]
+    },
+    {
+      "id": "calculate-finance",
+      "name": "Calculate a finance result",
+      "keywords": [
+        "loan",
+        "tip",
+        "discount",
+        "vat",
+        "interest",
+        "roi",
+        "markup",
+        "margin",
+        "break even",
+        "贷款",
+        "小费",
+        "折扣",
+        "利税",
+        "利息",
+        "投资回报",
+        "加价",
+        "利润",
+        "盈亏平衡"
+      ],
+      "tools": [
+        "loan-calculator",
+        "tip-calculator",
+        "discount-calculator",
+        "vat-calculator",
+        "compound-interest-calculator",
+        "roi-calculator",
+        "markup-calculator",
+        "profit-margin-calculator",
+        "break-even-calculator"
+      ]
+    },
+    {
+      "id": "calculate-date",
+      "name": "Calculate or change dates",
+      "keywords": [
+        "date difference",
+        "date add",
+        "business days",
+        "日期差",
+        "日期加减",
+        "工作日"
+      ],
+      "tools": [
+        "date-difference-calculator",
+        "date-add-subtract",
+        "business-days-calculator"
+      ]
+    },
+    {
+      "id": "clean-text",
+      "name": "Count or clean text",
+      "keywords": [
+        "word count",
+        "character count",
+        "line count",
+        "clean whitespace",
+        "remove duplicates",
+        "字数",
+        "字符",
+        "行数",
+        "清理空格",
+        "去重"
+      ],
+      "tools": [
+        "word-counter",
+        "character-counter",
+        "line-counter",
+        "whitespace-cleaner",
+        "duplicate-line-remover"
+      ]
+    },
+    {
+      "id": "transform-developer-text",
+      "name": "Format or encode developer text",
+      "keywords": [
+        "json",
+        "url encode",
+        "base64",
+        "hash",
+        "regex",
+        "slug",
+        "csv",
+        "JSON",
+        "URL编码",
+        "Base64",
+        "哈希",
+        "正则",
+        "CSV"
+      ],
+      "tools": [
+        "json-formatter",
+        "url-encoder",
+        "base64-encoder",
+        "hash-generator",
+        "regex-tester",
+        "slug-generator",
+        "csv-json-converter"
+      ]
+    },
+    {
+      "id": "generate-identity",
+      "name": "Generate a password, UUID, random number or QR code",
+      "keywords": [
+        "password",
+        "uuid",
+        "random",
+        "qr",
+        "密码",
+        "随机数",
+        "二维码"
+      ],
+      "tools": [
+        "password-generator",
+        "uuid-generator",
+        "random-number-generator",
+        "qr-code-generator"
+      ]
+    },
+    {
+      "id": "process-image",
+      "name": "Resize, compress or convert an image",
+      "keywords": [
+        "image",
+        "photo",
+        "compress image",
+        "resize image",
+        "convert image",
+        "图片",
+        "照片",
+        "压缩图片",
+        "调整图片",
+        "图片格式"
+      ],
+      "tools": [
+        "image-compressor",
+        "image-resizer",
+        "image-format-converter",
+        "heic-to-jpg",
+        "color-picker-from-image"
+      ]
+    },
+    {
+      "id": "process-pdf",
+      "name": "Merge, split, edit or reorder a PDF",
+      "keywords": [
+        "pdf",
+        "merge pdf",
+        "split pdf",
+        "rotate pdf",
+        "watermark",
+        "page numbers",
+        "delete pages",
+        "reorder pdf",
+        "PDF",
+        "合并PDF",
+        "拆分PDF",
+        "旋转PDF",
+        "水印",
+        "页码",
+        "删除页面",
+        "重新排序"
+      ],
+      "tools": [
+        "pdf-merger",
+        "pdf-splitter",
+        "extract-pdf-pages",
+        "delete-pdf-pages",
+        "reorder-pdf-pages",
+        "rotate-pdf",
+        "pdf-page-numbers",
+        "pdf-watermark"
+      ]
+    },
+    {
+      "id": "extract-from-pdf",
+      "name": "Extract text or images from a PDF",
+      "keywords": [
+        "pdf text",
+        "extract pdf",
+        "pdf to text",
+        "pdf to jpg",
+        "pdf to png",
+        "PDF文字",
+        "PDF转文字",
+        "提取PDF",
+        "PDF转图片"
+      ],
+      "tools": [
+        "pdf-to-text",
+        "pdf-to-jpg",
+        "pdf-to-png",
+        "extract-pdf-pages"
+      ]
+    },
+    {
+      "id": "ocr",
+      "name": "Recognize text from an image or scanned PDF",
+      "keywords": [
+        "ocr",
+        "scan to text",
+        "image to text",
+        "scanned pdf",
+        "OCR",
+        "扫描件",
+        "图片转文字",
+        "扫描PDF"
+      ],
+      "tools": [
+        "image-to-text",
+        "pdf-ocr"
+      ]
+    },
+    {
+      "id": "calculate-health",
+      "name": "Calculate general health measurements",
+      "keywords": [
+        "bmi",
+        "body mass index",
+        "体重指数",
+        "BMI"
+      ],
+      "tools": [
+        "bmi-calculator"
+      ]
+    }
+  ]
+}
