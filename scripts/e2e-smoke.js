@@ -215,6 +215,10 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
   await page.locator("button:not(.secondary)").first().click();
   if (transformInPlace.has(impl)) {
     await page.waitForFunction(oldValue => (document.querySelector("textarea")?.value || "") !== oldValue, before, {timeout:10000});
+  } else if (impl === "whitespace") {
+    const value = await page.locator("textarea").first().inputValue();
+    if (/ {2,}|\n{3,}/.test(value)) throw new Error("whitespace cleanup incomplete: " + JSON.stringify(value));
+    return "whitespace normalization verified";
   } else if (impl === "timestamp") {
     await page.waitForFunction(() => /^-?\d+$/.test((document.querySelector(".output")?.textContent || "").trim()), null, {timeout:5000});
   } else {
