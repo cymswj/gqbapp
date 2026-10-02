@@ -14,6 +14,7 @@ for(const loc of locales){
   samples.push({loc,path:"/"+loc+"/privacy/",kind:"static"});
   samples.push({loc,path:"/"+loc+"/category/"+categories[0]+"/",kind:"category"});
   samples.push({loc,path:"/"+loc+"/tools/"+tools[0].slug+"/",kind:"tool"});
+  samples.push({loc,path:"/"+loc+"/tools/qr-code-generator/",kind:"tool-qr"});
 }
 
 (async()=>{
