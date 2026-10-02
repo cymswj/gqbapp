@@ -7,7 +7,7 @@ const catalog = [
 ];
 
 const branchStarts = [];
-const startRe = /(?:^|else )if\(tool===/g;
+const startRe = /if\(tool===/g;
 let match;
 while ((match = startRe.exec(source))) {
   branchStarts.push(match.index + (match[0].startsWith("else ") ? 5 : 0));
