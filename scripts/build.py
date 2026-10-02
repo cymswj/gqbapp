@@ -19,7 +19,7 @@ locales = site["supportedLocales"]
 base = site["baseUrl"].rstrip("/")
 default_locale = site["defaultLocale"]
 site_path = urlparse(base).path.rstrip("/")
-ASSET_VERSION = hashlib.sha256((PUB / "app.js").read_bytes() + (PUB / "style.css").read_bytes()).hexdigest()[:12]
+ASSET_VERSION = hashlib.sha256((PUB / "gqb-core.js").read_bytes() + (PUB / "app.js").read_bytes() + (PUB / "style.css").read_bytes()).hexdigest()[:12]
 
 GENERIC = {
  "en": "Free online tool, fast and simple. No signup required.",
@@ -271,6 +271,7 @@ def shell(loc, title, desc, canonical, body, depth, extra="", index=True, schema
 <link rel="manifest" href="{asset(depth,'site.webmanifest')}">
 <link rel="stylesheet" href="{asset(depth,'style.css')}">
 <script>window.GQB_I18N={json.dumps({loc:i18n[loc]},ensure_ascii=False)};</script>
+<script defer src="{asset(depth,'gqb-core.js')}"></script>
 <script defer src="{asset(depth,'app.js')}"></script>
 <script type="application/ld+json">{json.dumps(page_schema,ensure_ascii=False)}</script>
 {analytics_tags()}
@@ -561,10 +562,97 @@ for loc in locales:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(page, encoding="utf-8")
 
+# Machine-readable contract and workflow manifests.
+def tool_capabilities(tool):
+    group = tool.get("group")
+    mapping = {
+        "calculators":["calculate"],
+        "converters":["convert"],
+        "finance":["calculate","finance"],
+        "pdf":["file-transform","pdf"],
+        "image":["file-transform","image"],
+        "text":["text-transform"],
+        "developer":["developer-utility"],
+        "generators":["generate"],
+        "health":["health-calculation"]
+    }
+    return mapping.get(group, ["utility"])
+
+def tool_contract(tool):
+    impl = tool.get("impl", "")
+    policy = runtime_policy.get(impl, {})
+    execution = policy.get("execution", "browser-local")
+    limits = {k:v for k,v in policy.items() if k.startswith("max") and isinstance(v,(int,float))}
+    privacy_mode = "external-request" if execution == "external-data" else (
+        "browser-local-with-library-load" if execution == "browser-local-file" and policy.get("library") else
+        "browser-local"
+    )
+    return {
+        "contractVersion":"1.0.0",
+        "id":"gqb:" + tool["slug"],
+        "slug":tool["slug"],
+        "implementation":impl,
+        "category":tool.get("group",""),
+        "names":tool.get("names",{}),
+        "execution":execution,
+        "privacy":{
+            "mode":privacy_mode,
+            "networkReason":policy.get("networkReason")
+        },
+        "limits":limits,
+        "interfaces":["web"],
+        "agent":{"status":"planned"},
+        "deterministic": execution != "external-data",
+        "sideEffects":"none",
+        "capabilities":tool_capabilities(tool)
+    }
+
+tool_registry = {
+    "schemaVersion":"1.0.0",
+    "name":site["siteName"],
+    "baseUrl":base,
+    "defaultLocale":default_locale,
+    "locales":locales,
+    "principles":["local-first","explainable-utility","machine-readable"],
+    "toolCount":len(tools),
+    "tools":[tool_contract(tool) for tool in tools]
+}
+
+workflow_catalog = json.loads((SRC / "workflows.json").read_text(encoding="utf-8")) if (SRC / "workflows.json").exists() else {"version":"1.0.0","workflows":[]}
+discovery = {
+    "schemaVersion":"1.0.0",
+    "name":site["siteName"],
+    "baseUrl":base,
+    "defaultLocale":default_locale,
+    "locales":locales,
+    "principles":["local-first","explainable-utility","task-oriented","machine-readable"],
+    "toolRegistry":base + "/api/tools.json",
+    "workflowRegistry":base + "/api/workflows.json",
+    "agentIntegration":{"web":"available","api":"planned","mcp":"planned"},
+    "executionModel":{"browserLocal":"preferred","server":"future","external":"explicitly-declared"}
+}
+
+for path, payload in [
+    (DIST / "api" / "tools.json", tool_registry),
+    (DIST / "api" / "workflows.json", workflow_catalog),
+    (DIST / ".well-known" / "gqb.json", discovery)
+]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+(DIST / "api" / "tool-contract.schema.json").write_text(
+    (SRC / "tool-contract.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
+)
+(DIST / "api" / "workflows.schema.json").write_text(
+    (SRC / "workflows.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
+)
+
 # Public assets.
-shutil.copy2(PUB / "sw.js", DIST / "sw.js")
+sw_source = (PUB / "sw.js").read_text(encoding="utf-8")
+sw_source = sw_source.replace("__GQB_CACHE_VERSION__", "gqb-tools-" + ASSET_VERSION)
+(DIST / "sw.js").write_text(sw_source, encoding="utf-8")
 (DIST / "public").mkdir(exist_ok=True)
-for name in ["style.css","app.js","og-default.svg","favicon.svg","site.webmanifest","sw.js"]:
+for name in ["style.css","gqb-core.js","app.js","og-default.svg","favicon.svg","site.webmanifest","sw.js"]:
     src = PUB / name
     if src.exists():
         shutil.copy2(src, DIST / "public" / name)
