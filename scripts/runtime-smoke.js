@@ -7,6 +7,7 @@ const tools = [
   ...JSON.parse(fs.readFileSync("src/tools-extra.json", "utf8"))
 ];
 const impls = [...new Set(tools.map(t => t.impl))];
+const coreSource = fs.readFileSync("public/gqb-core.js", "utf8");
 const source = fs.readFileSync("public/app.js", "utf8");
 
 class FakeElement {
@@ -116,6 +117,7 @@ for (const impl of impls) {
   body.dataset.tool = impl;
   root.innerHTML = "";
   try {
+    vm.runInNewContext(coreSource, ctx, { filename: "public/gqb-core.js" });
     vm.runInNewContext(source, ctx, { filename: "public/app.js" });
   } catch (err) {
     failures.push({
@@ -123,6 +125,13 @@ for (const impl of impls) {
       message: (err instanceof Error ? (err.message || err.name) : String(err)).slice(0, 500)
     });
   }
+}
+
+const core = ctx.window.GQB_CORE;
+if (!core) failures.push({impl:"helpers", message:"GQB core was not initialized"});
+else {
+  if (core.calcPercentage(500,18) !== 90) failures.push({impl:"core", message:"Core percentage assertion failed"});
+  if (!core.calcBmi(72,168,"china") || Math.abs(core.calcBmi(72,168,"china").bmi-25.5102) >= 0.001) failures.push({impl:"core", message:"Core BMI assertion failed"});
 }
 
 const api = ctx.window.GQB_TEST;
