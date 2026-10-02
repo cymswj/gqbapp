@@ -63,6 +63,18 @@ known_workflow_tools = set(slugs)
 invalid_workflow_tools = [step.get("tool") for w in workflows.get("workflows", []) for step in w.get("steps", []) if step.get("tool") not in known_workflow_tools]
 if invalid_workflow_tools:
     raise SystemExit("Workflow references unknown tools: " + ", ".join(sorted(set(invalid_workflow_tools))))
+tasks_path = src / "tasks.json"
+tasks_schema_path = src / "tasks.schema.json"
+for required_path in [tasks_path, tasks_schema_path]:
+    if not required_path.exists():
+        raise SystemExit("Missing " + str(required_path.relative_to(ROOT)))
+tasks_catalog = json.loads(tasks_path.read_text(encoding="utf-8"))
+task_ids = [task.get("id") for task in tasks_catalog.get("tasks", [])]
+if len(task_ids) != len(set(task_ids)):
+    raise SystemExit("Duplicate task id found")
+invalid_task_tools = [tool for task in tasks_catalog.get("tasks", []) for tool in task.get("tools", []) if tool not in known_slugs]
+if invalid_task_tools:
+    raise SystemExit("Task references unknown tools: " + ", ".join(sorted(set(invalid_task_tools))))
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
 function_names = re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", app)
 duplicate_function_names = sorted({name for name in function_names if function_names.count(name) > 1})
