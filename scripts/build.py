@@ -615,27 +615,25 @@ def tool_capabilities(tool):
 def schema_for_inputs(definition):
     props = {}
     required = []
+    optional = {"age","sex","waist","includeSymbols","quality","pages","language","reference","pixel","count","files","format","degrees","operation","startNumber","watermarkText","pageOrder","oldValue","newValue"}
     for name, spec in definition.get("inputs", {}).items():
         value = dict(spec)
         field_type = value.pop("type", "string")
-        schema_type = "array" if field_type.endswith("[]") else (
-            "object" if field_type == "object" else
-            "number" if field_type == "number" else
-            "integer" if field_type == "integer" else
-            "boolean" if field_type == "boolean" else
-            "string"
-        )
-        item_type = "object" if field_type.endswith("[]") and field_type == "file[]" else "string"
-        field_schema = {"type": schema_type}
-        if schema_type == "array":
+        if field_type.endswith("[]"):
+            field_schema = {"type":"array"}
             if "mimeTypes" in value:
                 field_schema["items"] = {"type":"object","properties":{"mimeType":{"type":"string","enum":value["mimeTypes"]}}}
             else:
-                field_schema["items"] = {"type":item_type}
+                field_schema["items"] = {"type":"string"}
+        else:
+            schema_type = {
+                "object":"object","number":"number","integer":"integer","boolean":"boolean"
+            }.get(field_type,"string")
+            field_schema = {"type":schema_type}
         for k, v in value.items():
             field_schema[k] = v
         props[name] = field_schema
-        if name not in {"age","sex","waist","includeSymbols","quality","pages","language","reference","pixel","count","files","format"}:
+        if name not in optional:
             required.append(name)
     return {"type":"object","properties":props,"required":required,"additionalProperties":False}
 
@@ -649,10 +647,10 @@ def output_schema_for(definition):
         return {"type":"object","properties":{"values":{"type":"array"}},"required":["values"],"additionalProperties":True}
     if kind == "date":
         return {"type":"object","properties":{"date":{"type":"string","format":"date"}},"required":["date"],"additionalProperties":True}
-    if kind in ("file","multi-file"):
-        return {"type":"object","properties":{"artifacts":{"type":"array","items":{"type":"object","properties":{"mimeType":{"type":"string"},"name":{"type":"string"},"size":{"type":"integer"}},"required":["mimeType"],"additionalProperties":True}}},"required":["artifacts"],"additionalProperties":True}
     if kind == "date-time":
         return {"type":"object","properties":{"dateTime":{"type":"string"}},"required":["dateTime"],"additionalProperties":True}
+    if kind in ("file","multi-file"):
+        return {"type":"object","properties":{"artifacts":{"type":"array","items":{"type":"object","properties":{"mimeType":{"type":"string"},"name":{"type":"string"},"size":{"type":"integer"}},"required":["mimeType"],"additionalProperties":True}}},"required":["artifacts"],"additionalProperties":True}
     if kind == "json":
         return {"type":"object","properties":{"value":{"type":"array"}},"required":["value"],"additionalProperties":True}
     return {"type":"object","additionalProperties":True}
@@ -669,7 +667,7 @@ def tool_contract(tool):
         "browser-local-with-library-load" if execution == "browser-local-file" and policy.get("library") else
         "browser-local"
     )
-    deterministic = definition.get("deterministic", execution != "external-data")
+    deterministic = bool(definition.get("deterministic", execution != "external-data"))
     network = bool(definition.get("network", False) or execution == "external-data" or policy.get("library"))
     errors = list(dict.fromkeys(ERROR_CODES.get(execution, ["INVALID_INPUT"]) + (
         ["LIBRARY_LOAD_FAILED"] if policy.get("library") else []
@@ -684,10 +682,7 @@ def tool_contract(tool):
         "names":tool.get("names",{}),
         "description":tool_meta(tool, default_locale)[1],
         "execution":execution,
-        "privacy":{
-            "mode":privacy_mode,
-            "networkReason":policy.get("networkReason")
-        },
+        "privacy":{"mode":privacy_mode,"networkReason":policy.get("networkReason")},
         "network":network,
         "limits":limits,
         "inputSchema":schema_for_inputs(definition),
@@ -711,11 +706,7 @@ def tool_contract(tool):
         "requiresConfirmation":bool(definition.get("requiresConfirmation", False)),
         "sideEffects":"none",
         "capabilities":tool_capabilities(tool),
-        "verification":{
-            "mode":"result-validation",
-            "required":True,
-            "status":"planned"
-        },
+        "verification":{"mode":"result-validation","required":True,"status":"planned"},
         "errors":errors,
         "examples":definition.get("examples",[])
     }
@@ -733,6 +724,39 @@ tool_registry = {
 }
 
 workflow_catalog = json.loads((SRC / "workflows.json").read_text(encoding="utf-8")) if (SRC / "workflows.json").exists() else {"version":"1.0.0","workflows":[]}
+discovery = {
+    "schemaVersion":"1.0.0",
+    "name":site["siteName"],
+    "baseUrl":base,
+    "defaultLocale":default_locale,
+    "locales":locales,
+    "principles":["local-first","explainable-utility","task-oriented","machine-readable"],
+    "toolRegistry":base + "/api/tools.json",
+    "workflowRegistry":base + "/api/workflows.json",
+    "taskRegistry":base + "/api/tasks.json",
+    "agentIntegration":{"web":"available","api":"planned","mcp":"planned"},
+    "executionModel":{"browserLocal":"preferred","server":"future","external":"explicitly-declared"}
+}
+
+for path, payload in [
+    (DIST / "api" / "tools.json", tool_registry),
+    (DIST / "api" / "workflows.json", workflow_catalog),
+    (DIST / "api" / "tasks.json", tasks_catalog),
+    (DIST / ".well-known" / "gqb.json", discovery)
+]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+(DIST / "api" / "tool-contract.schema.json").write_text(
+    (SRC / "tool-contract.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
+)
+(DIST / "api" / "workflows.schema.json").write_text(
+    (SRC / "workflows.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
+)
+(DIST / "api" / "tasks.schema.json").write_text(
+    (SRC / "tasks.schema.json").read_text(encoding="utf-8"), encoding="utf-8"
+)
+
 # Public assets.
 sw_source = (PUB / "sw.js").read_text(encoding="utf-8")
 sw_source = sw_source.replace("__GQB_CACHE_VERSION__", "gqb-tools-" + ASSET_VERSION)
