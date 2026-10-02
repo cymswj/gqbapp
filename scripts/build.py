@@ -192,7 +192,7 @@ def esc(s):
 
 def asset(depth, name):
     path = ("../" if depth == 1 else "../../../") + "public/" + name
-    return path + ("?v=" + ASSET_VERSION if name in ("app.js","style.css") else "")
+    return path + ("?v=" + ASSET_VERSION if name in ("app.js","gqb-core.js","style.css") else "")
 
 def topnav(loc, depth, home_override=None, page_type="home", page_slug=""):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
@@ -447,23 +447,33 @@ for loc in locales:
  const sections=[...document.querySelectorAll("[data-category-section]")];
  const chips=[...document.querySelectorAll("[data-category]")];
  const none=document.getElementById("noResults");
- function applyCategory(cat){chips.forEach(x=>x.classList.toggle("active",x.dataset.category===cat));
-   featured.hidden=cat!=="all";
-   sections.forEach(s=>s.hidden=cat!=="all"&&s.dataset.categorySection!==cat);
+ let activeCategory="all";
+ function applyCategory(cat){activeCategory=cat;
+   chips.forEach(x=>x.classList.toggle("active",x.dataset.category===cat));
  }
  function filterTools(q){q=(q||"").trim().toLowerCase();
    let shown=0;
-   featured.hidden=!!q;
-   recentSection.hidden=!!q || recentSection.dataset.hasRecent!=="1";
-   cards.forEach(c=>{const ok=!q||c.dataset.toolSearch.includes(q);c.hidden=!ok;if(ok)shown++;});
-   sections.forEach(s=>{if(input.value.trim()){s.hidden=[...s.querySelectorAll("[data-tool-search]")].every(c=>c.hidden)}});
+   const hasQuery=!!q;
+   featured.hidden=hasQuery || activeCategory!=="all";
+   recentSection.hidden=hasQuery || activeCategory!=="all" || recentSection.dataset.hasRecent!=="1";
+   cards.forEach(c=>{
+     const section=c.closest("[data-category-section]");
+     const inCategory=activeCategory==="all" || (section && section.dataset.categorySection===activeCategory);
+     const ok=inCategory && (!hasQuery || c.dataset.toolSearch.includes(q));
+     c.hidden=!ok;
+     if(ok)shown++;
+   });
+   sections.forEach(s=>{
+     const inCategory=activeCategory==="all" || s.dataset.categorySection===activeCategory;
+     s.hidden=!inCategory || (hasQuery && [...s.querySelectorAll("[data-tool-search]")].every(c=>c.hidden));
+   });
    none.hidden=shown!==0;
-   if(!q) sections.forEach(s=>s.hidden=false);
  }
  chips.forEach(c=>c.addEventListener("click",()=>{input.value="";applyCategory(c.dataset.category);filterTools("")}));
- input.addEventListener("input",()=>{chips.forEach(x=>x.classList.toggle("active",x.dataset.category==="all"));filterTools(input.value)});
+ input.addEventListener("input",()=>{applyCategory("all");filterTools(input.value)});
  const form=document.getElementById("toolSearchForm"); if(form) form.addEventListener("submit",e=>e.preventDefault());
  applyCategory("all");
+ filterTools("");
 })();
 </script>'''
     schema = {
