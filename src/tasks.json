@@ -222,7 +222,8 @@
         "image-format-converter",
         "heic-to-jpg",
         "color-picker-from-image"
-      ]
+      ],
+      "workflow": "image-preparation-workspace"
     },
     {
       "id": "process-pdf",
@@ -254,7 +255,8 @@
         "rotate-pdf",
         "pdf-page-numbers",
         "pdf-watermark"
-      ]
+      ],
+      "workflow": "pdf-document-workspace"
     },
     {
       "id": "extract-from-pdf",
@@ -275,7 +277,8 @@
         "pdf-to-jpg",
         "pdf-to-png",
         "extract-pdf-pages"
-      ]
+      ],
+      "workflow": "pdf-document-workspace"
     },
     {
       "id": "ocr",
@@ -293,7 +296,8 @@
       "tools": [
         "image-to-text",
         "pdf-ocr"
-      ]
+      ],
+      "workflow": "image-preparation-workspace"
     },
     {
       "id": "calculate-health",
