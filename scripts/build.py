@@ -21,7 +21,13 @@ locales = site["supportedLocales"]
 base = site["baseUrl"].rstrip("/")
 default_locale = site["defaultLocale"]
 site_path = urlparse(base).path.rstrip("/")
-ASSET_VERSION = hashlib.sha256((PUB / "gqb-core.js").read_bytes() + (PUB / "app.js").read_bytes() + (PUB / "style.css").read_bytes()).hexdigest()[:12]
+ASSET_VERSION = hashlib.sha256(
+    (PUB / "gqb-core.js").read_bytes()
+    + (PUB / "app.js").read_bytes()
+    + (PUB / "gqb-engine.js").read_bytes()
+    + (PUB / "task-router.js").read_bytes()
+    + (PUB / "style.css").read_bytes()
+).hexdigest()[:12]
 
 GENERIC = {
  "en": "Free online tool, fast and simple. No signup required.",
@@ -194,7 +200,7 @@ def esc(s):
 
 def asset(depth, name):
     path = ("../" if depth == 1 else "../../../") + "public/" + name
-    return path + ("?v=" + ASSET_VERSION if name in ("app.js","gqb-core.js","style.css","task-router.js") else "")
+    return path + ("?v=" + ASSET_VERSION if name in ("app.js","gqb-core.js","gqb-engine.js","task-router.js","style.css") else "")
 
 def topnav(loc, depth, home_override=None, page_type="home", page_slug=""):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
@@ -482,7 +488,7 @@ for loc in locales:
     task_names = {l:{tool["slug"]:t(tool["names"],l) for tool in tools} for l in locales}
     task_data = json.dumps(tasks_catalog.get("tasks",[]), ensure_ascii=False)
     task_names_data = json.dumps(task_names, ensure_ascii=False)
-    body = body.replace('</main>', '<script>window.GQB_TASKS='+task_data+';window.GQB_TASK_TOOL_NAMES='+task_names_data+'</script><script src="../public/task-router.js?v=' + ASSET_VERSION + '"></script></main>', 1)
+    body = body.replace('</main>', '<script>window.GQB_TASKS='+task_data+';window.GQB_TASK_TOOL_NAMES='+task_names_data+'</script><script src="../public/gqb-engine.js?v='+ ASSET_VERSION +'"></script><script src="../public/task-router.js?v=' + ASSET_VERSION + '"></script></main>', 1)
     schema = {
       "@context":"https://schema.org",
       "@type":"WebSite",
@@ -774,7 +780,7 @@ sw_source = (PUB / "sw.js").read_text(encoding="utf-8")
 sw_source = sw_source.replace("__GQB_CACHE_VERSION__", "gqb-tools-" + ASSET_VERSION)
 (DIST / "sw.js").write_text(sw_source, encoding="utf-8")
 (DIST / "public").mkdir(exist_ok=True)
-for name in ["style.css","gqb-core.js","app.js","task-router.js","og-default.svg","favicon.svg","site.webmanifest"]:
+for name in ["style.css","gqb-core.js","gqb-engine.js","app.js","task-router.js","og-default.svg","favicon.svg","site.webmanifest"]:
     src = PUB / name
     if src.exists():
         shutil.copy2(src, DIST / "public" / name)
