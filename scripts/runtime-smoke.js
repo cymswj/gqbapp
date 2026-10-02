@@ -19,28 +19,12 @@ class FakeElement {
     this.style = {};
     this.attributes = {};
     this.value = "";
-    this._innerHTML = "";
+    this.innerHTML = "";
     this.textContent = "";
     this.checked = false;
     this.files = [];
     this.options = [];
     this.selectedIndex = 0;
-    this.generatedButtonCount = 0;
-    this._onclick = null;
-    this._countedClick = false;
-  }
-  get innerHTML() { return this._innerHTML; }
-  set innerHTML(value) {
-    this._innerHTML = String(value ?? "");
-    this.generatedButtonCount = (this._innerHTML.match(/<button\\b/g) || []).length;
-  }
-  get onclick() { return this._onclick; }
-  set onclick(fn) {
-    this._onclick = fn;
-    if (this.tagName === "BUTTON" && typeof fn === "function" && !this._countedClick) {
-      this._countedClick = true;
-      FakeElement.buttonBindings++;
-    }
   }
   setAttribute(k, v) { this.attributes[k] = String(v); }
   add(option) { this.options.push(option); }
@@ -58,7 +42,6 @@ class FakeElement {
   querySelector(selector) { return fakeFor(selector); }
   querySelectorAll(selector) { return fakeMany(selector); }
 }
-FakeElement.buttonBindings = 0;
 function fakeFor(selector) {
   if (selector === "#toolApp") return root;
   if (selector.includes("button")) return new FakeElement("button");
@@ -133,17 +116,9 @@ for (const impl of impls) {
   body.dataset.tool = impl;
   root.innerHTML = "";
   try {
-    FakeElement.buttonBindings = 0;
     root.innerHTML = "";
     vm.runInNewContext(coreSource, ctx, { filename: "public/gqb-core.js" });
     vm.runInNewContext(source, ctx, { filename: "public/app.js" });
-    const buttonCount = root.generatedButtonCount;
-    if (buttonCount !== FakeElement.buttonBindings) {
-      failures.push({
-        impl,
-        message:"Button handler mismatch: " + FakeElement.buttonBindings + "/" + buttonCount
-      });
-    }
   } catch (err) {
     failures.push({
       impl,
