@@ -15,6 +15,27 @@ seo = json.loads((SRC / "seo-overrides.json").read_text(encoding="utf-8"))
 slugs = [x["slug"] for x in tools]
 impls = {x["impl"] for x in tools}
 runtime_impls = set(re.findall(r"tool==='([^']+)'", app))
+policy = json.loads((SRC / "runtime-policy.json").read_text(encoding="utf-8"))
+policy_keys = set(k for k in policy.keys() if k != "version")
+policy_coverage_gaps = sorted(impls - policy_keys)
+policy_extras = sorted(policy_keys - impls)
+content_keys = set(content.keys())
+content_unknown_tools = sorted(content_keys - set(slugs))
+content_locale_gaps = sorted(f"{slug}:{loc}" for slug, localized in content.items() for loc in localized if loc not in locales)
+content_bad_shapes = []
+for slug, localized in content.items():
+    if not isinstance(localized, dict):
+        content_bad_shapes.append(f"{slug}:not-dict")
+        continue
+    for loc, data in localized.items():
+        if not isinstance(data, dict):
+            content_bad_shapes.append(f"{slug}:{loc}:not-dict")
+            continue
+        if "guide" in data and not isinstance(data["guide"], list):
+            content_bad_shapes.append(f"{slug}:{loc}:guide")
+        if "sources" in data and not isinstance(data["sources"], list):
+            content_bad_shapes.append(f"{slug}:{loc}:sources")
+
 
 print("GQB Tools structural audit")
 print(f"tools={len(tools)} unique_slugs={len(set(slugs))} declared_impls={len(impls)} runtime_branches={len(runtime_impls)}")
@@ -27,6 +48,7 @@ bad_seo = sorted(k for k in seo.get("pages", {}) if ":" not in k or k.split(":",
 
 print(f"localized_name_gaps={len(missing_names)} implementation_gaps={len(missing_impls)} invalid_groups={len(invalid_groups)} invalid_seo_keys={len(bad_seo)}")
 print(f"deep_content_tools={len(content)} ({len(content)}/{len(tools)} = {len(content)/len(tools)*100:.1f}%)")
+print(f"runtime_policy_gaps={len(policy_coverage_gaps)} runtime_policy_extras={len(policy_extras)} content_unknown_tools={len(content_unknown_tools)} content_locale_gaps={len(content_locale_gaps)} content_shape_errors={len(content_bad_shapes)}")
 
 unsafe_selectors = re.findall(r"(?<!\$)\$\([^)]*\)\.(?:forEach|map|filter|some|every|reduce|join)\(", app)
 dynamic_code = re.findall(r"\b(?:Function|eval)\s*\(", app)
