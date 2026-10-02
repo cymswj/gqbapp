@@ -633,10 +633,10 @@ def schema_for_inputs(definition):
             else:
                 field_schema["items"] = {"type":"string"}
         elif field_type == "file":
-            props = {"name":{"type":"string"},"mimeType":{"type":"string"},"size":{"type":"integer","minimum":0}}
+            file_props = {"name":{"type":"string"},"mimeType":{"type":"string"},"size":{"type":"integer","minimum":0}}
             if "mimeTypes" in value:
-                props["mimeType"]["enum"] = value["mimeTypes"]
-            field_schema = {"type":"object","properties":props,"required":["mimeType","size"],"additionalProperties":True}
+                file_props["mimeType"]["enum"] = value["mimeTypes"]
+            field_schema = {"type":"object","properties":file_props,"required":["mimeType","size"],"additionalProperties":True}
         else:
             schema_type = {
                 "object":"object","number":"number","integer":"integer","boolean":"boolean"
