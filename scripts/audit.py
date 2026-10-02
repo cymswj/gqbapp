@@ -66,7 +66,7 @@ print("workflow_quality_gate_files=" + ", ".join(str(p.relative_to(ROOT)) for p 
     ROOT / "scripts" / "linkcheck.py",
 ] if p.exists()))
 
-if missing_names or missing_impls or invalid_groups or bad_seo or unsafe_selectors or dynamic_code or math_random or duplicate_functions or unpinned:
+if missing_names or missing_impls or invalid_groups or bad_seo or unsafe_selectors or dynamic_code or math_random or duplicate_functions or unpinned or policy_coverage_gaps or policy_extras or content_unknown_tools or content_locale_gaps or content_bad_shapes:
     print("RESULT=FAIL")
     raise SystemExit(1)
 
