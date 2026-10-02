@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "version",
+    "philosophy",
     "workflows"
   ],
   "properties": {
@@ -46,8 +47,12 @@
             "items": {
               "type": "object",
               "required": [
+                "id",
                 "tool",
-                "purpose"
+                "purpose",
+                "dependsOn",
+                "inputStrategy",
+                "outputKey"
               ],
               "properties": {
                 "tool": {
@@ -59,6 +64,27 @@
                 },
                 "optional": {
                   "type": "boolean"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "dependsOn": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "inputStrategy": {
+                  "type": "string",
+                  "enum": [
+                    "primary-input",
+                    "previous-output",
+                    "carry-forward",
+                    "custom"
+                  ]
+                },
+                "outputKey": {
+                  "type": "string"
                 }
               }
             }
@@ -71,6 +97,64 @@
           },
           "safety": {
             "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "sequential",
+              "dag"
+            ]
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "from",
+                "to"
+              ],
+              "properties": {
+                "from": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "verification": {
+            "type": "object",
+            "required": [
+              "mode",
+              "required"
+            ],
+            "properties": {
+              "mode": {
+                "type": "string"
+              },
+              "required": {
+                "type": "boolean"
+              }
+            }
+          },
+          "engine": {
+            "type": "object",
+            "required": [
+              "status",
+              "execution"
+            ],
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "execution": {
+                "type": "string"
+              }
+            }
           }
         }
       }
