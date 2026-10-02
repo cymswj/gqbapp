@@ -204,7 +204,7 @@ def asset(depth, name):
 
 def topnav(loc, depth, home_override=None, page_type="home", page_slug=""):
     labels = {"en":"EN","zh":"中文","es":"ES","fr":"FR","de":"DE","pt":"PT","ru":"RU","ja":"日本語","ar":"العربية","id":"ID"}
-    home = home_override or ("./" if depth == 1 else "../../")
+    home = home_override or url(loc)
     def switch_tail(language):
         if page_type == "static":
             return f"{language}/{page_slug}/"
