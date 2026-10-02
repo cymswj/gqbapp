@@ -83,7 +83,7 @@ function saveLocal(){
 function exportSEO(){
  const obj={site:{},pages:{}},loc=q("lang").value;
  if(isSite())obj.site[loc]=siteData();else obj.pages[loc+":"+q("slug").value]=pageData();
- const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}));a.download="seo-overrides.json";a.click();
+ const a=document.createElement("a");const href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:"application/json"}));a.href=href;a.download="seo-overrides.json";a.click();setTimeout(()=>URL.revokeObjectURL(href),1000);
 }
 async function apiLoad(){
  const s=q("apiStatus"); if(!q("api").value||!q("pw").value)return s.textContent="请先填写 Worker 地址和后台密码。";
