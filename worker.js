@@ -157,7 +157,8 @@ export default {
         },
         body:JSON.stringify(payload)
       });
-      if (!r.ok) return new Response(await r.text(),{status:502,headers});
+      if (r.status === 409) return jsonResponse(request,env,{error:"SEO configuration changed concurrently. Reload and try again."},409);
+      if (!r.ok) return jsonResponse(request,env,{error:"GitHub write failed",status:r.status},502);
       return jsonResponse(request,env,{ok:true,storage:"github",data});
     }
 
