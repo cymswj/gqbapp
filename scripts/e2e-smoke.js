@@ -117,6 +117,9 @@ async function upload(page, impl, imageBuffer, pdfBuffer) {
 async function waitForResult(page, impl) {
   const timeout = (impl === "ocr-image" || impl === "pdf-ocr") ? 120000 : 30000;
   await page.waitForFunction((tool) => {
+    if (tool === "ocr-image" || tool === "pdf-ocr") {
+      return (document.querySelector(".ocrText")?.value || "").trim().length > 0;
+    }
     const output = (document.querySelector(".output")?.textContent || "").trim();
     const textareas = [...document.querySelectorAll("textarea")].some(x => x.value.trim().length > 0);
     const downloads = [...document.querySelectorAll("a")].some(a => a.href.startsWith("blob:"));
