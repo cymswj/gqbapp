@@ -23,6 +23,15 @@ if missing:
     raise SystemExit("Missing tool implementations: " + ", ".join(missing))
 seo = json.loads((src / "seo-overrides.json").read_text(encoding="utf-8"))
 runtime_policy = json.loads((src / "runtime-policy.json").read_text(encoding="utf-8")) if (src / "runtime-policy.json").exists() else {}
+tool_contract_path = src / "tool-contracts.json"
+if not tool_contract_path.exists():
+    raise SystemExit("Missing src/tool-contracts.json")
+tool_contracts = json.loads(tool_contract_path.read_text(encoding="utf-8"))
+definitions = tool_contracts.get("definitions", {})
+missing_contracts = sorted(set(t["impl"] for t in tools) - set(definitions))
+extra_contracts = sorted(set(definitions) - set(t["impl"] for t in tools))
+if missing_contracts or extra_contracts:
+    raise SystemExit("Tool contract mismatch; missing=" + ",".join(missing_contracts) + " extra=" + ",".join(extra_contracts))
 if not isinstance(seo.get("pages", {}), dict):
     raise SystemExit("Invalid SEO page overrides")
 known_slugs = set(slugs)
