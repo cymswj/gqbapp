@@ -1,0 +1,18 @@
+/* GQB Core — deterministic, browser-safe tool primitives. */
+(()=>{
+  const formatNumber=(n,locale="en")=>Number.isFinite(n)?Number(n.toFixed(8)).toLocaleString(locale):"—";
+  function calcPercentage(value,percent){return Number.isFinite(value)&&Number.isFinite(percent)?value*percent/100:null}
+  function calcAgeParts(birth,now){if(!(birth instanceof Date)||Number.isNaN(birth.getTime())||!(now instanceof Date)||Number.isNaN(now.getTime())||birth>now)return null;const by=birth.getFullYear(),bm=birth.getMonth(),bd=birth.getDate(),ny=now.getFullYear();let years=ny-by;const clamp=(y,m,d)=>new Date(y,m,Math.min(d,new Date(y,m+1,0).getDate()));let ann=clamp(ny,bm,bd);if(ann>now){years--;ann=clamp(ny-1,bm,bd)}let months=0,anchor=ann;for(let k=1;k<=11;k++){const next=clamp(ann.getFullYear(),ann.getMonth()+k,bd);if(next>now)break;months=k;anchor=next}return{years,months,days:Math.max(0,Math.floor((now-anchor)/86400000))}}
+  function calcBmi(weight,height,reference="general"){if(!(weight>0&&height>0))return null;const bmi=weight/(height/100)**2;if(!Number.isFinite(bmi))return null;const normal=reference==="china"?24:25,obesity=reference==="china"?28:30,category=bmi<18.5?"underweight":bmi<normal?"healthy":bmi<obesity?"overweight":"obesity",upper=reference==="china"?24:25;return{bmi,category,reference,referenceWeightMin:18.5*(height/100)**2,referenceWeightMax:upper*(height/100)**2}}
+  function calcLoan(principal,rate,years){if(!(principal>0&&years>0&&Number.isFinite(rate)&&rate>=0))return null;const m=rate/100/12,n=years*12;if(!Number.isFinite(n)||n>1200)return null;const payment=m===0?principal/n:principal*m*Math.pow(1+m,n)/(Math.pow(1+m,n)-1);return Number.isFinite(payment)?{payment,total:payment*n,interest:payment*n-principal}:null}
+  function calcPercentageChange(oldValue,newValue){if(!Number.isFinite(oldValue)||!Number.isFinite(newValue)||oldValue===0)return null;const change=(newValue-oldValue)/oldValue*100;return{change,direction:change>=0?"increase":"decrease"}}
+  function calcTip(bill,rate,people){if(!(bill>=0&&rate>=0&&people>0))return null;const tip=bill*rate/100,total=bill+tip;return{tip,total,perPerson:total/people}}
+  function calcDiscount(price,discount){return price>=0&&discount>=0&&discount<=100?{finalPrice:price*(1-discount/100),saved:price*discount/100}:null}
+  function calcVat(amount,rate,mode="add"){if(!(amount>=0&&Number.isFinite(rate)&&rate>=0))return null;if(mode==="remove"){const net=amount/(1+rate/100);return{mode,net,tax:amount-net,gross:amount}}const tax=amount*rate/100;return{mode:"add",net:amount,tax,gross:amount+tax}}
+  function calcCompound(principal,rate,years){if(!(principal>=0&&Number.isFinite(rate)&&Number.isFinite(years)&&years>=0))return null;const future=principal*Math.pow(1+rate/100,years);return Number.isFinite(future)?{future,interest:future-principal}:null}
+  function calcRoi(cost,ret){return cost>0&&Number.isFinite(ret)?(ret-cost)/cost*100:null}
+  function calcMarkup(cost,sale){return cost>0&&Number.isFinite(sale)?{markup:(sale-cost)/cost*100,profit:sale-cost}:null}
+  function calcMargin(cost,revenue){if(!(revenue>0&&Number.isFinite(cost)))return null;const profit=revenue-cost;return{profit,margin:profit/revenue*100}}
+  function calcBreakEven(fixed,price,variable){const contribution=price-variable;if(!(fixed>=0&&Number.isFinite(price)&&Number.isFinite(variable))||contribution<=0)return null;const units=Math.ceil(fixed/contribution);return{units,revenue:units*price,contribution}}
+  window.GQB_CORE=Object.freeze({formatNumber,calcPercentage,calcAgeParts,calcBmi,calcLoan,calcPercentageChange,calcTip,calcDiscount,calcVat,calcCompound,calcRoi,calcMarkup,calcMargin,calcBreakEven});
+})();
