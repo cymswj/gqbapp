@@ -1,5 +1,5 @@
-const CACHE="gqb-tools-v3";
-const CORE=["./","./public/style.css","./public/app.js"];
+const CACHE="__GQB_CACHE_VERSION__";
+const CORE=["./","./public/style.css","./public/gqb-core.js","./public/app.js","./public/site.webmanifest"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
 });
