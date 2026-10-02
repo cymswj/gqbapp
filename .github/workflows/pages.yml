@@ -28,6 +28,8 @@ jobs:
         run: node scripts/runtime-smoke.js
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
+      - name: Check generated navigation interactions
+        run: node scripts/navigation-smoke.js
       - name: Check generated links
         run: python scripts/linkcheck.py
       - name: Setup Pages
