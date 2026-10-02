@@ -54,11 +54,16 @@ unsafe_selectors = re.findall(r"(?<!\$)\$\([^)]*\)\.(?:forEach|map|filter|some|e
 dynamic_code = re.findall(r"\b(?:Function|eval)\s*\(", app)
 math_random = "Math.random" in app
 duplicate_functions = sorted({n for n in re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", app) if re.findall(r"\bfunction\s+" + re.escape(n) + r"\s*\(", app).count(n) > 1})
+
+lib_keys = sorted(re.findall(r"const LIBS=\{([^}]*)\}", app)[0].split(",")[0:0]) if "const LIBS={" in app else []
+script_calls = re.findall(r"script\((['\"])(.*?)\1\)", app)
+direct_script_urls = [x for _, x in script_calls if x.startswith("http")]
 cdn_urls = sorted(set(re.findall(r"https://cdn\.jsdelivr\.net/npm/[^'\"]+", app)))
+
 unpinned = [u for u in cdn_urls if "/npm/" in u and "@" not in u.split("/npm/", 1)[1].split("/", 1)[0]]
 
 print(f"unsafe_collection_selectors={len(unsafe_selectors)} dynamic_code_calls={len(dynamic_code)} math_random={math_random} duplicate_named_functions={len(duplicate_functions)}")
-print(f"cdn_dependencies={len(cdn_urls)} unpinned_cdn={len(unpinned)}")
+print(f"cdn_dependencies={len(cdn_urls)} unpinned_cdn={len(unpinned)} direct_script_urls={len(direct_script_urls)}")
 print("workflow_quality_gate_files=" + ", ".join(str(p.relative_to(ROOT)) for p in [
     ROOT / ".github" / "workflows" / "pages.yml",
     ROOT / "scripts" / "validate.py",
@@ -66,7 +71,7 @@ print("workflow_quality_gate_files=" + ", ".join(str(p.relative_to(ROOT)) for p 
     ROOT / "scripts" / "linkcheck.py",
 ] if p.exists()))
 
-if missing_names or missing_impls or invalid_groups or bad_seo or unsafe_selectors or dynamic_code or math_random or duplicate_functions or unpinned or policy_coverage_gaps or policy_extras or content_unknown_tools or content_locale_gaps or content_bad_shapes:
+if missing_names or missing_impls or invalid_groups or bad_seo or unsafe_selectors or dynamic_code or math_random or duplicate_functions or unpinned or direct_script_urls or policy_coverage_gaps or policy_extras or content_unknown_tools or content_locale_gaps or content_bad_shapes:
     print("RESULT=FAIL")
     raise SystemExit(1)
 
