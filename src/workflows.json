@@ -1,5 +1,5 @@
 {
-  "$schema": "../src/workflows.schema.json",
+  "$schema": "https://gqb.app/api/workflows.schema.json",
   "version": "1.0.0",
   "philosophy": "Workflows compose existing GQB tools into user tasks. Definitions are declarative until an execution engine is enabled.",
   "workflows": [
