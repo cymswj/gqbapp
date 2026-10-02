@@ -26,6 +26,8 @@ jobs:
         run: node --check public/app.js
       - name: Runtime initialization smoke test
         run: node scripts/runtime-smoke.js
+      - name: Audit tool button wiring
+        run: node scripts/button-audit.js
       - name: Build localized pages
         run: python -m py_compile scripts/build.py && python scripts/build.py
       - name: Check generated navigation interactions
