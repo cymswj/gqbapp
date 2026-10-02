@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gqb.app/src/tool-contract.schema.json",
+  "title": "GQB Tool Contract",
+  "type": "object",
+  "required": [
+    "contractVersion",
+    "slug",
+    "id",
+    "implementation",
+    "category",
+    "names",
+    "execution",
+    "privacy",
+    "interfaces"
+  ],
+  "properties": {
+    "contractVersion": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^gqb:[a-z0-9-]+$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "implementation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "names": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "execution": {
+      "type": "string",
+      "enum": [
+        "browser-local",
+        "browser-local-file",
+        "external-data",
+        "worker",
+        "external"
+      ]
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "networkReason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "number",
+          "integer",
+          "string",
+          "null"
+        ]
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "agent": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "planned",
+            "available"
+          ]
+        }
+      }
+    },
+    "deterministic": {
+      "type": "boolean"
+    },
+    "sideEffects": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
