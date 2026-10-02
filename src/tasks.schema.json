@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gqb.app/api/tasks.schema.json",
+  "title": "GQB Task Routing Catalog",
+  "type": "object",
+  "required": [
+    "version",
+    "philosophy",
+    "tasks"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "philosophy": {
+      "type": "string"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "keywords",
+          "tools"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tools": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
