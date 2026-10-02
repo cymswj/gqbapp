@@ -28,6 +28,8 @@ jobs:
         run: node scripts/runtime-smoke.js
       - name: Task router smoke test
         run: node scripts/task-router-smoke.js
+      - name: Workflow execution engine smoke test
+        run: node scripts/engine-smoke.js
       - name: Workflow DAG smoke test
         run: node scripts/workflow-smoke.js
       - name: Audit tool button wiring
