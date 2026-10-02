@@ -743,6 +743,29 @@ tool_registry = {
 }
 
 workflow_catalog = json.loads((SRC / "workflows.json").read_text(encoding="utf-8")) if (SRC / "workflows.json").exists() else {"version":"1.0.0","workflows":[]}
+agent_manifest = {
+    "$schema":base + "/api/agent.schema.json",
+    "schemaVersion":"1.0.0",
+    "name":site["siteName"],
+    "role":"digital-task-infrastructure",
+    "status":"discovery-only",
+    "modelAgnostic":True,
+    "principles":["local-first","machine-readable","task-oriented","explainable-utility"],
+    "registries":{
+        "tools":base + "/api/tools.json",
+        "tasks":base + "/api/tasks.json",
+        "workflows":base + "/api/workflows.json"
+    },
+    "interfaces":{"web":"available","machineReadable":"available","api":"planned","mcp":"planned"},
+    "executionModel":{"browserLocal":"preferred","server":"future","external":"explicitly-declared"},
+    "safety":{
+        "optionalWorkflowSteps":"explicit-selection-required",
+        "externalNetwork":"declared-by-tool-contract",
+        "verification":"required-by-contract",
+        "sideEffects":"declared-by-contract"
+    }
+}
+
 discovery = {
     "schemaVersion":"1.0.0",
     "name":site["siteName"],
@@ -753,6 +776,7 @@ discovery = {
     "toolRegistry":base + "/api/tools.json",
     "workflowRegistry":base + "/api/workflows.json",
     "taskRegistry":base + "/api/tasks.json",
+    "agentManifest":base + "/api/agent.json",
     "agentIntegration":{"web":"available","api":"planned","mcp":"planned"},
     "executionModel":{"browserLocal":"preferred","server":"future","external":"explicitly-declared"}
 }
@@ -761,6 +785,7 @@ for path, payload in [
     (DIST / "api" / "tools.json", tool_registry),
     (DIST / "api" / "workflows.json", workflow_catalog),
     (DIST / "api" / "tasks.json", tasks_catalog),
+    (DIST / "api" / "agent.json", agent_manifest),
     (DIST / ".well-known" / "gqb.json", discovery)
 ]:
     path.parent.mkdir(parents=True, exist_ok=True)
