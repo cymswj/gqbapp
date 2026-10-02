@@ -652,10 +652,11 @@ sw_source = (PUB / "sw.js").read_text(encoding="utf-8")
 sw_source = sw_source.replace("__GQB_CACHE_VERSION__", "gqb-tools-" + ASSET_VERSION)
 (DIST / "sw.js").write_text(sw_source, encoding="utf-8")
 (DIST / "public").mkdir(exist_ok=True)
-for name in ["style.css","gqb-core.js","app.js","og-default.svg","favicon.svg","site.webmanifest","sw.js"]:
+for name in ["style.css","gqb-core.js","app.js","og-default.svg","favicon.svg","site.webmanifest"]:
     src = PUB / name
     if src.exists():
         shutil.copy2(src, DIST / "public" / name)
+(DIST / "public" / "sw.js").write_text(sw_source, encoding="utf-8")
 
 # SEO admin is intentionally outside the sitemap and marked noindex.
 admin_src = ROOT / "admin.html"
