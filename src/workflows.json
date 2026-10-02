@@ -1,7 +1,7 @@
 {
   "$schema": "https://gqb.app/api/workflows.schema.json",
-  "version": "1.0.0",
-  "philosophy": "Workflows compose existing GQB tools into user tasks. Definitions are declarative until an execution engine is enabled.",
+  "version": "2.0.0",
+  "philosophy": "Workflows are executable-ready DAG plans over GQB tool contracts. The current site exposes declarative plans; an execution engine can later resolve optional steps and carry verified outputs between nodes.",
   "workflows": [
     {
       "id": "pdf-document-workspace",
@@ -10,48 +10,134 @@
       "goal": "Organize, transform, and export a PDF through multiple existing browser-local operations.",
       "steps": [
         {
+          "id": "step-1",
           "tool": "pdf-to-text",
           "purpose": "extract selectable text when needed",
-          "optional": true
+          "optional": true,
+          "dependsOn": [],
+          "inputStrategy": "primary-input",
+          "outputKey": "text"
         },
         {
+          "id": "step-2",
           "tool": "extract-pdf-pages",
           "purpose": "keep selected pages",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-1"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-3",
           "tool": "delete-pdf-pages",
           "purpose": "remove unwanted pages",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-2"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-4",
           "tool": "reorder-pdf-pages",
           "purpose": "rearrange page order",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-3"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-5",
           "tool": "rotate-pdf",
           "purpose": "correct page orientation",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-4"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-6",
           "tool": "pdf-page-numbers",
           "purpose": "add sequential page numbers",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-5"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-7",
           "tool": "pdf-watermark",
           "purpose": "add a text watermark",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-6"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-8",
           "tool": "pdf-merger",
           "purpose": "combine documents",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-7"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         }
       ],
       "execution": "browser-local",
-      "agentReady": false
+      "agentReady": false,
+      "version": "2.0.0",
+      "mode": "sequential",
+      "edges": [
+        {
+          "from": "step-1",
+          "to": "step-2"
+        },
+        {
+          "from": "step-2",
+          "to": "step-3"
+        },
+        {
+          "from": "step-3",
+          "to": "step-4"
+        },
+        {
+          "from": "step-4",
+          "to": "step-5"
+        },
+        {
+          "from": "step-5",
+          "to": "step-6"
+        },
+        {
+          "from": "step-6",
+          "to": "step-7"
+        },
+        {
+          "from": "step-7",
+          "to": "step-8"
+        }
+      ],
+      "verification": {
+        "mode": "per-step-and-final",
+        "required": true
+      },
+      "engine": {
+        "status": "schema-ready",
+        "execution": "not-enabled"
+      }
     },
     {
       "id": "image-preparation-workspace",
@@ -60,33 +146,89 @@
       "goal": "Prepare images for publishing, sharing, or storage.",
       "steps": [
         {
+          "id": "step-1",
           "tool": "image-resizer",
           "purpose": "normalize dimensions",
-          "optional": true
+          "optional": true,
+          "dependsOn": [],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-2",
           "tool": "image-compressor",
           "purpose": "reduce file size",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-1"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-3",
           "tool": "image-format-converter",
           "purpose": "convert output format",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-2"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-4",
           "tool": "heic-to-jpg",
           "purpose": "convert HEIC/HEIF images",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-3"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         },
         {
+          "id": "step-5",
           "tool": "image-to-text",
           "purpose": "extract text when requested",
-          "optional": true
+          "optional": true,
+          "dependsOn": [
+            "step-4"
+          ],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         }
       ],
       "execution": "browser-local",
-      "agentReady": false
+      "agentReady": false,
+      "version": "2.0.0",
+      "mode": "sequential",
+      "edges": [
+        {
+          "from": "step-1",
+          "to": "step-2"
+        },
+        {
+          "from": "step-2",
+          "to": "step-3"
+        },
+        {
+          "from": "step-3",
+          "to": "step-4"
+        },
+        {
+          "from": "step-4",
+          "to": "step-5"
+        }
+      ],
+      "verification": {
+        "mode": "per-step-and-final",
+        "required": true
+      },
+      "engine": {
+        "status": "schema-ready",
+        "execution": "not-enabled"
+      }
     },
     {
       "id": "health-measurement-overview",
@@ -95,13 +237,28 @@
       "goal": "Use general informational health calculations while keeping results explainable and clearly bounded.",
       "steps": [
         {
+          "id": "step-1",
           "tool": "bmi-calculator",
-          "purpose": "calculate adult BMI and show reference context"
+          "purpose": "calculate adult BMI and show reference context",
+          "dependsOn": [],
+          "inputStrategy": "primary-input",
+          "outputKey": "document"
         }
       ],
       "execution": "browser-local",
       "agentReady": false,
-      "safety": "Informational health calculation only; not a diagnosis or treatment recommendation."
+      "safety": "Informational health calculation only; not a diagnosis or treatment recommendation.",
+      "version": "2.0.0",
+      "mode": "sequential",
+      "edges": [],
+      "verification": {
+        "mode": "per-step-and-final",
+        "required": true
+      },
+      "engine": {
+        "status": "schema-ready",
+        "execution": "not-enabled"
+      }
     }
   ]
 }
