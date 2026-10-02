@@ -47,6 +47,12 @@
               "type": "string",
               "pattern": "^[a-z0-9-]+$"
             }
+          },
+          "workflow": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       }
