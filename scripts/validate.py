@@ -99,6 +99,8 @@ for url in cdn_re.findall(app):
         raise SystemExit("Unpinned CDN dependency: " + url)
 if re.search(r"(?<!\$)\$\('(button|select|input)',r\)\[", app):
     raise SystemExit("Single-element selector indexed as a collection")
+if "$$(" in app:
+    raise SystemExit("Invalid triple-dollar selector syntax")
 
 build_source = (ROOT / "scripts" / "build.py").read_text(encoding="utf-8")
 inline_public_handlers = re.findall(r"\s+on(?:click|change|input|submit)=['\"]", build_source)
