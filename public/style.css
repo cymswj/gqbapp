@@ -87,3 +87,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .tool-runtime{display:flex;align-items:baseline;gap:8px;margin:14px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--soft);font-size:13px}.tool-runtime strong{white-space:nowrap}.tool-runtime span{color:var(--muted)}.tool-runtime-network{background:var(--soft)}
 .download{display:inline-flex;align-items:center;gap:6px;margin-top:10px}.pdfDownloads{display:grid;gap:8px;margin-top:12px}.pdfDownloads .download{margin-top:0}.bmi-result-main{flex-wrap:wrap}
 @media(max-width:720px){.tool-runtime{align-items:flex-start;flex-direction:column;gap:3px}.tool-runtime strong{white-space:normal}}
+
+.task-suggestions{display:grid;gap:10px;margin:14px 0 4px}
+.task-suggestion{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.task-suggestion>strong{font-size:.95rem}
+.task-suggestion>span{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.task-tool{font-size:.82rem;padding:6px 9px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+@media(max-width:700px){.task-suggestion{align-items:flex-start;flex-direction:column}.task-suggestion>span{justify-content:flex-start}}
