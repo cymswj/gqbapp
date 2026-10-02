@@ -172,8 +172,16 @@ async function runTool(page, tool, imageBuffer, pdfBuffer) {
   }
 
   await fillCommon(page, impl);
+  const transformInPlace = new Set(["json","url","base64"]);
+  const before = transformInPlace.has(impl) ? await page.locator("textarea").first().inputValue() : null;
   await page.locator("button:not(.secondary)").first().click();
-  await waitForResult(page, impl);
+  if (transformInPlace.has(impl)) {
+    await page.waitForFunction(oldValue => (document.querySelector("textarea")?.value || "") !== oldValue, before, {timeout:10000});
+  } else if (impl === "timestamp") {
+    await page.waitForFunction(() => /^-?\d+$/.test((document.querySelector(".output")?.textContent || "").trim()), null, {timeout:5000});
+  } else {
+    await waitForResult(page, impl);
+  }
   return "interactive path executed";
 }
 
