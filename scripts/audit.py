@@ -55,7 +55,6 @@ dynamic_code = re.findall(r"\b(?:Function|eval)\s*\(", app)
 math_random = "Math.random" in app
 duplicate_functions = sorted({n for n in re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", app) if re.findall(r"\bfunction\s+" + re.escape(n) + r"\s*\(", app).count(n) > 1})
 
-lib_keys = sorted(re.findall(r"const LIBS=\{([^}]*)\}", app)[0].split(",")[0:0]) if "const LIBS={" in app else []
 script_calls = re.findall(r"script\((['\"])(.*?)\1\)", app)
 direct_script_urls = [x for _, x in script_calls if x.startswith("http")]
 cdn_urls = sorted(set(re.findall(r"https://cdn\.jsdelivr\.net/npm/[^'\"]+", app)))
