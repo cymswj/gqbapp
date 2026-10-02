@@ -40,7 +40,7 @@ class FakeElement {
     const start = this._innerHTML.indexOf(marker);
     if (start >= 0) {
       const box = new FakeElement("div");
-      box.innerHTML = this._innerHTML.slice(start + marker.length).replace(/<\\/div>\\s*$/,"");
+      box.innerHTML = this._innerHTML.slice(start + marker.length);
       this.toolbox = box;
     } else {
       this.toolbox = null;
