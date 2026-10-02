@@ -34,6 +34,26 @@ if missing_policy or extra_policy:
 invalid_seo_keys = [k for k in seo.get("pages", {}) if ":" not in k or k.split(":",1)[0] not in supported_locales or k.split(":",1)[1] not in known_slugs]
 if invalid_seo_keys:
     raise SystemExit("Invalid SEO override keys: " + ", ".join(invalid_seo_keys[:30]))
+core_path = ROOT / "public" / "gqb-core.js"
+if not core_path.exists():
+    raise SystemExit("Missing public/gqb-core.js")
+core = core_path.read_text(encoding="utf-8")
+if "window.GQB_CORE" not in core:
+    raise SystemExit("GQB core registry is missing")
+workflows_path = src / "workflows.json"
+workflow_schema_path = src / "workflows.schema.json"
+contract_schema_path = src / "tool-contract.schema.json"
+for required_path in [workflows_path, workflow_schema_path, contract_schema_path]:
+    if not required_path.exists():
+        raise SystemExit("Missing architecture file: " + str(required_path.relative_to(ROOT)))
+workflows = json.loads(workflows_path.read_text(encoding="utf-8"))
+workflow_ids = [w.get("id") for w in workflows.get("workflows", [])]
+if len(workflow_ids) != len(set(workflow_ids)):
+    raise SystemExit("Duplicate workflow id found")
+known_workflow_tools = set(slugs)
+invalid_workflow_tools = [step.get("tool") for w in workflows.get("workflows", []) for step in w.get("steps", []) if step.get("tool") not in known_workflow_tools]
+if invalid_workflow_tools:
+    raise SystemExit("Workflow references unknown tools: " + ", ".join(sorted(set(invalid_workflow_tools))))
 app = (ROOT / "public" / "app.js").read_text(encoding="utf-8")
 function_names = re.findall(r"\bfunction\s+([A-Za-z_$][\w$]*)\s*\(", app)
 duplicate_function_names = sorted({name for name in function_names if function_names.count(name) > 1})
