@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gqb.app/src/workflows.schema.json",
+  "title": "GQB Workflow Catalog",
+  "type": "object",
+  "required": [
+    "version",
+    "workflows"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "philosophy": {
+      "type": "string"
+    },
+    "workflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status",
+          "goal",
+          "steps",
+          "execution",
+          "agentReady"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "tool",
+                "purpose"
+              ],
+              "properties": {
+                "tool": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]+$"
+                },
+                "purpose": {
+                  "type": "string"
+                },
+                "optional": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "execution": {
+            "type": "string"
+          },
+          "agentReady": {
+            "type": "boolean"
+          },
+          "safety": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
