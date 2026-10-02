@@ -1,0 +1,1223 @@
+{
+  "version": "2.0.0",
+  "generatedFromCatalog": true,
+  "definitions": {
+    "percentage": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "percent": {
+          "type": "number"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "age": {
+      "inputs": {
+        "birthDate": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "outputKind": "duration",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "timezone": {
+      "inputs": {
+        "localDateTime": {
+          "type": "string",
+          "format": "date-time-local"
+        },
+        "fromZone": {
+          "type": "string"
+        },
+        "toZone": {
+          "type": "string"
+        }
+      },
+      "outputKind": "date-time",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "currency": {
+      "inputs": {
+        "amount": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true,
+      "network": true
+    },
+    "unit": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "dimension": {
+          "type": "string",
+          "enum": [
+            "length",
+            "mass",
+            "time"
+          ]
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "password": {
+      "inputs": {
+        "length": {
+          "type": "integer"
+        },
+        "includeSymbols": {
+          "type": "boolean"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": false,
+      "stateful": false,
+      "deterministic": false
+    },
+    "random": {
+      "inputs": {
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        }
+      },
+      "outputKind": "array",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": false,
+      "stateful": false,
+      "deterministic": false
+    },
+    "text": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "characters": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "qr": {
+      "inputs": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "image/png",
+        "image/jpeg"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true,
+      "network": true
+    },
+    "image-compress": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "image/*"
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "quality": {
+          "type": "number"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "image-resize": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "image/*"
+          ]
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "keepAspectRatio": {
+          "type": "boolean"
+        },
+        "format": {
+          "type": "string"
+        },
+        "quality": {
+          "type": "number"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "jpg-pdf": {
+      "inputs": {
+        "files": {
+          "type": "file[]",
+          "mimeTypes": [
+            "image/*"
+          ]
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": true,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-merge": {
+      "inputs": {
+        "files": {
+          "type": "file[]",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": true,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "json": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "url": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "timestamp": {
+      "inputs": {
+        "dateTime": {
+          "type": "string",
+          "format": "date-time-local"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "bmi": {
+      "inputs": {
+        "height": {
+          "type": "number"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "age": {
+          "type": "number"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "waist": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "loan": {
+      "inputs": {
+        "principal": {
+          "type": "number"
+        },
+        "annualRate": {
+          "type": "number"
+        },
+        "years": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "tip": {
+      "inputs": {
+        "bill": {
+          "type": "number"
+        },
+        "tipPercent": {
+          "type": "number"
+        },
+        "people": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "date-diff": {
+      "inputs": {
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "color-image": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "image/*"
+          ]
+        },
+        "pixel": {
+          "type": "object"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "scientific": {
+      "inputs": {
+        "expression": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "discount": {
+      "inputs": {
+        "price": {
+          "type": "number"
+        },
+        "discount": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "vat": {
+      "inputs": {
+        "amount": {
+          "type": "number"
+        },
+        "rate": {
+          "type": "number"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "add",
+            "remove"
+          ]
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "compound": {
+      "inputs": {
+        "principal": {
+          "type": "number"
+        },
+        "rate": {
+          "type": "number"
+        },
+        "years": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "data": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "speed": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "area": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "volume": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "uuid": {
+      "inputs": {},
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": false,
+      "stateful": false,
+      "deterministic": false
+    },
+    "base64": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "hash": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        },
+        "algorithm": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "regex": {
+      "inputs": {
+        "pattern": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "dedupe": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "whitespace": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "slug": {
+      "inputs": {
+        "title": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "csvjson": {
+      "inputs": {
+        "csv": {
+          "type": "string"
+        }
+      },
+      "outputKind": "json",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "image-format": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "image/*"
+          ]
+        },
+        "format": {
+          "type": "string"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-split": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "pages": {
+          "type": "string"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "aspect": {
+      "inputs": {
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "temperature": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "weight": {
+      "inputs": {
+        "value": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "profit-margin": {
+      "inputs": {
+        "cost": {
+          "type": "number"
+        },
+        "revenue": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "heic-jpg": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "image/heic",
+            "image/heif"
+          ]
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "image/jpeg"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true,
+      "network": true
+    },
+    "pdf-text": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "date-add": {
+      "inputs": {
+        "startDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "days": {
+          "type": "number"
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "add",
+            "subtract"
+          ]
+        }
+      },
+      "outputKind": "date",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-jpg": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        }
+      },
+      "outputKind": "multi-file",
+      "mimeTypes": [
+        "image/jpeg"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-delete": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "pages": {
+          "type": "string"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-rotate": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "degrees": {
+          "type": "integer",
+          "enum": [
+            90,
+            180,
+            270
+          ]
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "lines": {
+      "inputs": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "ocr-image": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "image/*"
+          ]
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true,
+      "network": true
+    },
+    "pdf-numbers": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "startNumber": {
+          "type": "integer"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-watermark": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "watermarkText": {
+          "type": "string"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-png": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        }
+      },
+      "outputKind": "multi-file",
+      "mimeTypes": [
+        "image/png"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-ocr": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "language": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "string"
+        }
+      },
+      "outputKind": "text",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true,
+      "network": true
+    },
+    "business-days": {
+      "inputs": {
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "percentage-change": {
+      "inputs": {
+        "oldValue": {
+          "type": "number"
+        },
+        "newValue": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "roi": {
+      "inputs": {
+        "investmentCost": {
+          "type": "number"
+        },
+        "returnValue": {
+          "type": "number"
+        }
+      },
+      "outputKind": "scalar",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "markup": {
+      "inputs": {
+        "cost": {
+          "type": "number"
+        },
+        "sellingPrice": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "break-even": {
+      "inputs": {
+        "fixedCosts": {
+          "type": "number"
+        },
+        "sellingPriceUnit": {
+          "type": "number"
+        },
+        "variableCost": {
+          "type": "number"
+        }
+      },
+      "outputKind": "object",
+      "mimeTypes": [],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-extract": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "pages": {
+          "type": "string"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    },
+    "pdf-reorder": {
+      "inputs": {
+        "file": {
+          "type": "file",
+          "mimeTypes": [
+            "application/pdf"
+          ]
+        },
+        "pageOrder": {
+          "type": "string"
+        }
+      },
+      "outputKind": "file",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "supportsBatch": false,
+      "requiresConfirmation": false,
+      "idempotent": true,
+      "stateful": false,
+      "deterministic": true
+    }
+  }
+}
