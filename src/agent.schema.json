@@ -1,0 +1,37 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://gqb.app/api/agent.schema.json",
+  "title":"GQB Agent Discovery Manifest",
+  "type":"object",
+  "required":["schemaVersion","name","role","status","modelAgnostic","registries","interfaces","executionModel","safety"],
+  "properties":{
+    "$schema":{"type":"string","format":"uri-reference"},
+    "schemaVersion":{"type":"string"},
+    "name":{"type":"string","minLength":1},
+    "role":{"type":"string","const":"digital-task-infrastructure"},
+    "status":{"type":"string","enum":["discovery-only","execution-available"]},
+    "modelAgnostic":{"type":"boolean"},
+    "principles":{"type":"array","items":{"type":"string"}},
+    "registries":{
+      "type":"object","required":["tools","tasks","workflows"],
+      "properties":{"tools":{"type":"string","format":"uri"},"tasks":{"type":"string","format":"uri"},"workflows":{"type":"string","format":"uri"}},
+      "additionalProperties":false
+    },
+    "interfaces":{
+      "type":"object","required":["web","machineReadable","api","mcp"],
+      "properties":{"web":{"type":"string"},"machineReadable":{"type":"string"},"api":{"type":"string"},"mcp":{"type":"string"}},
+      "additionalProperties":false
+    },
+    "executionModel":{
+      "type":"object","required":["browserLocal","server","external"],
+      "properties":{"browserLocal":{"type":"string"},"server":{"type":"string"},"external":{"type":"string"}},
+      "additionalProperties":false
+    },
+    "safety":{
+      "type":"object","required":["optionalWorkflowSteps","externalNetwork","verification","sideEffects"],
+      "properties":{"optionalWorkflowSteps":{"type":"string"},"externalNetwork":{"type":"string"},"verification":{"type":"string"},"sideEffects":{"type":"string"}},
+      "additionalProperties":false
+    }
+  },
+  "additionalProperties":false
+}
